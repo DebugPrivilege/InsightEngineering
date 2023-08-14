@@ -287,6 +287,6 @@ Crashing Stack
 0c 000000b0`106ffe00 00000000`00000000     ntdll!RtlUserThreadStart+0x28
 ```
 
-The program **MemoryIssue.exe** encountered a heap corruption error due to double freeing memory. There are functions in the call stack related to error reporting and exception handling (**`ntdll!RtlpLogHeapFailure`**, **`ntdll!RtlpHpHeapHandleError`**, **`ntdll!RtlpHeapHandleError`**, **`ntdll!RtlReportCriticalFailure`**, and others). 
+The program **MemoryIssue.exe** encountered a heap corruption error. There are functions in the call stack related to error reporting and exception handling (**`ntdll!RtlpLogHeapFailure`**, **`ntdll!RtlpHpHeapHandleError`**, **`ntdll!RtlpHeapHandleError`**, **`ntdll!RtlReportCriticalFailure`**, and others). 
 
 This suggests that there was an error during the heap operation, likely related to memory management. The specific function **`ntdll!RtlReportFatalFailure`** suggests a fatal error in the heap, further confirming issues with memory management.
