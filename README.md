@@ -1,7 +1,9 @@
 # Introduction
 
 This GitHub repository dives into fundamental concepts I believe are important for understanding debugging and troubleshooting complex issues on Windows. I'm not referring to issues like AD Replication or printer malfunctions but problems that are related to things such as crash dumps, hangs, performance issues, and memory leaks.
+
 I initially created this as a personal reference when I was (and still) learning more about this topic. Over time, I decided to consolidate these resources and make them publicly available, hoping they could assist others who are keen to explore this topic and learn more about it. The audience of this content should be people that are looking to get started, and might come from an IT Pro background.
+
 The content is organized into various sections, each designed to be as hands-on as possible. I believe that practice is the key to mastery. Therefore, each section goes beyond just the theory aspects, emphasizing practical examples using tools like Visual Studio, Process Explorer, and WinDbg.
 
 The following topics will be covered:
