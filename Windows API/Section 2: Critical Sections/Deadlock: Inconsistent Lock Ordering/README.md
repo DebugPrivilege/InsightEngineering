@@ -656,5 +656,5 @@ By consistently acquiring **`consoleCritSection`** first and then **`critSection
 
 # Reference
 
-- **Critical Section Time Outs:** https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/critical-section-time-outs
-- **Displaying a Critical Section:** https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/displaying-a-critical-section
+- Critical Section Time Outs: https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/critical-section-time-outs
+- Displaying a Critical Section: https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/displaying-a-critical-section
