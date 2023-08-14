@@ -103,6 +103,7 @@ The error code **0xc0000374** is a status code which corresponds to **STATUS_HEA
 Heap corruption can arise from various programming mistakes, such as:
 
 - Freeing a block of memory more than once (double free).
+- Freeing invalid memory.
 - Using a block of memory after it has been freed (dangling pointer).
 - Not initializing memory before using it.
 
