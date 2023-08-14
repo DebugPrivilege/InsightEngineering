@@ -220,7 +220,7 @@ int main()
 }
 ```
 
-The **`while`** loop condition is **attempts < 10**. At this example, the **attempts** variable is initialized with the value of **11**. Because **11** is not less than **10**, the condition for the **`while`** loop is **false** from the start. This means that the loop body will not be executed.
+The **`while`** loop condition is **`attempts < 10`**. At this example, the **attempts** variable is initialized with the value of **11**. Because **11** is not less than **10**, the condition for the **`while`** loop is **false** from the start. This means that the loop body will not be executed.
 
 ![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8f986e7b-a64c-4fd4-a65a-6f02ba92745f)
 
@@ -265,7 +265,7 @@ int main()
     return 1;
 }
 ```
-Even though our loop condition **attempts < 10** is initially **false**, the code inside the **do-while** loop will still runs once, which is why it can successfully open the file.
+Even though our loop condition **`attempts < 10`** is initially **false**, the code inside the **`do-while`** loop will still runs once, which is why it can successfully open the file.
 
 ![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/652155f6-00f0-4379-82ee-f9648bd0ae4f)
 
