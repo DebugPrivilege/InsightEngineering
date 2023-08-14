@@ -528,7 +528,7 @@ Here's the problematic part of the code:
 filename = L"New Value";  // Now the original memory block is inaccessible
 ```
 
-After this line, the memory that was allocated with **malloc** is still allocated, but you have no way to free it because the **`filename`** pointer now points to the string literal **`"New Value"`** instead of the allocated memory.
+After this line, the memory that was allocated with **malloc** is still allocated, but we have no way to free it because the **`filename`** pointer now points to the string literal **`"New Value"`** instead of the allocated memory.
 
 When we try to run this code, we will see this:
 
