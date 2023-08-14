@@ -36,7 +36,7 @@ C++ Code Language:
 ```
 - Section 1: Classes
 - Section 2: Initializer Lists
-- Section 3: Overloading Function Templates
+- Section 3: Function Overloading and Templates
 - Section 4: Copy and Move Constructors
 - Section 5: Inheritance
 - Section 6: Smart Pointers
