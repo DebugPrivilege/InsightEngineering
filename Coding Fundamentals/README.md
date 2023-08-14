@@ -1,4 +1,4 @@
-# C Code Language 
+# C Coding Language 
 
 Welcome to this GitHub repository that covers the basics of the C programming language. Why the C language? Windows, at its core, is primarily written in C. Being familiar with at least the basics of the C language gives several advantages when it comes down to debugging and troubleshooting on this platform. 
 
