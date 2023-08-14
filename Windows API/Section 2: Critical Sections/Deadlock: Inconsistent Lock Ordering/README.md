@@ -653,3 +653,8 @@ int main() {
 ```
 
 By consistently acquiring **`consoleCritSection`** first and then **`critSection`** in both **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`** functions, we've removed the potential for a deadlock scenario. This ensures that even if one thread manages to acquire the first critical section, it won't block the other thread from progressing, since they are both attempting to acquire the critical sections in the same order.
+
+# Reference
+
+- **Critical Section Time Outs:** https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/critical-section-time-outs
+- **Displaying a Critical Section:** https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/displaying-a-critical-section
