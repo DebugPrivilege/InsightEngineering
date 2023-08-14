@@ -384,7 +384,9 @@ A memory leak happens when a program uses memory but doesn't give it back when i
 
 Let's demonstrate two common examples:
 
-- **Not Freeing Memory:** This is the most common cause. When you allocate memory using functions like **malloc()**, **calloc()**, or **realloc()** and forget to free it when you're done will cause a memory leak
+- **Not Freeing Memory**
+
+This is the most common cause. When you allocate memory using functions like **malloc()**, **calloc()**, or **realloc()** and forget to free it when you're done will cause a memory leak
 
 The root cause of the memory leak in this code is that the dynamically allocated memory for the **`filename`** variable is not being freed, even after it's no longer needed. This leaves memory that's no longer in use by your program but still allocated, causing a memory leak.
 
@@ -439,9 +441,9 @@ int main() {
 }
 ```
 
-- **Memory Overwrite:** When you overwrite the only pointer to a memory block, that memory becomes inaccessible and you can't free it anymore. This causes a memory leak.
+- **Dangling Pointer**
 
-The memory leak occurs because we overwrite the **`filename`** pointer with a **new value** before freeing the originally allocated memory block. This means that we lose the reference to the original block of memory, making it impossible to free.
+This memory leak has occurred because we allocated a block of memory for the **`filename`** variable. However, before freeing that memory, we redirected the **`filename`** pointer to another string, creating a dangling pointer. We lost our reference to the initially allocated memory, making it impossible for us to release it back to the system.
 
 ```c
 #include <windows.h>
