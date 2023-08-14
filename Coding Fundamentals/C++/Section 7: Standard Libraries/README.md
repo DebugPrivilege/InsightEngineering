@@ -21,9 +21,9 @@ The **`<iostream>`** is a header file in the Standard Library of C++ that provid
 
 Here are a few common examples:
 
-- **std::cin:** This is an instance of std::istream (input stream) tied with the standard input device, usually the keyboard. It is used to read input.
-- **std::cout:** This is an instance of std::ostream (output stream) tied with the standard output device, usually the console. It is used to produce output.
-- **std::cerr:** This is an instance of std::ostream tied with the standard error device, which is also the console but does not use a buffer. This means that output sent to cerr will be displayed immediately, and it is often used for error messages.
+- **`std::cin:`** This is an instance of std::istream (input stream) tied with the standard input device, usually the keyboard. It is used to read input.
+- **`std::cout:`** This is an instance of std::ostream (output stream) tied with the standard output device, usually the console. It is used to produce output.
+- **`std::cerr:`** This is an instance of std::ostream tied with the standard error device, which is also the console but does not use a buffer. This means that output sent to cerr will be displayed immediately, and it is often used for error messages.
 
 ```c
 #include <iostream>
