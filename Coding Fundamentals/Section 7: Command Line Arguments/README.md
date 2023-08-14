@@ -56,7 +56,7 @@ Inside the loop, this line uses the **strcmp** function to compare the current c
 if (strcmp(argv[i], "--help") == 0)
 ```
 
-The **i++** part in the for loop is called the increment step. It is what allows the loop to progress and not run indefinitely. Each time the loop completes an iteration, i++ increments the value of **'i'** by 1.
+The **`i++`** part in the for loop is called the increment step. It is what allows the loop to progress and not run indefinitely. Each time the loop completes an iteration, i++ increments the value of **'i'** by 1.
 
 The loop begins with **'i'** equal to 0. After the code inside the loop has executed once, **i++** increments **'i'** to 1. The next time through the loop, i is 1. After the code inside the loop executes again, **i++** increments **'i'** to 2, and so on.
 
