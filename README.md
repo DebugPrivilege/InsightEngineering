@@ -4,9 +4,7 @@ This GitHub repository dives into fundamental concepts I believe are important f
 
 I initially created this as a personal reference when I was (and still) learning more about this topic. Over time, I decided to consolidate these resources and make them publicly available, hoping they could assist others who are keen to explore this topic and learn more about it. The audience of this content should be people that are looking to get started, and might come from an IT Pro background. This GitHub repository may be pre-requisite for future content.
 
-The content is organized into various sections, each designed to be as hands-on as possible. I believe that practice is the key to mastery. Therefore, each section goes beyond just the theory aspects, emphasizing practical examples using tools like Visual Studio, Process Explorer, and WinDbg. 
-
-Click on **'Debugging 101'** to get started.
+The content is organized into various sections, each designed to be as hands-on as possible. I believe that practice is the key to mastery. Therefore, each section goes beyond just the theory aspects, emphasizing practical examples using tools like Visual Studio, Process Explorer, and WinDbg. Click on **'Debugging 101'** to get started.
 
 The following topics will be covered:
 
