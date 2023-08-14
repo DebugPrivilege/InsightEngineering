@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-The code goes through each command-line argument and compares it to the string **"--help"** using the **strcmp** function. If it finds a match, it calls the **show_help** function and then ends the program. If it doesn't find a match after checking all arguments, it continues with whatever other code you want to put after the loop.
+The code goes through each command-line argument and compares it to the string **`"--help"`** using the **strcmp** function. If it finds a match, it calls the **`show_help`** function and then ends the program. If it doesn't find a match after checking all arguments, it continues with whatever other code you want to put after the loop.
 
 **[IMPORTANT]**
 
@@ -44,13 +44,13 @@ This is the initialization. It declares a new integer variable **i** and sets it
 int i = 0;
 ```
 
-This is the condition that is checked before each iteration of the loop. If **'i'** is less than **argc** (the number of command-line arguments), then the loop continues. If **'i'** is not less than **argc**, then the loop ends.
+This is the condition that is checked before each iteration of the loop. If **'i'** is less than **`argc`** (the number of command-line arguments), then the loop continues. If **'i'** is not less than **`argc`**, then the loop ends.
 
 ```c
 i < argc;
 ```
 
-Inside the loop, this line uses the **strcmp** function to compare the current command-line argument to the string **"--help"**. If the current command-line argument is **"--help"**, then **strcmp** returns 0 and the code inside the **'if'** statement is executed.
+Inside the loop, this line uses the **strcmp** function to compare the current command-line argument to the string **`"--help"`**. If the current command-line argument is **`"--help"`**, then **strcmp** returns 0 and the code inside the **'if'** statement is executed.
 
 ```c
 if (strcmp(argv[i], "--help") == 0)
