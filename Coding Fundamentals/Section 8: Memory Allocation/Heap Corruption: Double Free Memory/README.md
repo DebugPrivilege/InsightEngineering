@@ -243,6 +243,9 @@ Followup:     MachineOwner
 ---------
 ```
 
+The **FAILURE_BUCKET_ID** suggests this heap corruption was caused by a "double free" (DOUBLE_FREE), which means memory was attempted to be freed twice.
+
+
 This is how the crashing call stack looks like:
 
 ```
