@@ -29,6 +29,12 @@ C is mainly used for:
 - Section 9: Linked List
 ```
 
+# Important
+
+For these sections, since we're using C. Make sure that the source files are ending with the **.c** extension when you are compiling code. Otherwise, you may encounter some issues during the compilation.
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/bd1f6ac2-30ee-4723-a07d-4c47ba9630d0)
+
 # How to Use This Repository?
 
 1. **Navigate:** Go through each topic one by one or jump to the sections you're interested in. However, it is recommended to go through all the sections.
