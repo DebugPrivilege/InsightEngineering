@@ -69,13 +69,15 @@ int main() {
 
 The expected counter value would be **1,000,000**. However, because of the race condition, the actual counter value could likely be less than this. When we ran this code, we may get some inconsistence results here and there.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3e8b06ad-e8a7-414a-ad5c-be7bbd2af669)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9aefe7a3-eb23-4cad-a85e-eb36c2185ffd)
+
 
 # Code Sample (2) - Threads accessing a global variable integer with interlocked access functions
 
 This code uses a function called **InterlockedIncrement**. This function is special because it makes sure that the entire process of increasing the counter by one (the increment operation) happens all at once and can't be interrupted by anything else. This is what we mean by 'atomicity'.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/34d52fde-0193-4603-8df2-9ed39eb522e1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9f48be3a-1e14-4e26-a3e5-86983f3a22e3)
+
 
 ```c
 #include <windows.h>
@@ -125,7 +127,8 @@ int main() {
 
 By using **InterlockedIncrement**, we ensure each increment is completed fully before anything else can happen to the counter. This ensures our counter is accurate, no matter how many threads are trying to increment it at the same time.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d24699f8-28c7-419e-9094-ba23b476b38d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b2b2b1a5-39b3-4361-af08-e90e3140af63)
+
 
 # Code Sample (3) - Threads accessing a global variable integer without interlocked access functions
 
@@ -250,13 +253,15 @@ int main() {
 ```
 The expected outcome of the counter should be **1000**, but due to the race condition. We might get different results, so I would suggest to run this code at least 3 times to see it by yourself. Here is an example after the 3rd attempt. I was getting a way different value than **100**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2a760015-3229-43b6-97c6-cae658f8f2dc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ed77f3ec-6006-445e-8e79-1f96c752a523)
+
 
 # Code Sample (4) - Threads accessing a global variable integer with interlocked access functions
 
 This is an improved version of the previous code because it uses the **InterlockedIncrement** and **InterlockedDecrement** functions to manipulate the global counter **`filesCreatedAndDeleted`**. These functions ensure that increment and decrement operations are atomic, which means they're completed in one undisturbed step.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d6dd4b7c-e7e1-417d-a5ed-fb72a2022318)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6a9ed199-5609-4964-8172-e4b36e799423)
+
 
 
 Code sample:
@@ -379,5 +384,6 @@ int main() {
 
 With these interlocked functions, even if multiple threads try to increment or decrement the counter simultaneously, each operation will be completed fully before the next one begins. Run this code 3 times and see if you will get a different result than **1000**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/01982c8b-c6ee-497a-9953-b4bac77327a7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/871d2b3b-2f36-4caf-ad5b-112d03f94fff)
+
 
