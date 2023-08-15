@@ -92,11 +92,13 @@ int main() {
 
 Start with compiling the code and run it:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/60e8017b-5f44-42d7-a8d4-8188c11b6c0e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/07f9fd1f-ca53-4d07-a37b-ca69a471e792)
+
 
 After we created a file on disk, the program will start crashing. It doesn't allow us to create additional files, so when we open **Event Viewer** and go to the **Application** logs. We can indeed see that this program has crashed:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/82cfd128-2816-4935-a946-0cf9841c03a9)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e90c22e8-1e7a-4a97-96e3-0f805c18002d)
+
 
 The error code **0xc0000374** is a status code which corresponds to **STATUS_HEAP_CORRUPTION**. In simpler terms, this error indicates that there's been a corruption in the heap, which is the region of a computer's memory space used for dynamic memory allocation.
 
@@ -113,7 +115,8 @@ When a program encounters heap corruption, its behavior becomes unpredictable, a
 
 Start with loading the memory dump of the crashed program in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/016ca329-804a-4412-8308-12e7bfcc3178)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/dd0af44a-be73-4636-ac5c-91e908112c31)
+
 
 Start with the **`!analyze -v`** command:
 
