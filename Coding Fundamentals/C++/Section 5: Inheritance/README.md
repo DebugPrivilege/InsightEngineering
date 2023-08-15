@@ -81,25 +81,29 @@ int main() {
 
 This is the base class that other classes will inherit from. It has one data member **`name`**, which is protected (meaning it can be accessed directly within this class and its derived classes), and one function **`train`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/40d10332-5753-4b24-a936-26142125b331)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ef749377-fd5e-4cc0-b447-175b32ec4da8)
+
 
 **Derived Class (Striker)**
 
 This class inherits from **`Fighter`** and adds a new function **`boxing`**. The constructor takes a string as a parameter and passes it to the **`Fighter`** constructor to set the **`name`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/79e7e4f4-88a8-4d2f-9ec7-f753510f48c5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5157deb0-d00f-45d4-a083-fdc80a798046)
+
 
 **Another Derived Class (Grappler)** 
 
 This class also inherits from **`Fighter`** and adds a new function **`wrestling`**. Like the **`Striker`** class, its constructor takes a string as a parameter and passes it to the **`Fighter`** constructor to set the **`name`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5f99fc5d-c5c1-4265-b2d0-80af10a0cac8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e040e6c9-343d-47b5-a081-41cc91acf4a8)
+
 
 **main Function:** 
 
 In the **`main`** function, we create objects of the **`Striker`** and **`Grappler`** classes and call their methods. This demonstrates how objects of the derived classes can use the methods of the base class **`(train)`** as well as their own unique methods **`(boxing and wrestling)`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0853ffdc-a8eb-4fd4-9d92-90ba6803e330)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a16256df-47ad-4e6b-acb3-f5a26f55a414)
+
 
 Let's go a bit into detail. We will take this line as an example:
 
@@ -116,11 +120,13 @@ So, when we call **`grappler.wrestling();`**, we're calling the **`wrestling`** 
 
 However, the fact that the **`grappler`** object can access the **`wrestling`** method is a result of the **`grappler`** object being an instance of the **`Grappler`** class, which is a derived class of the **`Fighter`** base class.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6349b8cc-a17f-4d6e-92d2-d8ae31b1834b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c84fc384-1291-4b98-bb1f-e0d028e7019e)
+
 
 This is how it looks like when we run this code:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c7af42f2-3513-465c-8ad8-e182cc042fb7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d99eeef9-856e-4746-bc20-f8937f7d78eb)
+
 
 
 # Code Sample (2)
@@ -267,20 +273,23 @@ int main() {
 
 **`FileWriter`** is the base class that provides a structure for file writing operations. It includes a constructor that generates a random filename and a pure virtual function **`createAndWrite()`**, which derived classes must override.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4473ef88-12ce-4d4c-8820-7b3a7377edb6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0917f452-a1a4-4113-aa0e-06ffa238dbf7)
+
 
 **Derived Class (LogFileWriter)**
 
 **`LogFileWriter`** is another derived class from **`FileWriter`**. It also overrides the **`createAndWrite()`** function, but in this case, it's designed to add data to an existing file or create a new one if it doesn't exist:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d98d1554-a29e-45cf-a7b5-dd56254ff1e8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f5cd1a7c-1af6-44b8-8461-ec56a804c8f1)
+
 
 
 **main Function**
 
 In the **`main()`** function, objects of both **`TextFileWriter`** and **`LogFileWriter`** are created and used to write data to files:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/412ac5be-62e6-4c34-be2e-aa34cbb7be8a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1c154a24-3bbb-468a-86d6-c99fb5f85b57)
+
 
 This demonstrates the principle of **inheritance** and **polymorphism** in C++, where different classes can implement the same function in different ways to achieve different behaviors.
 
@@ -307,8 +316,10 @@ Let's now look at our code again:
 
 - **`TextFileWriter`**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/53f747cb-3c32-452f-a5d5-ba8ecae3c1e1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/189d4fa7-e44c-417d-ae77-42049468bbe6)
+
 
 - **`LogFileWriter`**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b8353edc-1a5f-4477-b660-f6a028064d2d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a8e06dd5-7a5e-4f1b-bbb5-64d5a3f362af)
+
