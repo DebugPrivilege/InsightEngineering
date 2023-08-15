@@ -24,7 +24,8 @@ int main() {
 ```
 This shows that you can use a pointer to change the value of a variable indirectly, by changing the value at the memory address the pointer is pointing to.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5677b635-d02a-4995-9447-d5503f10ae91)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ba3a09fb-4499-4f2c-9236-f164de817af7)
+
 
 Let's break down different parts of this code:
 
@@ -80,7 +81,8 @@ int main() {
 
 When we run this code, it prints the memory address of the **number** variable, the **address** stored in the **p** variable (which should be the same as the address of number), and the value at the address that **p** points to (which should be the value of number).
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d9f1dee2-7faa-4299-a7d0-b995086fb099)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/476551b3-45cf-4c48-847a-5ad47f399e1c)
+
 
 At this last example, we initially establish a pointer named **message** to a string *"Hello, World!"*.  We are introducing a new pointer **'p'** and make it reference the same data that the **message** pointer is connected to. 
 
@@ -114,7 +116,8 @@ const wchar_t** p = &message;
 
 The pointer in this code is **'p'**, and it's used to pass the string *"Hello, World!"* to the **MessageBox** function.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d4992886-fe2e-4414-8909-452738bd6a58)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6962dbce-c898-4ce3-8171-66abd3462e0b)
+
 
 # Arrays
 
@@ -174,7 +177,8 @@ This the initialization of the array. It sets the three strings that the array w
 { L"file1.txt", L"file2.txt", L"file3.txt" }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/43c67d38-9345-4351-88b5-3adc541e043e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5fb2a9ee-ab12-4414-aa50-8dd4f77eadf4)
+
 
 Let's cover another example. This code demonstrates using an array to store the names of the programs (notepad.exe, cmd.exe, and calc.exe) and then uses **CreateProcess** to start each program at the same time.
 
@@ -216,7 +220,8 @@ int main() {
     return 0;
 }
 ```
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7f1392f5-a734-4cd5-97c8-2967700f9ded)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/798677de-1cd9-404b-aa5a-c352f0230a58)
+
 
 # Strings
 
