@@ -1,4 +1,4 @@
-# What are Slim Reader/Writer Locks?
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/cba3b5a1-e626-4e3e-9259-b1eef9c28154)# What are Slim Reader/Writer Locks?
 
 Slim Reader/Writer (SRW) locks are a type of synchronization mechanism. These locks are designed to allow multiple threads to read data simultaneously, while ensuring that only one thread can write data at a time. Slim Reader/Writer (SRW) locks cannot be shared across processes. 
 
@@ -173,15 +173,18 @@ int main() {
 ```
 Because of the lack of proper synchronization mechanisms, this code will not work as expected and leads to race conditions and data corruption.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/69da6aad-b05a-48ab-bc0a-97485c8ed4e1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7ca910a0-3670-4feb-9d18-d7e3af38f451)
+
 
 If we review the **C:\Temp** location, we can see the created file. However, as you may have notice. There is only one thread that wrote data to the file. The file is also supposed to end in the **C:\Temp3** though, which didn't happen in this case.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8ffa67af-2359-4adc-8738-3208411ae618)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1a8bf0ca-204b-4339-8b7f-645cd2204d4b)
+
 
 The program will hang at some point and it won't proceed further with other operations. Here we can see that the other two threads are sleeping:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f73d3f9f-c351-4ab6-83c4-9d6bba83f027)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/abae8111-9c7f-490e-ba23-818509c20b18)
+
 
 # Code Sample (2) - Code with SRW locks
 
@@ -399,37 +402,46 @@ int main() {
 
 The SRW lock is acquired in exclusive mode before the file is opened for writing, written to, and closed. This ensures that no other thread can perform any file operation while this thread is writing to the file, avoiding potential race conditions and data corruption.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a23ce538-97e7-47f1-84f7-060c35b5c018)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b73f9915-04e7-4094-a24c-e13415aa5daf)
+
 
 The SRW lock is also used to protect the increment operation on **`completedThreads`**, which is a shared variable. This prevents data races that could occur if another thread reads/writes **`completedThreads`** at the same time.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5e8d5f57-859b-4ffa-88dd-aa28519cfda0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/26281eae-c75e-4825-b47b-e37169f819d6)
+
 
 - **MoveFileToFolder** function
 
 The SRW lock is first acquired in shared mode to check the **`completedThreads`** counter.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/06647691-bbeb-4e8b-9fb3-c44af967b2a9)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f6b4724f-d75e-4af4-97eb-ca868b9e39a4)
+
 
 When it's time to move the file, the lock is acquired in exclusive mode. This makes sure that no other thread can interfere with the file or the **`completedThreads`** counter during the move operation.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e38106fb-93ee-4f54-9b7f-5abd30d71786)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/45d0de3c-e8de-4cdf-9a03-e6a48127f3b2)
+
+
 
 - **MoveFileToAnotherFolder** function
 
 Similar to the **`MoveFileToFolder`** function, the SRW lock is first acquired in shared mode to check the **`completedThreads`** counter. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3871e7fd-6c89-4f89-9ddf-71aaac113a59)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/59c9b353-131c-4051-b583-371d9ae87e42)
+
 
 When it's time to move the file, the lock is acquired in exclusive mode. This ensures that the move operation and the read/write operations on **`completedThreads`** are thread-safe.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/96fb0846-2428-400d-b9ad-f470d82c6840)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0b40f4f9-707a-4751-b8d2-dfb054c24c7c)
+
 
 This code is now working as expected.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e4ed73e7-8148-4212-8390-92d98b6a69bf)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fa1622cc-fdc9-48e4-9f26-2f80225454b3)
+
 
 The file has successfully been copied to the **C:\Temp3** as well.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/20249cd4-20dd-40a3-b7a1-00104e93d6d1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/637b9f7a-bf1a-40e3-9573-019a03460b60)
+
 
