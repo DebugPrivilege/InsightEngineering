@@ -62,15 +62,18 @@ int main() {
 ```
 If we insert the integer **12**. It will return that it is a positive number.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/04ebef19-2477-4844-bba8-0551911ef44b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c771d7dc-2c78-4c81-9eff-647d9bb9f294)
 
-The second example will be now using **-12** which returns the **else-if** statement, indicating that the number is negative.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a02002de-fd85-4bf0-93e0-ed8cbe7fc1fd)
+The second example will be now using **-12** which returns the **`else-if`** statement, indicating that the number is negative.
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/94ecc814-8963-48c0-9420-0b204315cf2d)
+
 
 The last example will show us that it's neither a positive or negative number, so here is where the **`else`** statement will kick in.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b332b794-9da5-4936-9984-74c15abd071a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/797afbe2-55bd-46c1-a2c1-cf20992fcbf6)
+
 
 The **switch** statement in C is a type of control flow mechanism that allows you to perform different actions based on the value of an integer or character expression.
 
@@ -106,7 +109,8 @@ Inside the **switch** block, the **case** keyword is used to specify different b
 
 At the end of each **case** block, there is usually a **break** keyword. This is used to exit the **switch** statement. If **break** is not used, execution will continue on to the next **case** block, even if the **switch** expression **(choice)** doesn't match the next **case**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f76a8a72-5bc0-4cb8-acd1-9058f689f197)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/469fbe7d-1bbd-4fc5-8708-db447c7f6b30)
+
 
 # Loop Statements
 
@@ -139,7 +143,8 @@ int main() {
 ```
 The condition of the **`while`** loop checks if **'i'** is **less than or equal** to **10**. Since **1** is **less than or equal** to **10**, the condition is **true**, and the loop's body is executed. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/dafcb74b-7d2c-4df5-a3ac-8379306f6df1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/de1753fd-76a0-46f6-9e66-39fbfdc6374b)
+
 
 
 
@@ -178,11 +183,13 @@ int main()
 ```
 The reason that it couldn't open the file was because this file didn't exists in the current directory.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d55db9ee-0983-419f-b0e6-1780e31b005f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1892e9b4-17cd-414d-a588-f37694840726)
+
 
 Once we are specifying the right file, we can open it successfully.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/bb27d150-b929-4193-9d4c-c6237a5ed857)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/118f5d86-9bf3-4b76-b8f3-f94fb544b987)
+
 
 We have covered a **`while`** loop where the condition was set to **true**. What happens if the condition is set to **false?** Can we still execute our code or will it fail?
 
@@ -222,7 +229,8 @@ int main()
 
 The **`while`** loop condition is **`attempts < 10`**. At this example, the **attempts** variable is initialized with the value of **11**. Because **11** is not less than **10**, the condition for the **`while`** loop is **false** from the start. This means that the loop body will not be executed.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8f986e7b-a64c-4fd4-a65a-6f02ba92745f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e634e010-2735-4e9b-b37a-12f4d1abc05e)
+
 
 **Do-while loop:**
 
@@ -232,7 +240,8 @@ In other words, this means that a **`do-while`** loop will **always execute its 
 
 Let's demonstrate this with a code snippet:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5a8c1cd9-ccfe-4194-ab23-021d9a363dd4)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/980f8f84-687f-40e7-80cb-57003fa8e57f)
+
 
 ```c
 #include <stdio.h>      
@@ -267,7 +276,8 @@ int main()
 ```
 Even though our loop condition **`attempts < 10`** is initially **false**, the code inside the **`do-while`** loop will still runs once, which is why it can successfully open the file.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/652155f6-00f0-4379-82ee-f9648bd0ae4f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0ffd4ab0-a367-4911-930e-790aa6433e94)
+
 
 **For loop:**
 
@@ -305,7 +315,8 @@ int main()
 ```
 This code does exactly the same thing as the previous code. It attempts to open a file up to 10 times, waiting 2 seconds between each attempt, and breaks the loop if the file is successfully opened.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/61987cf9-0b72-4c0e-810f-6a0e0fca61af)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/da0e1d8b-2e09-45da-bc6d-a5ba014e046d)
+
 
 Another example that will use the **`for`** loop to call **CreateProcess** and create multiple instances of **notepad.exe**
 
@@ -423,14 +434,18 @@ cleanup:
 
 The **error_file_creation** label is at a later part of the code and it will print out an error message that includes the specific error code. The **cleanup** label is another section of the code where the program ensures that if a file handle was opened, it will get closed with CloseHandle().
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/9ad90383-23e0-4cd8-a866-4286a865a2bc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7a08e2e3-7b04-4853-ac8e-e5234fd9749d)
+
 
 At the first example, we are able to successfully create a file on disk. Since there are no errors, we can go to the **cleanup** label, which will close the file handle.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4778ef52-80cf-4854-acbc-0b0bf753c0c8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/381f5b40-2afb-4b20-99b4-c84d4397033e)
+
 
 At the second example, we are going to delete the **C:\Temp** folder, so it can't create a file in this folder. Since we are trying to create a file in **C:\Temp** that doesn't exist anymore. We are hitting **INVALID_HANDLE_VALUE**, which will jump our code to the **error_file_creation** label.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d2d6a146-1bc9-42bb-907a-341c33281b6a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/85872816-88fa-4ba9-8fa2-cad8a5f1e696)
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b0c87008-fb58-44f5-a974-14079bd2da77)
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/581a2626-b4f4-4c60-8303-682a62c7a197)
+
