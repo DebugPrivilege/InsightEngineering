@@ -46,11 +46,13 @@ int main() {
 
 **`std::cout`** is used to **print** messages to the console, prompting the user to enter a number and then confirming the number that was entered. **`std::cin`** is used to read the number **inputted** by the user from the console. If the user's input isn't a valid number, **`std::cerr`** is used to **print an error message** to the console. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/06b2e42e-3521-4029-b381-c36f45db1436)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d3368d51-0b04-46f7-ad1a-6b30136ee7e8)
+
 
 If we type invalid characters when the program is expecting an **integer** input, the condition **`if (!(std::cin >> number))`** will be true and the program will execute the code inside the **`if`** statement. This code includes the line **`std::cerr << "You did not enter a valid number!" <<`** 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7320162e-7695-45c0-b923-3aa75792f2a7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/aecd89a7-ba19-4cca-afed-1dac896101ea)
+
 
 # fstream
 
@@ -99,11 +101,13 @@ int main() {
 
 **`std::ifstream:`** is a class that represents an input file stream and is used to read data from files. An object of **`std::ifstream`** is created with the name **`inFile`**, which is then used to open the file **`C:\\Temp\\HelloWorld.txt`** for reading. If the file is opened successfully, the lines in the file are read one by one until the end of the file is reached.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/10934f6d-8623-4ec9-bd6d-4bcdf284cb86)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a7f7a7eb-2fab-4640-82a0-65df815a339f)
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1d8bf47c-fd0e-4b88-af0a-c32aa206c87a)
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8f24463b-9562-45e1-848c-37a694b50309)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/06bb37f3-b0b4-473d-bcd5-ebc1ed3c7182)
+
+
+
 
 # string
 
