@@ -20,23 +20,27 @@ Open **Process Explorer** and search for a process of interest. Further, we can 
 
 The thread is currently executing instructions on a processor. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/98524945-bd31-4c0c-bb57-54e5ab749f84)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6e85ce5f-5e50-4930-a28b-72cde6539841)
+
 
 - **Ready**
 
 The thread is prepared to run and is waiting for an available processor. The system's scheduler determines which ready threads get to use the processor based on their priority levels.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/17f537fb-1e01-4ec4-ba6c-41cf1e4c993d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/df9dec7e-bc29-436e-9e45-f471532b60e6)
+
 
 - **Waiting**
 
 The thread is not running, and is waiting for some resource to become available or for some event to occur. For example, a thread might be waiting for disk I/O to complete, for data from a network connection, or for a mutex to be released by another thread. This is the most common one that you will see.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4ba34eff-22f2-40df-bd58-cbc7dd6cd2ec)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/53f07bfa-f7eb-4d3d-99c8-300aa1e88f67)
+
 
 - **Terminated**
 
 The thread has finished executing and has exited.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c2f30a67-f1f8-4ffb-98cd-b53362546aa9)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d9a779f4-9d35-4408-a55f-e9dc5e127655)
+
 
