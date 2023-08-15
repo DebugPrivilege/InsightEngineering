@@ -1,4 +1,4 @@
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/cba3b5a1-e626-4e3e-9259-b1eef9c28154)# What are Slim Reader/Writer Locks?
+# What are Slim Reader/Writer Locks?
 
 Slim Reader/Writer (SRW) locks are a type of synchronization mechanism. These locks are designed to allow multiple threads to read data simultaneously, while ensuring that only one thread can write data at a time. Slim Reader/Writer (SRW) locks cannot be shared across processes. 
 
