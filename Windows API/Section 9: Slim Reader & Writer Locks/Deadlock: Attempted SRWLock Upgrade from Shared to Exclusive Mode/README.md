@@ -219,11 +219,13 @@ This is a problem because Slim Reader/Writer (SRW) Locks in Windows do not suppo
 
 Once we run the program, it will hang somewhere at the start:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/bf6ae4e6-7f7c-4e16-99cf-e396cd2208a4)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/58cabf85-5ff0-44e5-b5d9-000217153cfd)
+
 
 When we open **Process Explorer** and look at the wait reasons. We can see that the threads are waiting on a Slim Reader & Writer lock:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/257d4957-3270-464b-81b0-af22c6f9d3ea)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b39ca6d5-6a29-41fa-96e8-b90385f7941f)
+
 
 The fix was to release the shared lock **`(ReleaseSRWLockShared(&srwLock);)`** before attempting to acquire the exclusive lock, ensuring that the thread doesn't hold both locks at the same time, which would lead to a deadlock. The SRW lock does not support upgrading from a shared lock to an exclusive lock, which could lead to a deadlock if not managed correctly.
 
