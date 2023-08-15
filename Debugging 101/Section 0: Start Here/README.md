@@ -14,7 +14,8 @@ It is **recommended** to do everything on a virtual machine, instead of your per
 
 First tool we will be downloading is Process Explorer. This is a tool that provides detailed information about running processes and system resource usage on a Windows operating system. We will be using the version **v17.05** or higher:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8ba2dc5a-195c-455b-8312-cb4b9e73fc23)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a094c17d-2c07-4b8f-ac49-b3f6114a8ab1)
+
 
 **DOWNLOAD HERE:** https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer
 
@@ -22,11 +23,13 @@ First tool we will be downloading is Process Explorer. This is a tool that provi
 
 The second tool we will be downloading is **Visual Studio Community**. Visual Studio Community is a free, fully-featured integrated development environment (IDE) from Microsoft, designed for coding and building various software applications.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fcab16f3-3208-44f3-b4d1-6da52bcce147)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0fa48737-3828-4f04-a043-837280f33ff7)
+
 
 Since we will be working a lot with C/C++, make sure to select **Desktop Development with C++** during the installation of **Visual Studio Community**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/42b60115-b955-4da6-93ec-80ee3382e2f5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/64210db7-ca3c-4c95-8b25-0356d95c7716)
+
 
 Once Visual Studio Community has been installed. Let's create a first project together.
 
@@ -34,7 +37,7 @@ Once Visual Studio Community has been installed. Let's create a first project to
 2. Select **C++** and then **Console App**
 3. Click **Next**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/def6f4fd-4a60-4ec1-805d-34d516a57ca8)
+
 
 4. Provide a name and location and click on **Create**
 
