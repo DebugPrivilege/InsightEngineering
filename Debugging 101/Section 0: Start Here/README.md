@@ -37,23 +37,28 @@ Once Visual Studio Community has been installed. Let's create a first project to
 2. Select **C++** and then **Console App**
 3. Click **Next**
 
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/662107fb-9203-4470-bc2f-2ac896b23882)
 
 
 4. Provide a name and location and click on **Create**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/cceadee7-5b19-4f6e-8a7f-30b2e568b43d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2855a608-282e-40de-8b06-c54c2b3f7df8)
+
 
 5. Right-click the project in the **Solution Explorer** and choose **Properties**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/90304ebe-4a33-4d82-87fb-f6873c514d6f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d41430be-f564-403c-be38-272e2a17d5b8)
+
 
 6. Change the **Configurations** to **All Configurations** and **Platform** to **All Platforms**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/37c02d99-10e3-4385-b29e-6e697f3a30b6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e2540219-0804-482a-9a66-95fffbb4400e)
+
 
 7. Go to **Configuration Properties** -> **C/C++** -> **Code Generation** -> **Runtime Library** -> Select **Multi-threaded /MT**
 
- ![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/15f4ed8e-35f5-4298-86c1-cf870765b722)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/594548de-184d-4033-8512-85e969707f2c)
+
 
 8. Save the project
 
@@ -63,7 +68,8 @@ Once Visual Studio Community has been installed. Let's create a first project to
 
 The Windows SDK provides code and tools to aid the development and troubleshooting of applications and systems. Make sure to install **Debugging Tools for Window**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b8a57f66-50ea-4890-9bf9-4d8e9ec24a6b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/60d5aa12-ca30-4769-8d0d-36fb1f54bc43)
+
 
 
 **DOWNLOAD HERE:** https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/
@@ -72,7 +78,8 @@ The Windows SDK provides code and tools to aid the development and troubleshooti
 
 WinDbg is a powerful debugging tool from Microsoft used for analyzing and diagnosing software issues in Windows applications and operating systems.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/07a00218-66b6-4725-a4e7-1a5b3f1157fe)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d20cfc87-ae20-44c5-a89b-bf0b07a3e0f4)
+
 
 **DOWNLOAD HERE:** https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/
 
@@ -82,11 +89,13 @@ Symbol files hold a variety of data which are not actually needed when running t
 
 1. Open **View advanced system settings**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b38ccc2d-7a9b-43a2-b0da-98b6625b78b0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/dfe43da7-e6db-4632-b0a9-28442aa7c6b6)
+
 
 2. Click on **Environment Variables**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8eec1bc5-80af-427b-b202-6197d8ebf1cc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/617d084b-4c06-46fe-b8dc-478366591c22)
+
 
 3. Configure the following environment variables:
 
@@ -99,11 +108,13 @@ Symbol files hold a variety of data which are not actually needed when running t
 
 This is how the end result should look like:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e997836d-0af7-422a-8919-843cd083cacf)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8a0fb454-0264-450c-ba20-d7bce9d997f0)
+
 
 Open **Process Explorer** and go to **Options** and then configure the symbols:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/57b909bb-8ade-457f-ba0c-500f0a7bd71a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f9cc533b-422b-4631-81ad-144377f4c55b)
+
 
 # Console Debugger (CDB)
 
@@ -111,11 +122,13 @@ There are people that may prefer to use the Console Debugger above the WinDbg GU
 
 1. Open **View advanced system settings**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b38ccc2d-7a9b-43a2-b0da-98b6625b78b0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e2c4d855-8216-4d23-8ed3-2d91996cd21f)
+
 
 2. Click on **Environment Variables**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8eec1bc5-80af-427b-b202-6197d8ebf1cc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c9daede7-dea8-4d8b-a9d3-4a11f9ade1eb)
+
 
 3. Under **User variables for User** select **Path** and then paste the following location:
 
@@ -123,7 +136,8 @@ There are people that may prefer to use the Console Debugger above the WinDbg GU
 C:\Program Files (x86)\Windows Kits\10\Debuggers\x64
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8afa5907-f29a-4725-8a8e-a73860edc9d1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/501d0feb-14af-47d1-ba23-0074e0147fda)
+
 
 
 4. We can now use **cdb.exe** to analyze memory dumps for example:
@@ -132,7 +146,8 @@ C:\Program Files (x86)\Windows Kits\10\Debuggers\x64
 cdb -z C:\Users\User\Desktop\MEMORY.DMP
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7214b515-4182-40eb-a77a-08e3bfc7932d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d4696860-42f0-4433-8b4d-0dd677f24910)
+
 
 # Install the MEX Extension
 
@@ -141,7 +156,8 @@ MEX Debugging Extension for WinDbg can help you simplify common debugger tasks, 
 1. Go to the following link and download **MEX**: https://www.microsoft.com/en-US/download/details.aspx?id=53304
 2. Extract the ZIP file
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0fc635e4-0f34-473d-8ce5-fbbbf8240e4d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/46210820-e38a-4246-a615-1fddd8214119)
+
 
 3. Launch **notepad.exe** as an example in WinDbg. It doesn't really matter which one.
 4. Run the following command: **.extpath**
@@ -155,7 +171,8 @@ Extension search path is: C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2306.1
 
 5. Pick one of the above locations and store the **mex.dll** extension. In this example, we are going to pick **C:\Users\Admin\AppData\Local\Dbg\EngineExtensionst**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4f04b025-8f37-48a8-9623-9a4f548a99b5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ffb421ed-c745-47dc-bce4-e08fa693d785)
+
 
 6. When we now type **.load mex** in WinDbg, we will get to see:
 
