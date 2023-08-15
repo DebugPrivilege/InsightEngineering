@@ -33,7 +33,8 @@ C is mainly used for:
 
 For these sections, since we're using C. Make sure that the source files are ending with the **.c** extension when you are compiling code. Otherwise, you may encounter some issues during the compilation.
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/bd1f6ac2-30ee-4723-a07d-4c47ba9630d0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/757e65c1-b2f4-4c13-ba42-19847cd12882)
+
 
 # How to Use This Repository?
 
