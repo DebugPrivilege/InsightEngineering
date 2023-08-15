@@ -297,3 +297,49 @@ Crashing Stack
 The program **MemoryIssue.exe** encountered a heap corruption error. There are functions in the call stack related to error reporting and exception handling (**`ntdll!RtlpLogHeapFailure`**, **`ntdll!RtlpHpHeapHandleError`**, **`ntdll!RtlpHeapHandleError`**, **`ntdll!RtlReportCriticalFailure`**, and others). 
 
 This suggests that there was an error during the heap operation, likely related to memory management. The specific function **`ntdll!RtlReportFatalFailure`** suggests a fatal error in the heap, further confirming issues with memory management.
+
+In **MEX**, there's another beneficial command, **`!mheap`**, designed specifically for user mode dumps. It can be used to diagnose heap issues and provides a summary of the heap.
+
+```
+0:000> !mheap
+
+
+************************************************************************************************************************
+                                              NT HEAP STATS BELOW
+************************************************************************************************************************
+**************************************************************
+*                                                            *
+*                  HEAP ERROR DETECTED                       *
+*                                                            *
+**************************************************************
+
+Details:
+
+Heap address:  000002decbae0000
+Error address: 000002decbaec750
+Error type: HEAP_FAILURE_BLOCK_NOT_BUSY
+Details:    The caller performed an operation (such as a free
+            or a size check) that is illegal on a free block.
+Follow-up:  Check the error's stack trace to find the culprit.
+
+
+Stack trace:
+Stack trace at 0x00007ffbf6b318f8
+    00007ffbf6ad1575: ntdll!RtlpLogHeapFailure+0x45
+    00007ffbf69ebebc: ntdll!RtlpFreeHeapInternal+0x84c
+    00007ffbf69eab01: ntdll!RtlFreeHeap+0x51
+    00007ff767de97d0: MemoryIssue!_free_base+0x1c
+    00007ff767de120f: MemoryIssue!main+0x19f
+    00007ff767de1490: MemoryIssue!__scrt_common_main_seh+0x10c
+    00007ffbf49f26ad: kernel32!BaseThreadInitThunk+0x1d
+    00007ffbf6a0aa68: ntdll!RtlUserThreadStart+0x28
+
+LFH Key                   : 0xf39d1efbdd3f221a
+Termination on corruption : ENABLED
+          Heap     Flags   Reserv  Commit  Virt   Free  List   UCR  Virt  Lock  Fast 
+                            (k)     (k)    (k)     (k) length      blocks cont. heap 
+-------------------------------------------------------------------------------------
+000002decbae0000 00000002    1124     68   1020      1     2     1    0      0   LFH
+000002decb8f0000 00008000      64      4     64      2     1     1    0      0      
+-------------------------------------------------------------------------------------
+```
