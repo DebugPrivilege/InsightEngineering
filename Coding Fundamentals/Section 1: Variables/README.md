@@ -236,7 +236,8 @@ int main() {
     return 0;
 }
 ```
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a2991171-e48e-42e0-b181-494f84cf15f1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a2585a19-493f-4d00-ad0e-8d6f78c24771)
+
 
 # Global Variables
 
@@ -278,7 +279,8 @@ int main() {
 ```
 We have two global variables **globalVar1** and **globalVar2** declared at the top of the program, **outside** of any function. These variables are accessible by all functions in the program. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b71d4607-c053-4cec-820d-a56f31539c7a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5ecc38b5-8e39-4c49-aba6-812bad5c82ee)
+
 
 Global variables are allocated and initialized before any functions are called, and their memory is retained until the program terminates. Global variables are stored on a seprate memory region called **data segment**. Global variables are stored in the data segment of the program's memory because they have a global scope and lifetime. Being in the **data segment** means they have a fixed memory location that remains constant throughout the program's execution. This allows the variables to be accessed and modified from any part of the program.
 
@@ -304,7 +306,8 @@ int main() {
 ```
 The function **foo()** declares a local variable **x** within its scope. However, when we try to access the variable **x** in the **main()** function, which is outside the scope of **foo()**, it causes a compilation error. This is because local variables are only accessible within the block or function in which they are declared.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3af3bff8-33e4-424c-905e-ef31cfa54ac5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/56b75e98-7c45-47c7-ae53-90dbc3e2f776)
+
 
 As previously discussed, local variables have a limited scope and lifetime. The lifetime of a variable refers to the period during which the variable exists and holds a valid value. For local variables, their lifetime is limited to the duration of the block or function where they are defined. Once the memory is released after the execution of a block or function, the local variables within that block will lose their memory address. 
 
@@ -329,12 +332,14 @@ int main() {
 ```
 Compile this code and execute it. Further, pay a close attention to the memory address that is set to the local variable. During the first execution, our memory address is **000000F18B9DF964**. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/70a0f7b6-ec1f-4f05-bac9-ad44b669083e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b2fb8d35-107d-436b-a989-129c5ed2b308)
+
 
 
 When the block or function is executed again, new memory will be allocated on the stack for the local variables, and they will be assigned new memory addresses.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f070bc7f-a5e5-4933-9dc1-7f90d6aa1435)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/acf7e6fa-0a84-464b-95f8-d51b8a1e3ba5)
+
 
 # Static Variables
 
@@ -365,7 +370,8 @@ int main() {
 
 The static variable **callCount** keeps track of the number of times the **countCalls** function is called. Each time the function is executed, the value of **callCount** is incremented and printed. The static variable holds onto its value between function executions, allowing us to maintain the count across different function calls.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/83bd9107-2925-4689-8ac5-7126dafb411e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e668f93b-107c-4aaf-ab12-2a9d500a7948)
+
 
 Let's now cover another example on how we can indirectly access the static variable:
 
@@ -394,6 +400,7 @@ int main() {
     return 0;
 }
 ```
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b855b885-4a51-47c7-aa9e-34e60a0bf5a7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5c4e1203-5cc3-44d3-ba12-0f55146d28da)
+
 
 The **countCalls()** function now returns a pointer to the static **callCount** variable. In **main()**, we store this pointer in **callCountPtr** each time we call **countCalls()**. At the end of **main()**, we use **callCountPtr** to indirectly access the **callCount** variable and print its value. This is an example of indirect access to a static variable outside of its defining function.
