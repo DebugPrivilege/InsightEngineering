@@ -48,7 +48,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/33eac02c-8ddc-4170-8950-9344c1fa39f2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/dfbf7771-7c03-423d-9cfd-fca22bc9202a)
+
 
 
 
@@ -123,7 +124,8 @@ int main() {
 ```
 This snippet of code prints the size in bytes for each specified data type. The **%zu** format specifier is used in this code to correctly print the value of type **size_t**, which is returned by the **sizeof** operator. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d4c34ac8-4e7a-4171-84a7-0b6fc568d00c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/227dd15d-75f8-494f-bf54-28bff5c44b2c)
+
 
 The second example demonstrates on how we are able to gather the range value of each specified data type. At this piece of code, we will see **constants** such as, **INT_MIN**, **INT_MAX**, etc. All these **constants** are representing the range and characteristics of various primitive data types. These constants are defined in the **limits.h** and **cfloat** header files, and they provide information about the minimum and maximum values that can be represented by the data types. 
 
@@ -154,7 +156,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5d71c943-d8bb-47e9-8985-02da6abccfa7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/575a23dc-4daa-4fab-a14b-65ea9da5b745)
+
 
 # Format Specifiers
 
@@ -182,7 +185,10 @@ int main() {
 
 The format specifier **%lc** is used in the printf statement to print the value of **number** as a wide character. However, **number** is declared as an **int** type, not a wide character type. This is why we don't see the value **10** being printed.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2be86308-5aec-4af3-b755-dda65c33ead0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b2c6a62b-a0c3-4b06-95ff-d67ca9f92ce6)
+
+
+
 
 Let's now apply **format specifiers** in practice and use it with different data types to print the specified values. For example, **%d** is used to print **boolVar** as an **integer**, **%c** for **charVar** as a **character**, **%u** for **ucharVar** as an **unsigned integer**, and so on.
 
