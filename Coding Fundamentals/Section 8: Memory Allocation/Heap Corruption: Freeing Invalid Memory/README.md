@@ -72,11 +72,13 @@ int main() {
 
 Running the code with the "Freeing Invalid Memory" issue can lead to unpredictable behavior, ranging from program crashes to silent heap corruption:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f01ad777-4dcb-47f2-806c-66f03bd5aba6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a125724d-b5f2-4ea4-b4c5-4f88a4aaee5e)
+
 
 After we created a file on disk, the program will start crashing. When we open **Event Viewer** and go to the **Application** logs. We can indeed see that this program has crashed:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e34f8ab2-282a-4939-b4ba-e25a6d000dfb)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1fde7dab-0817-4499-ae27-12a8fe1a249c)
+
 
 The error code **0xc0000374** is a status code which corresponds to **STATUS_HEAP_CORRUPTION**. In simpler terms, this error indicates that there's been a corruption in the heap, which is the region of a computer's memory space used for dynamic memory allocation.
 
@@ -93,7 +95,8 @@ When a program encounters heap corruption, its behavior becomes unpredictable, a
 
 Load the memory dump of the crashed program in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ee1165a0-3f3c-40df-aa73-750b851ee7c6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6f25f767-8bfe-477f-8a66-d533620753cf)
+
 
 Start with the **`!analyze -v`** command:
 
