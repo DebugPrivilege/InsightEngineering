@@ -48,7 +48,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2dbae954-6f13-4c33-9193-2c210fd89562)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/33eac02c-8ddc-4170-8950-9344c1fa39f2)
+
 
 
 # Declaration and Initialization
