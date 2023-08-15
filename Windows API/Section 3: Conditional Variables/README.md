@@ -170,7 +170,8 @@ int main() {
 
 The race condition in this code exists because there is no synchronization between the **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`** threads. The threads need to be coordinated so that the **`MoveFilesToNewDirectory`** thread doesn't start moving files until the **`CreateAndWriteFiles`** thread has finished creating and writing to all the files. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5f85e737-ff95-40ff-b880-87ef87eb8ffa)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c0c90314-3577-41a3-b91d-f2118cc28f50)
+
 
 # Code Sample (2) - Conditional Variables
 
@@ -367,7 +368,8 @@ The **`CreateAndWriteFiles`** thread is responsible for creating files and writi
 
 On the other hand, the **`MoveFilesToNewDirectory`** thread is initially in a waiting state, blocked on the **`ConditionVar`** using the **SleepConditionVariableCS** function. The thread is waiting for the condition (the creation of a new file) to be met. If the shared queue is empty, indicating that there are no new files to process, the thread remains blocked.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1209cd83-cdcb-4066-99fc-b0c6d6393688)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/557c9b4a-0bbf-405c-aeed-e7e8d93fb5ff)
+
 
 # What is the difference between Critical Sections and Conditional Variables?
 
