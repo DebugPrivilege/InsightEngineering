@@ -239,15 +239,18 @@ int main() {
 
 When we run the program, it starts to hang as we can see here:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0152e75f-6f63-4568-a800-713aeee41600)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c10fc73e-b399-433b-ab18-b6001e036f17)
+
 
 Open **Process Explorer** and we can see that the call stack indicates that a thread originating from **`MoveFileToFolder`** is waiting for a synchronization object:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/cd3c3503-447f-4cc5-8dde-8a47479fbd58)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/071a0305-eeb4-4d89-af32-ec28fa3ef7f5)
+
 
 Create a memory dump of the program while it is hanging:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a2edfda1-7d06-4c37-95ce-ddbfcca7597f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8b832c15-b933-430a-bd24-a7e51cee8e21)
+
 
 # Flow of the deadlock
 
