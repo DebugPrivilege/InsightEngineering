@@ -177,7 +177,8 @@ int main() {
 
 The race condition in this code exists because there is no synchronization between the **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`** threads. The threads need to be coordinated so that the **`MoveFilesToNewDirectory`** thread doesn't start moving files until the **`CreateAndWriteFiles`** thread has finished creating and writing to all the files. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5f85e737-ff95-40ff-b880-87ef87eb8ffa)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1c311d33-7b4e-46cd-9c0a-c2a75124d27a)
+
 
 # Code Sample 2 - Critical Section
 
@@ -382,7 +383,8 @@ int main() {
 
 **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`** functions use the same critical section, defined as **`critSection`** in the code. When a thread enters a critical section, no other thread can enter the same critical section until the first thread leaves it.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b9ef1590-d8c6-4f80-a0ef-ab158dbafffa)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e3d23169-157c-4650-9a70-a70cc3048c1a)
+
 
 # ASCII Visualization of Critical Section
 
