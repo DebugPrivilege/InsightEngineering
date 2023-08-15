@@ -36,7 +36,8 @@ Also, the third parameter (**bInitialState**) is set to **FALSE**. This means th
 
 An Event object becomes "signaled" when the **SetEvent** function is called on that Event object. This is how one thread communicates to another that a certain condition has been met or an event has occurred.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5d289676-d0a3-4bc9-b3ac-3eec3a392df3)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1fe67351-3c66-4b27-9eb5-5f9131bac6a1)
+
 
 This code demonstrates the use of an **automatic-reset** event, where one thread **`SignalEvent`** signals the event after sleeping, allowing another waiting thread **`WaitForEvent`** to proceed, print a message, and then wait again, demonstrating how the event automatically resets to **non-signaled** after releasing a single waiting thread. 
 
@@ -117,43 +118,51 @@ int main() {
 ```
 Start with compiling this code and run it. Ask yourself the question. Why are these messages printed in this order and what is the programming logic behind it?
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0b72f6c4-4cc7-473e-88c9-237507805014)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f0fe2f22-b940-41e8-a3b9-1114f4dabd65)
+
 
 This code has two functions declared as **`WaitForEvent`** and **`SignalEvent`** that will be run as separate threads. Let's start with understanding why the following line is printed first to the console:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f825a816-5227-419d-ab40-ad7db1a00f77)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3bb29056-1f6e-4540-88da-303e34890f48)
+
 
 Let's review the code snippet of the **`WaitForEvent`** function. The thread running this code will **block** or **pause** at the **`WaitForSingleObject(hEvent, INFINITE)`** line, and will not proceed until the event object **hEvent** is signaled from somewhere else in the program (in this case, from the **SignalEvent** function).
 
 The **WaitForSingleObject** function in this context is being used to wait for an event to become signaled. The parameters it takes are a handle to the event object (**hEvent**), and the amount of time the function is to wait for the event to become signaled
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a579fa72-f7ca-47cf-9695-a95ca7b955a2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/24e793dd-8244-408e-a55e-a37773e25d82)
+
 
 In other words, the function is requesting that the thread should wait until the event object **hEvent** is signaled. While the **`WaitForEvent`** thread is waiting, the **`SignalEvent`** thread runs and calls **`SetEvent(hEvent);`**. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e7c4a12e-ab79-4279-842c-d5a69ef66dd9)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/822dc409-d936-4741-9639-f3117855552a)
+
 
 This signals the event object **hEvent** to "signaled". This means that the condition for the **`WaitForEvent`** function that was waiting has been met, so the **`WaitForEvent`** function can now proceed past the **WaitForSingleObject** call.
 
 So why is this line printed first again?
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4fca9cca-83bd-4374-8167-648bba6a22dc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/62bc254d-6802-4cb5-8df0-cad7e4da0893)
+
 
 By calling **`SetEvent(hEvent)`** it releases the **`WaitForSingleObject(hEvent, INFINITE)`** call in **`WaitForEvent`** that was previously blocked, waiting for the event object to become signaled. 
 
 Once **hEvent** is signaled, the **WaitForSingleObject** function stops blocking, and the next line is executed: 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/09fef32a-6b41-4274-bdb9-62c29b10f33c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fa5006fe-fab3-4982-a39a-64743f56e6ce)
+
 
 Therefore, **`"SignalEvent: Signaling the event\n"`** is printed first because **`SignalEvent`** signals the event, which then releases the blocking **WaitForSingleObject** call in **`WaitForEvent`**, allowing it to print.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c7fc47ed-6a94-43d7-b1ee-bd94838161f2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7522b2c9-95f0-410d-8ac4-598b2b8b847c)
+
 
 # Code Sample (2) - Auto-Reset Event using Signaled State
 
 A signaled state indicates that the event object's condition has been met, unblocking any threads waiting on this event to proceed with their execution. In this example, we changed the initial state of the event object during its creation. We made the event object initially **signaled** by passing **TRUE** to the third parameter of **CreateEvent()**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/74888f65-1580-4f5a-ad85-1f6ac053a00b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/741a9649-1876-4b3b-8bb7-76c5052d49f4)
+
 
 ```c
 #include <windows.h>
@@ -232,11 +241,13 @@ int main() {
 ```
 The output will now look like this:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fb01fd41-e8ab-47bd-b141-f1b368bd9d98)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ecc0f3ce-e065-4962-a3c3-118cb36069eb)
+
 
 When **`WaitForEvent`** first calls **`WaitForSingleObject(hEvent, INFINITE);`**, the event is in the signaled state, and so **WaitForSingleObject** does not block and continues. After this, the system automatically resets the event to the **non-signaled** state because this is an **auto-reset** event.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/53bdbf2c-aeaa-4869-abb7-064e54e221be)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/07818d74-b429-4ac4-a190-4142df28cbec)
+
 
 This means that if **WaitForSingleObject** is called again with this event object (like it is later in the **WaitForEvent** function), it will block until the event object is set to the **signaled** state again.
 
@@ -244,25 +255,30 @@ Now, the **`WaitForEvent`** thread attempts to call **WaitForSingleObject** for 
 
 At this point, the **`SignalEvent`** thread resumes execution after its initial Sleep call. It prints out **`"SignalEvent: Signaling the event"`**, then calls **SetEvent**, which sets the event object to the **signaled** state.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/592ba119-dc61-4393-94b6-4af9c55308da)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8d0c3ac9-fb41-4c5c-b0cd-02f0a09b3010)
+
 
 This action allows the **WaitForSingleObject** in the **`WaitForEvent`** thread to complete, and the message **`"WaitForEvent: The event was signaled again"`** is printed.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7dc16341-4980-4f8c-ae02-017132ddfc31)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/95a75354-88d0-4128-bde4-0610520b8810)
+
 
 The process then repeats for the second **signaling** event. The **`SignalEvent`** thread pauses for 5 seconds due to the second Sleep call, then prints **`"SignalEvent: Signaling the event again"`** and calls **SetEvent** again, allowing the event object to return to the **signaled** state. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/165853b0-c494-4e64-a2bd-08c9fd15c62f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6d227747-563f-44de-a29d-53c94ff3592a)
+
 
 This is how the output once again looks like:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7d89c867-dfdf-4db4-a052-3eb1cd3f30f6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8696f368-01b9-4610-bceb-cbe366afe9a2)
+
 
 # Code Sample (3) - Manuel-Reset Event using Signaled State
 
 A manual reset event is a synchronization mechanism that, once signaled, stays in the signaled state until it's manually reset to the non-signaled state.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fe4a4834-f2f0-4130-b0a6-66398afff6ef)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ae533071-fec6-4bba-845d-02ac0d999f53)
+
 
 ```c
 #include <windows.h>
@@ -344,7 +360,8 @@ In the case of a **manual-reset** event, once the event is signaled (which we di
 
 This means that any number of calls to **WaitForSingleObject** will return immediately because the event is already in the signaled state. The primary change is that in the manual-reset version of the code, the **`WaitForEvent`** thread doesn't block at all, and completes its execution before the **`SignalEvent`** thread even gets a chance to run.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/964c73d7-ed8a-4737-a841-5d9832b03f44)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/27605a5b-ca62-4ad7-8ac2-98712f7c0a51)
+
 
 # Code Sample (4) - ResetEvent
 
@@ -354,7 +371,8 @@ Let's quote the following sentence:
 
 What happens when we explicitly reset back by calling the **ResetEvent** API?
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6566d6b8-e0e9-4c7e-be20-deb95c3a179d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c24d256b-fdf6-4bd5-914c-bcaa3bcb956b)
+
 
 
 ```c
@@ -433,7 +451,8 @@ When we call **`ResetEvent(hEvent);`**, it changes the state of the event object
 
 The output will now look like this:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/73fd04df-c73d-496c-8657-b054063d9fc9)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/bc20444c-aee1-4d3b-bcfa-4a4c3fa0035f)
+
 
 The first **WaitForSingleObject** call does not block because the event is initially in the **signaled** state. However, the second **WaitForSingleObject** call will block because **ResetEvent** had been called to reset the event to a **non-signaled** state. It will continue only after **SetEvent** is called in the **`SignalEvent`** function.
 
@@ -623,11 +642,13 @@ int main() {
 
 **`CreateAndWriteFiles`** function creates and writes to files, then signals the event by calling **`SetEvent(hEvent)`**. This changes the event state to **signaled**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/843ed330-48bd-431a-abdc-acbcfbffefd2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/87a23a2c-2998-42f8-829b-26e588574e7d)
+
 
 **`MoveFilesToNewDirectory`** waits for the event to be signaled by calling **`WaitForSingleObject(hEvent, INFINITE)`**. This ensures that the **`MoveFilesToNewDirectory`** thread does not start moving files until all files are created, and it won't start moving files again until **hEvent** is set to the **signaled** state again.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ca6023cc-c847-4a3c-a187-de0a0ec65f63)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/49c46c8a-0738-4c99-b833-a3326492a118)
+
 
 The primary purpose of the Event object in this program is to synchronize the execution of the file creation/writing thread and the file moving thread, ensuring that files are not attempted to be moved until they have been fully created and written to. 
 
@@ -878,33 +899,40 @@ The event object is used for inter-process synchronization: the primary process 
 
 This block of code is attempting to open an existing event object named **`Global\\FilesMovedEvent`** using the **OpenEvent** function. The **`WaitForSingleObject(hEvent, INFINITE)`** line then blocks execution until the **`FilesMovedEvent`** is signaled by the other process. This is the synchronization point where this process is waiting for the other process to finish moving all the files. Once the event is signaled, this process knows that all files have been moved and it can proceed with its operations, which in this case is writing to the files.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3385773d-0b26-4f30-a8b0-2df0d4d4abc2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/811f05d3-9b3e-4ec2-a8bf-39a61e9e0bbf)
+
 
 # Theory vs Practice - Event Objects with Inter-Process Synchronization
 
 1. Start running **EventObject.exe**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3863cb67-6d8a-4563-a481-b5c43a5b0ef8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d3469586-ba73-452c-85d5-f309b34dbc9b)
+
 
 2. At the same time, start **EventObject2.exe**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/972f452a-4c65-48e3-b511-171085d7d8bc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9797e1af-c89a-4092-8c0a-48bbe141fcde)
+
 
 3. Pay a close attention to **EventObject2.exe**, the program won't run right away. As discussed previously, the **`WaitForSingleObject(hEvent, INFINITE)`** line blocks execution until the **`FilesMovedEvent`** is signaled by the other process.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c8a41c01-c42a-4aa6-9798-3bea9224e443)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ab319af8-7364-477f-b728-b2e698abe678)
+
 
 4. **EventObject.exe** has completed all the Write/Move operations
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d37eb10b-be0f-45f9-8032-8d140fb981ea)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d29bc9ee-e37d-428c-8c58-bb47ca25db60)
+
 
 5. Now the event is signaled, **EventObject2.exe** knows that all files have been moved and it can proceed with its operations, which in this case is writing **"Goodbye, World!"** to the files in **C:\Temp2**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f21599a0-9e35-4431-a28b-ab044725f095)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9ac1e4e3-af64-4048-85fb-6cb37c67fc80)
+
 
 6. Here is a snippet of a created file with the text that has been written to it by both processes.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/33fea2ef-2724-4a57-85a3-d1ac98c50aa7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d426f420-28eb-44bf-98c0-90315cf22dfa)
+
 
 # Process Explorer - View Event Objects of running Processes
 
@@ -914,8 +942,10 @@ Before we are doing this, let's quickly review the code of **EventObject.exe** a
 
 Threads or processes can wait for these events to know when they can safely start their operations that depend on the completion.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/53595669-409c-4b56-a7fe-6dee38629a2b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/227ffc23-3505-46b5-8b94-52aa447c8ee6)
+
 
 Start running **EventObject.exe** and use **Process Explorer** to see if we can find the two **event** objects:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/16e345e1-ddd1-4f09-b8bf-6e0613cf3796)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/92596eae-02a4-4a7a-a8e8-86b93549973d)
+
