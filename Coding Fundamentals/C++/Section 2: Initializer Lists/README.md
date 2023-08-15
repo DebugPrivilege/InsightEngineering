@@ -109,18 +109,21 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e426a279-773d-434c-8540-8d905b65b310)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fc49ecbc-4d07-4e29-be17-b2752f3db7f6)
+
 
 
 The part that follows the colon **(:)** is the initializer list. This list says that the **`name`** member variable should be initialized with the value of **`n`**, the **`wins`** member variable should be initialized with the value of **`w`**, and the **`losses`** member variable should be initialized with the value of **`l`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6ea06dbd-0095-48f8-850b-9ae005ab0003)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9fa7c442-7d03-4553-8923-e5aa1f081a7c)
+
 
 So in this case, the initializer list is : **`name(n)**, **wins(w)**, **losses(l)`**. It provides initial values for the member variables when a new **`MMAFighter`** object is created.
 
 For example, when we create a new MMAFighter:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ddc223a9-f08e-4cb3-8c04-85f2b3742a8d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/72af7bab-4dd4-41b0-8b51-0954c5ce101b)
+
 
 
 The constructor is called with the parameters **`n = "Conor McGregor", w = 22, and l = 6`**. The initializer list in the constructor then initializes name, wins, and losses with these values.
@@ -274,5 +277,6 @@ int main() {
 
 The initializer list is specified after the colon (:) following the constructor declaration as we discussed previously. The initializer list initializes the **`fileHandle`** member variable with the value **INVALID_HANDLE_VALUE**. Initializing **`fileHandle`** with **INVALID_HANDLE_VALUE** is useful because it provides a default value indicating that the handle is not valid.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3cbc81ce-05ab-4962-b901-c440d9fa8c99)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f023fc73-33d1-44fe-beec-66b19ae8a9a5)
+
 
