@@ -59,15 +59,18 @@ The second constructor is a **copy** constructor. It takes a constant reference 
 
 When we are looking at a class definition, we can recognize the copy constructor because it's a constructor **with the same name as the class** and it takes one parameter which is a **const reference** to an object of the same class. The **const** keyword indicates that the copy constructor won't modify the object being copied.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a73ec4ee-ab83-40cd-8cfa-0af009460470)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a8352e99-7aa6-489a-a87a-c6898b5b3e52)
+
 
 In the **main** function, a **NumberBox** object **box1** is created and initialized with the value **42** using the parameterized constructor. Then, a second **NumberBox** object **box2** is created and initialized as a copy of **box1** using the copy constructor.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2da8b20d-daaf-4a3e-98d5-d8c0a93c61c0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d72692a0-94c5-4807-9163-0f2ab625c38e)
+
 
 Finally, the values of **`num`** for both **box1** and **box2** are printed to the console. As **box2** is a copy of **box1**, they both hold the same value, **42**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7d1e2719-c656-425e-b90b-39ae0b182569)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8a1f1d64-bbde-477a-b1b3-987e9202f2b9)
+
 
 # Code Sample - Copy Constructor (2)
 
@@ -142,7 +145,8 @@ The **`Fighter`** class has two **private** member variables: **`name`** of type
 
 Here each element in the vector is a **`std::string`**. This means that the **`fightRecord`** can store a list of strings, where each string represents a fight.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/bf60f84e-d36e-4b47-b359-370086c56c5f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e28b41c7-8c30-464c-8ebe-0a6a7b5ffdce)
+
 
 Let's visualize this in ASCII. Each box in the row represents an element in the **`fightRecord`** vector. The text inside each box is a **`std::string`** that represents the outcome of a fight.
 
@@ -176,11 +180,13 @@ The purpose of a constructor is to initialize the object's attributes (also know
 
 The **`: name(name)`** part is called an initializer list. It's a C++ feature used to directly initialize member variables when an object is created. Here, it's used to initialize the **`name`** member variable of the Fighter class with the **`name`** argument passed to the constructor.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a32e5c34-a07a-4e12-9f55-f9a4f6d0cda5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2ef59aa5-d3a5-40fc-81d0-c4c789421f67)
+
 
 A copy constructor in C++ is a constructor that initializes a new object as a copy of an existing object. This copy constructor takes one argument: a reference to a constant **`Fighter`** object **`(const Fighter&)`**. This **`Fighter`** object is the one that will be copied.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2859c7db-7867-4c92-b575-7ac62d50d004)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ec64d848-4236-46c1-813e-d78b03885d14)
+
 
 The **`addFight`** method's purpose is to add a new fight to the **`fightRecord`** of a **`Fighter`** object. The **`fightRecord`** is a **`std::vector`** that stores strings, where each string represents the outcome of a fight.
 
@@ -188,7 +194,8 @@ When we call the **`addFight`** method and pass a string (representing a fight),
 
 The **`push_back`** function takes a value and puts it at the end of the vector, sort of like adding a new item to the end of a line. In this case, it takes the string that represents the new fight and places it at the end of the **`fightRecord`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/892f2b2c-00d8-44f9-ac65-16035f8cf09e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ae77c325-983b-4ec6-8bbe-19f449d8ae99)
+
 
 Before calling **`addFight:`**
 
@@ -212,13 +219,15 @@ This code defines a method called **`display()`** inside the Fighter class. The 
 
 **`void display() const`** This is the declaration of the **`display`** method. It doesn't return any value (void), and it's a **const** method, meaning it promises not to modify any of the object's member variables. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4e5bf70f-b961-492e-bc2a-b2e0bf7d3bc5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9d218297-1b3a-41e3-8dc9-df85f93f647f)
+
 
 **`for (const auto& fight : fightRecord)`** This is the start of a range-based for loop. It's a convenient way to iterate over all elements in a container like a **`std::vector`**. In this case, it's going through each fight in the **`fightRecord`**. 
 
 The **`const`** keyword means fight won't be modified in the loop. The **`auto`** keyword is telling the compiler to automatically determine the type of **`fight`** from the **`fightRecord`** (which is **`std::string`** in this case).
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/084c310a-8f3b-4053-9801-557b97f92f96)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6e93bc46-93b3-4bd8-ada3-ef2df2e911aa)
+
 
 Let's consider **`fightRecord`** as a **`std::vector`** containing the following strings:
 
@@ -312,14 +321,16 @@ This is a class definition for **Fighter** in C++. It has two private data membe
 - **`name:`** This is a **`std::string`** that will be used to hold the **`name`** of the fighter.
 - **`techniques:`** This is a **`std::vector<std::string>`** that will be used to hold a list of the fighter's **`techniques`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/56effeb6-bbb8-4cf0-a794-942cf3cfb4a5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/950c73b4-49f8-4cf6-a3e4-2c19d514e55f)
+
 
 This is the constructor for the **`Fighter`** class. A constructor is a special function in a class that is automatically called when an object of the class is created. This constructor takes two parameters:
 
 - A **`std::string`** called **`n`**, which is used to initialize the **`name`** member of the class.
 - A **`std::vector<std::string>`** called **`t`**, which is used to initialize the **`techniques`** member of the class.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/73016017-3897-46f6-9219-049feaecef1d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1e4aba69-15a7-4c5b-9b07-ae5bc010cd94)
+
 
   
 These are **getter functions** for the **`Fighter`** class, providing **read-only** access to the **`name`** and **`techniques`** data members. They don't modify any class members, as indicated by the **`const`** keyword.
@@ -327,14 +338,16 @@ These are **getter functions** for the **`Fighter`** class, providing **read-onl
 - **`getName():`** This function returns the **`name`** of the fighter. It's a **`const`** method, which means it doesn't modify any class members.
 - **`getTechniques():`** This function returns the **`techniques`** of the fighter. It's also a **`const`** method, meaning it doesn't modify any class members.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6081cc7d-73e0-4050-bc57-6942f2cbb251)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/309a98cd-6115-46fe-918c-147b7c55bc95)
+
 
 **Setter functions** are methods used in a class to modify the values of its private data members. They provide a controlled way to change the data of an object from outside the class.
 
 - **`setName():`** This function sets the **`name`** of the fighter to the string **`n`** passed as an argument.
 - **`setTechniques():`** This function sets the **`techniques`** of the fighter to the vector **`t`** passed as an argument.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c6f5d6fa-f668-4239-beec-eab55c7fc0c2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/747b6dd6-e23c-483d-aba9-83a0e8da902b)
+
 
 This is the **move** constructor for the **`Fighter`** class. It's used to create a new **`Fighter`** object from an existing one by transferring ownership of resources, rather than copying them.
 
@@ -345,7 +358,8 @@ This is the **move** constructor for the **`Fighter`** class. It's used to creat
 
 When a move operation is performed, we're transferring ownership of resources from the source object to a new object. Once the resources have been moved, they are no longer valid in the source object. By doing this, we ensure that the source object remains in a valid state after its resources have been moved. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b95e55b4-d46c-4a48-8c56-6c2dba26a25c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/88832301-0ece-4c88-8a6e-7c5333103629)
+
 
 Let's visualize this with a simple diagram. We'll use two **`Fighter`** objects: **`src`** and **`newFighter`**.
 
@@ -391,13 +405,15 @@ To avoid any confusion. However, in the context of our code, **`delete`** is use
 
 When we mark a function as **`= delete`**, we're telling the compiler that this function cannot be used in any context. If someone tries to use a deleted function, the code will not compile.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/04a0cb8a-8c0b-404a-90c8-c9391dcd18a5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b8d1e295-8d3a-4465-86dc-8b7efcb2d4c9)
+
 
 The line **`fight(std::move(jonJones));`** is responsible for calling the **`fight`** function with the **`jonJones`** object as its argument. Instead of passing **`jonJones`** directly, it uses **`std::move(jonJones)`**. This means that **`jonJones`** is being passed as an **rvalue** (temporary value), and it triggers the move constructor of the **`Fighter`** class.
 
 This moves the **`jonJones`** object into the **`fight`** function, where it is accepted as **`newFighter`**. **`jonJones`** is moved into **`newFighter`** within the **`fight`** function, and **`jonJones`** is left in a valid but unspecified state.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4b04d318-0222-4be7-9aaf-5a28671e882d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5303ad0d-9ebc-49a3-942a-240fa93bbde0)
+
 
 Here's an ASCII visualization of how **`fight(std::move(jonJones));`** works:
 
@@ -489,11 +505,13 @@ int main() {
 
 When we call **`fight(jonJones)`**, the program tries to copy **`jonJones`** into **`newfighter`**. But, since the copy constructor is deleted, the compiler throws an error as it can't perform the copy operation.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/54934fd3-b8da-42f7-935f-a3674d50f156)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0f69eecd-90e4-4ac5-a119-5fc8d65ab38d)
+
 
 
 This line tells the compiler that it should not allow copying of **`Fighter`** objects:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d028880e-e7b0-4f3e-8f45-498dd7636959)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ba8f16ba-0881-4ccb-972c-6b68146732c2)
+
 
 
