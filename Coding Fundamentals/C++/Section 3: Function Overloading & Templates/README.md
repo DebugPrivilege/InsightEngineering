@@ -1,4 +1,4 @@
-# What is Overloading Function Templates?
+# What is Function Overloading & Templates?
 
 Function overloading is a feature that allows multiple functions of the same name but with different parameters. Function overloading can be viewed as a way to implement polymorphism, which is a core concept in object-oriented programming. Polymorphism is a concept in object-oriented programming where a single interface or method can represent different types of behaviors or objects. It allows objects of different types to be treated as objects, making code more flexible and extensible.
 
@@ -96,7 +96,8 @@ int main() {
 
 The **std::cout** statements print the results of the add function calls to the console. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/07b98b2a-8d46-4b6c-a307-468f7993eeba)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/def19d63-ef8c-4b9d-ad49-a132c71dd1b6)
+
 
 # Function Templates - Template Parameters
 
@@ -115,7 +116,8 @@ T add(T a, T b) {
 
 For instance, if we call **`add<int>(3, 4)`**, the compiler generates a version of **`add`** that works with **int** values. If you call **`add<double>(2.5, 3.5)`**, the compiler generates a version of **`add`** that works with **double** values. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ce96c764-0d03-4426-b08b-d0281c1bc1ee)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e92b64d3-a318-4a49-93ba-203d83f23d08)
+
 
 The power of function templates in C++, as demonstrated by the **`add`** function, is that you can write a function once and then use it with multiple **different** types.
 
@@ -124,11 +126,12 @@ The power of function templates in C++, as demonstrated by the **`add`** functio
 The function overloading occurs with the **`add`** function. There are two versions (or "overloads") of the **`add`** function:
 
 - A generic version that can add two values of any type T, as long as the + operator is defined for that type. The function signature is **`T add(T a, T b)`**.
-- A specialized version specifically for std::string type that concatenates two strings with a space between them. The function signature is std::string add<std::string>**(std::string a, std::string b)**.
+- A specialized version specifically for std::string type that concatenates two strings with a space between them. The function signature is **`std::string add<std::string>**(std::string a, std::string b)`**.
 
 These two functions are considered "overloads" of each other because they have the same name **(`add`)** but different parameters (one version takes any type **`T`**, and the other takes specifically **`std::string`**).
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/9636b3f1-6eae-4c31-80dc-89c378f7c02f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b519002f-a3ce-4266-9b30-45038202e20f)
+
 
 # Template Specialization
 
@@ -136,7 +139,8 @@ This refers to the second **`add`** function, which is a specialized version of 
 
 The second **`add`** function has been highlighted here:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/94f0b802-5ac9-4372-a317-8e87fb24e070)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f6a07553-7827-4bf6-89c4-116a09235e96)
+
 
 # Type Deduction
 
@@ -176,7 +180,8 @@ int main() {
 
 **IMPORTANT:** Pay a close attention on what has been highlighted within this code.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0b0e6a09-d550-4115-bc43-e3cdfcea6465)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/437a58bb-a523-42b1-a13c-3131d19c5551)
+
 
 This modified version of the code, when we are calling the **`add`** function, we do not explicitly provide the template argument. Instead, we allow the compiler to deduce (figure out) the type **`T`** based on the types of the arguments passed to the function. 
 
@@ -216,7 +221,8 @@ int main() {
 
 Look closely at the code, and focus on the **main()** function. The primitive data types aren't explicitly mentioned in the function calls to **`add`**. Instead, the compiler uses type deduction to infer the type of the template argument based on the type of the function arguments.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/edf827cf-dfbf-454c-9785-8eb06bfab16e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/34827e33-da7e-4298-bec0-4320beb768d3)
+
 
 # Code Sample (2)
 
@@ -310,13 +316,15 @@ int main() {
 
 A function template is a blueprint for creating functions. It allows you to create a function that can operate on different data types. At this example, **`writeToFile`** is a function template. The template (`<typename T>`) line before the function definition indicates that it's a **function template**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5176f4c7-be5c-4d30-8a88-d3fdbc5a5a18)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/68778820-dd22-4395-b3ee-5ab65ca79759)
+
 
 **Template Parameters**
 
 Template parameters are the placeholders in a template. **`T`** is a template parameter. It's a type parameter that can represent any type. In the **`writeToFile`** function, **`T`** can be any type that can be inserted into a **`std::wstringstream`**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b09d239c-0fa4-40ae-a214-24a27eb5383f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4c5c8c7d-ae71-4fbf-b72c-6716157f1717)
+
 
 **Type Deduction**
 
@@ -324,7 +332,8 @@ Type deduction is the process by which the C++ compiler determines the type of a
 
 The same things applies for **`writeToFile(fileHandle, 42)`** as well. The compiler deduces (figure out) that **`T`** is **int** (the type of 42).
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f1a677e9-60d7-48b6-9b18-e3f57c8b38c2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f6d372dd-508c-48b9-b9a0-409bac924bdd)
+
 
 # Good Questions
 
@@ -418,11 +427,13 @@ int main() {
 
 The **`template`** keyword is used when we want to define a function template, which is a way of making a function work for multiple types of data. In the case of the **`writeToFile`** function, we use template (<typename T>) because we want this function to be able to write different types of data to a file. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5787d50f-ae0c-41b2-8e68-d53bd36e7420)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/53129e8e-8095-420b-b4e5-f510fa1c55ea)
+
 
 On the other hand, the **`createFile`** function does not need to be a template function because it is designed to work with a specific type of data: a wide string **(`std::wstring`)** representing a filename. This function does not need to work with different types of data, so there's no need to make it a template function.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a82551da-fe56-4c77-b974-f4335d3ebabd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1660319b-e16b-4ed0-8135-030108bda9be)
+
 
 - **What happens when we call writeToFile function?**
 
@@ -430,13 +441,15 @@ Not really related to the topic, but you may be wondering what these lines of co
 
 The **`std::wstringstream`** object and the **`ss << data;`** line are used to convert the data of any type into a wide string **`(std::wstring)`**, which can then be written to a file.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/dd682ee2-7842-4fc8-8406-343c679cb7e1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/af81367f-8ca4-4e3b-a396-ab51f0dd4261)
+
 
 
 
 This line creates an instance of **`std::wstringstream`**, which is a stream class to operate on wide strings. You can think of a **`std::wstringstream`** as a high-level string builder, where you can insert various types of data (like int, float, std::wstring, etc.) and it will convert that data into a string format.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/91b9dc07-f75a-49f9-8256-c4120481725b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c8c81506-2d65-43d8-a918-3a5544f30944)
+
 
 
 This line is effectively converting the data to a wide string representation. The **`<<`** operator is overloaded for **`std::wstringstream`** to handle various types of data, and it will transform the data into a string format.
@@ -445,4 +458,5 @@ This line is effectively converting the data to a wide string representation. Th
 ss << data;  // Insert the data into the string stream
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5a485160-69d7-4216-aa7b-631146c4d65e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3fd869e8-8030-48a9-afd6-d51c3ae80ed5)
+
