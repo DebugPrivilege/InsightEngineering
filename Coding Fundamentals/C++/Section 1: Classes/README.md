@@ -130,7 +130,8 @@ int main() {
 
 **`fighter1`** and **`fighter2`** are two different objects of the **`MMAFighter`** class, each representing a different MMA fighter. They each have their own set of **`name`**, **`wins`**, and **`losses`**. This demonstrates how each instance (or object) of a class has its own set of the class's data members.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b3fe5ba7-88f1-4a0b-9f98-87405b747ce5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2c96ee91-d961-45a4-b15e-80ea440a24ee)
+
 
 # Access Specifiers
 
@@ -268,7 +269,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/33baa991-0d2e-4427-8106-5f675500469f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9005a6c1-6153-4ea7-a676-38f7518e28fc)
+
 
 The correct way would be the following:
 
@@ -401,7 +403,8 @@ int main() {
 
 At this example, **deposit**, **withdraw**, and **getBalance** functions are all methods of the **BankAccount** class. They define the operations that can be performed on **BankAccount** objects, such as depositing money into the account, withdrawing money from the account, or getting the current balance of the account.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6e2400be-0c7a-47db-bf41-0f7c9d6c3956)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ceff71d1-5d95-4986-822f-8833d9fa2c82)
+
 
 # Constructors and Destructors
 
@@ -421,7 +424,8 @@ When we write the following line in the main:
 BankAccount myAccount;
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d42f8af4-ee6f-4c53-9fb3-daf549147bdd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0c1c2241-b98e-49ea-891c-d9ceb11890a1)
+
 
 We're creating a new **`BankAccount`** object, and automatically calling the **`BankAccount`** constructor to set that object's balance to **0**. The **0** here is the initial state of the **`balance`** attribute of the **`BankAccount`** object. 
 
@@ -429,7 +433,8 @@ We're creating a new **`BankAccount`** object, and automatically calling the **`
 BankAccount() : balance(0) {}
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/234d346d-b394-4514-a244-cd4f7b2ac9b0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9ad07cd6-15f7-43a8-bba3-e0c77d6cbfde)
+
 
 Our current example is using a **default constructor** and doesn't have any arguments. A **constructor argument** is a value that we can pass in when we create an instance of a class. These arguments provide initial values for the object properties or other initialization tasks. 
 
@@ -491,19 +496,22 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/9aca1e62-3ed5-4307-90b1-54f3b13af6c5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/473a6a14-2711-46ce-aeab-ac0eafd6d5f0)
+
 
 
 In the first version of the code, we had a default constructor **`BankAccount() : balance(0) {}`** that always set the initial balance to **0** when a **`BankAccount`** object was created. If we wanted to set a different initial balance, we would have to do after creating the object, using the **`deposit()`** method. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/675604d7-55c8-4963-b4ab-b804a13440bf)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4022bb10-6ee3-4eb4-b014-09bb909f01c5)
+
 
 In the updated version of the code, we can specify the initial balance directly when we create the **`BankAccount`** object. This is done through the constructor. This constructor sets the **`balance`** of the account directly when the object is created. It does this by taking the **`initialBalance`** argument that we pass in when we are creating the **`BankAccount`** object, and it uses that value to set the **`balance`** member of the object.
 
 ```c
 BankAccount(double initialBalance) : balance(initialBalance) {}
 ```
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8cec5d86-2ba9-4bcc-9880-f173b35289d0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9c713fb4-f507-407b-a6ea-4600875414be)
+
 
 # Final Example
 
@@ -586,40 +594,47 @@ int main() {
 
 **`FileWriter`** is the class in this program. A class is a blueprint for creating objects. It describes the kind of data and behavior that objects of this class will have.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1dde9243-235b-4e12-a4f2-625baa5a5953)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f152e02a-5908-42c0-9bbb-4c38205dd135)
+
 
 
 **Object**
 
 **`writer`** is an object of the **`FileWriter`** class. It is created in the **main** function with **`FileWriter writer;`**. This statement creates an instance of **FileWriter**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c4733354-9e8d-44ac-a4f5-872a4f8dd87b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d43ab14f-95b0-4d52-b773-818d4969fd4d)
+
 
 **Data Members**
 
 The **`FileWriter`** class has two **private** data members: **`filename`** and **`fileHandle`**. **`filename`** is a string that stores the name of the file, and **`fileHandle`** is a HANDLE object (from the Windows API) that is used to interact with the file. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/026b86d3-beef-4000-95d6-fdbd0176be19)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4e0bf300-2e91-482e-8344-8be4c90aa919)
+
 
 **Methods**
 
 **`createAndWrite()`**, **`closeFile()`**, and the destructor **`~FileWriter()`** are methods (functions defined within the class). They define the behavior that the objects of the **`FileWriter`** class can perform.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/44f03f07-8d41-4419-9395-9ca7b477ad5d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d410b90c-82c4-491b-a51c-932d75724717)
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1f8d1cf8-2eaf-452c-8d7a-3955f4bb5ce6)
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c0c960d8-2902-4a5b-aadd-94dd83dd76e8)
+
 
 **Constructor**
 
 **`FileWriter()`** is the constructor of the class. A constructor is a method that is automatically called when an object of the class is created. In this case, it initializes the **`fileHandle`** to INVALID_HANDLE_VALUE and generates a random filename.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d69d29df-da4b-4af7-b6e8-234ee3ec7569)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/88222425-8c06-4aea-ab72-0b6f0504bda5)
+
 
 **Destructor**
 
 **`~FileWriter()`** is the destructor of the class. A destructor is a special method that is called automatically when an object is about to be destroyed. Here, the destructor ensures the file handle is closed if it was opened. The tilde symbol **~** is used in C++ to denote a destructor for a class.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/77e80a60-da73-4627-a50f-a204ca725eb1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2c161be6-de5a-4744-9975-1b8c7ea8656b)
+
 
 Let's cover the second example, which may be a bit more complicated though. We are basically just walking through the code and explain what the class, object, data members, etc of this code.
 
@@ -720,13 +735,15 @@ int main() {
 
 **`FileHandler`** is the class in this program. A class is a blueprint for creating objects. It describes the kind of data and behavior that objects of this class will have.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/df8c9475-1b44-4e16-a3d6-197b952bbe71)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f5f27176-24db-4fb3-b805-8b9e3c006e15)
+
 
 **Object**
 
 An object is an instance of a class. It is created using the blueprint provided by the class definition. In the **main()** function, **`fh`** is an object of the **`FileHandler`** class.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d337ee73-427c-4bba-988f-a296c1dc466f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6c65debe-cdcd-4464-ae29-2d2e9b89c524)
+
 
 **Data Members**
 
@@ -736,22 +753,26 @@ Data members are variables declared within a class. They hold data that is assoc
 
 The **`FileHandler`** class has several other methods: **`generateFilename`**, **`createFile`**, **`writeToFile`**, and **`closeFile`**. These are functions that are associated with the class and define the behaviors of its objects. All these methods are private, meaning they can only be called from within the class.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2541707f-baef-4376-83d2-2be6ce498659)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b0bbcc96-42ea-42cf-ac10-3a0163c66ce8)
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f2724940-1f6e-4a64-9f7d-9e3259eff646)
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/064d1679-41dd-43a1-8eaa-4f602e02107c)
+
 
 
 **Constructor**
 
 A constructor is a function in a class that is automatically called when an object of the class is created. It initializes data members of the class. In the **`FileHandler`** class, **`FileHandler()`** is the constructor, initializing **`fileHandle`** to **INVALID_HANDLE_VALUE** and then invoking other functions to generate a filename, create a file with that name, and write to the file.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/cebe5320-a889-4f58-b0f6-7139e379769c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f3d31933-b41e-4ccd-9a31-54ab22d63128)
+
 
 **Destructor**
 
 A destructor is another function in a class that is automatically called when an object of the class is destroyed. It is often used to release resources that the object may have acquired during its life. In the **`FileHandler`** class, **`~FileHandler()`** is the destructor, which calls the **`closeFile`** function to close the file.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ebc37a8d-ddb5-4451-8231-e030e0a7fa7d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1fabc85d-e9e1-48a1-8f94-e08c95ebaf6c)
+
 
 # Attempt to call the private method outside of the class
 
@@ -856,4 +877,5 @@ int main() {
 
 When we try to compile this code, we will get a compile-time error because **`closeFile()`** is a private method of **`FileHandler`** class. The line **`h.closeFile();`** in **main()** is trying to call this method directly on a **`FileHandler`** object, which is not allowed because **`closeFile()`** is private and can only be called from within the **`FileHandler`** class itself. This is an example of encapsulation in object-oriented programming.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ea9fe3ee-c817-4166-9530-e7c651d5fa8c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5134d73e-3df3-461c-b460-e86571f1338f)
+
