@@ -61,7 +61,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e620381d-b104-411f-aa58-eb645dcab354)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/021f18a2-dde6-40e4-8940-243759494ea6)
+
 
 Let's cover another example and go a bit more in depth. At this example, we have a struct called **`FileInfo`**. This struct has two members, which happens to be **`filename`** and **`openAttempts`**.
 
@@ -114,7 +115,8 @@ The purpose of this struct is to aggregate related information about a file — 
 
 Well, what do we mean by *'single unit'*? Single unit means that the **`filename`** and **`openAttempts`** variables, which are both related to the file that we are trying to open, are bundled together under the **`FileInfo`** struct. Instead of passing around and managing two separate variables **`(filename and openAttempts)`**, we can now manage them as a single unit **`(fileInfo)`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/62d4737e-e374-4ccf-bc60-56f2287980c7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4750f3b7-f04f-444b-b313-47088b10486e)
+
 
 # The process of declaring a struct
 
@@ -207,4 +209,5 @@ typedef struct {
 
 Now, when we want to use this type, we can use the alias directly **without** the **struct** keyword: **`FileInfo fileInfo;`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/89cf3f19-64ab-4525-a2ad-f8156f7c14c4)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/cea74d26-ecbe-43b7-95cb-ea771e732be4)
+
