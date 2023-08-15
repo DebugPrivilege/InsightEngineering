@@ -410,7 +410,4 @@ We can use the **!mex.grep** command to only display the named semaphore object 
 
 To interpret the output that we're seeing:
 
-- **Semaphore Count 0:** This means the semaphore has been acquired.
-- **Semaphore 1:** This indicates that only one thread or process can acquire the semaphore at a time.
-
-If we see a semaphore count that's not zero, it means we still have available slots to acquire the semaphore before reaching its limit.
+If a semaphore's count is 0, this means that the semaphore has been acquired by some thread or process, and no other threads or processes can acquire it until it's released. If we see a semaphore count that's not zero, it means we still have available slots to acquire the semaphore before reaching its limit.
