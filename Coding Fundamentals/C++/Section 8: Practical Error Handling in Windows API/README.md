@@ -80,7 +80,8 @@ int main() {
 ```
 The primary problem with the error handling in this code is that it only provides the error code without any meaningful description of the error that occurred. When we encounter an error, we're only told an error number like **"3"** with no additional information about what that error number means. This can make it difficult to debug the program if an error occurs.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/400ce6a1-9100-46bd-8044-fc7b8a4dc53e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a0358fff-1d40-4d74-8a58-909dacc5e91f)
+
 
 # Code Sample (2) - Proper Error Handling
 
@@ -175,7 +176,8 @@ This code has better error handling compared to the previous example. This is be
 
 The function **GetLastErrorAsString()** is used to convert an error code into a human-readable error message. This function uses the **FormatMessageW()** function to get a string that describes the error code.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c71210aa-ebe0-49d1-81ab-c8e4ae070d98)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/86b24828-3511-4e73-aa7c-1fba8b6d0c82)
+
 
 # Code Sample (3) - Error Handling when using Native APIs
 
@@ -322,7 +324,8 @@ int main() {
 ```
 The primary problem with the error handling in this code is that it only provides the error code without any meaningful description of the error that occurred. When we encounter an error, we're only told an error number like **"-1073741765"** with no additional information about what that error number means. This can make it difficult to debug the program if an error occurs.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7880b48a-1b40-43f1-b748-cf5fd042ed9d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/97e8a08c-c7ab-4c49-9c6c-6d59b27f115b)
+
 
 # Code Sample (4) - Proper Error Handling when using Native API
 
@@ -480,7 +483,8 @@ int main() {
 
 This code has better error handling than the previous one because it's not only detecting when errors occur, but also providing detailed information about those errors to help diagnose the issue. Specifically, it uses the **NtStatusToString** function to convert **NTSTATUS** error codes into a human-readable format using **RtlNtStatusToDosError** and **FormatMessageW**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f4cb5dce-e145-4653-b4e1-3cd228af8262)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ebe221ab-a258-4bb9-988e-39bd6f0d83cf)
+
 
 # Use Hexadecimal for error codes when calling Native APIs
 
@@ -488,5 +492,6 @@ The **ntstatus.h** is a header file provided by the Windows Driver Kit (WDK) and
 
 **Example:**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/25b8142d-c649-48c5-a929-6c7957feec18)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d559c8de-8b09-4c3e-b940-61342cae1e65)
+
 
