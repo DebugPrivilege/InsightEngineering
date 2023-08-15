@@ -297,6 +297,7 @@ In this example, we are able to see the **`CreateAndDeleteFiles`** function, but
 
 ![image](https://private-user-images.githubusercontent.com/63166600/256337372-caf76f31-d1e4-4ffd-9834-f91b5e017e38.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTE0NTMsIm5iZiI6MTY5MjA5MTE1MywicGF0aCI6Ii82MzE2NjYwMC8yNTYzMzczNzItY2FmNzZmMzEtZDFlNC00ZmZkLTk4MzQtZjkxYjVlMDE3ZTM4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTkxM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTY4OWFkMThmOGE1MDg5MDFiZjZmMzk2YjU5ZDQyMmY4ZWIwNGNiZjQ2OTZlODQ4YjNhZGIxMmIyZDM0Y2I2MGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ceJ6ZljcLY0GBFdQssXvceReB4gHQ8qSuJONpZpbjdY)
 
+
 In our code, we've designated these two functions to run on separate threads. Therefore, each function will have its own independent call stack. The call stack of a thread is a record of the functions that the thread is executing or has executed. Since these two functions are running on separate threads, each one will have its own call stack. 
 
 Well that's been said, we will never see **`CreateAndDeleteFiles`** and **`EnumerateProcesses`** in the same call stack because they are not being called by the same thread. Each one is the starting point of its own separate thread of execution.
