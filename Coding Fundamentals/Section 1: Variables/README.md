@@ -20,7 +20,8 @@ int main() {
 ```
 At this example, **number** is the **local** variable. A **local** variable is a variable that is declared within a function and can only be used within that function or block. In this example, our variable of the type **integer** is being declared with the value **10** inside the **main()** function.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/03d7cdbe-ebb6-41d5-a3ee-7204520a7d92)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0c89db7b-b183-46fb-8378-5e585e9691fd)
+
 
 
 Here is another example where **number** is a variable of the type **integer**. Initially we are assigning the variable with the value **10** and then print it out. However, at this example. We are assigning an additional value to the same variable and set the value to **20**. As you can see, the value stored in the variable **number** can be changed -- that's what makes it a "variable".
@@ -48,10 +49,7 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/dfbf7771-7c03-423d-9cfd-fca22bc9202a)
-
-
-
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7951c2ea-5d76-4d71-b2f3-5004f99eebfa)
 
 # Declaration and Initialization
 
