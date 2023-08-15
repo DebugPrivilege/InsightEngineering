@@ -42,7 +42,8 @@ int main() {
 
 This code performs some basic arithmetic operations using two integer variables, **a** and **b**, with values **10** and **4**, respectively. It prints the results of adding, subtracting, multiplying, and dividing these two numbers, as well as the remainder of their division.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7cfc70d9-eedd-4719-ad93-fd18843a6531)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/73633770-87f1-441f-b5f8-11396c098416)
+
 
 # Relational Operators
 
@@ -68,7 +69,8 @@ int main() {
 ```
 When we run this code, it compares the values of **a** and **b** using each of the relational operators. The result of each comparison is printed to the console. Because relational operators return **1** for **true** and **0** for **false**, the program will print **1** for any comparison that is **true** and **0** for any comparison that is **false**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b14ac306-bcb6-4714-a0c1-a17cb354e9c9)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b5277aa2-1d74-430f-bc10-8e794e442725)
+
 
 # Logical Operators
 
@@ -120,7 +122,8 @@ int main() {
     return 0; // Indicates that the program has executed successfully.
 }
 ```
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6126c1c9-b25a-4e4b-9955-fd2fcd5a826c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7a8ad54b-7643-48f5-b00a-f7d0d9fc1b47)
+
 
 # Assignment Operators
 
@@ -166,7 +169,8 @@ int main() {
 
 We initialize a variable **x** with the value **5** and then use the **+=** operator, we add **3** to **x** and assign the result back to **x**. Further, we print the updated value of **x** to the console.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b5cead85-45e2-4964-8240-d98eab8c58fd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ac8cb0cb-5bbb-48ca-87c1-60e527c68461)
+
 
 # Bitwise Operators
 
@@ -246,7 +250,8 @@ int main() {
 ```
 You may start wondering. How did we came to the conclusion the value is **8**?
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c6aa7246-983e-4fa8-a76a-04c259098ae0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/666114a7-7929-40e2-84f2-00bcdbe2fd61)
+
 
 First, let's start with 12 and understand the binary representation of it.
 
@@ -321,7 +326,9 @@ int main() {
 ```
 We start with a variable **num** set to **0**. We then use the **++** operator to increment the value of **num** by one. The printf function is used to print the value of **num**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/834b2b0e-c224-45dd-98bf-a104c4838cfa)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e30642f6-4b58-4992-aac8-dc897c079dfe)
+
+
 
 To finalize this. Here is an example of demonstrating the decrement operator **(--)**.
 
@@ -344,7 +351,8 @@ int main() {
 
 We start with a variable **num** set to **10**. We then use the **--** operator to decrement the value of **num** by one. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4dd59cbb-3962-4376-a697-a74073224f41)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6d3adf87-bfad-41d4-889d-d68b0e180de4)
+
 
 # Conditional/Ternary Operators
 
@@ -376,7 +384,8 @@ int main() {
 ```
 We have two integer variables, **a** and **b**. We then use the ternary operator to determine the maximum value between **a** and **b**, storing it in the **max_value** variable. The printf function is then used to display this maximum value. Since **b** is larger than **a**, the program will output 20.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3c5778ec-1047-4c32-aaf6-72a90bc43b1a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7cf8bcbb-8a29-4951-ab36-6e937fccaff5)
+
 
 ```
 int max_value = (a > b) ? a : b;
@@ -439,4 +448,5 @@ The **b++** operation is performed first due to the comma operator which evaluat
 After **b** is incremented, the operation **b + 10** is performed, which is now **21 + 10**, resulting in **31**. The comma operator evaluates to the value of the rightmost expression, so **x** is assigned the result of **b + 10**, which is **31**.
 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ec0c3032-76ed-4b4c-8a03-ed0cd40b8497)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f2f0ecef-9a59-4cdb-99a0-6e6c44b201b3)
+
