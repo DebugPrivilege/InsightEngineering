@@ -22,7 +22,7 @@ Here is an example in **Process Explorer:**
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d82642ec-7cf2-4671-8d94-8afbc78e0606)
 
-# Why do Thread Wait Reasons matter?
+# Why do Thread Wait Reasons even matter?
 
 When analyzing crash dumps, one of the primary objectives is to determine the state of the system at the time of the crash. Within that system state, the status of each thread can provide useful information.
 
