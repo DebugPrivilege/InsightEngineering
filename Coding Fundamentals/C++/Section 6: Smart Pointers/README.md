@@ -88,16 +88,19 @@ int main() {
 
 This line of code creates a **`std::unique_ptr:`**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fa8277fe-c40b-409f-b0a8-5673d68e2a70)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/bfcdd9fb-abc6-4a24-9b97-a55b9a027603)
+
 
 - **`std::unique_ptr<void, decltype(&CloseHandle)>`** is declaring a unique pointer that points to **void** (in this case, a **HANDLE**), and uses **`CloseHandle`** as a custom deleter. The type of the deleter is determined by **`decltype(&CloseHandle)`**, which is the type of the **`CloseHandle`** function pointer.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b6ba5e03-08c3-45a0-9725-7e3e44217949)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5d69bc93-6be7-4fd0-85d9-e32c4fce5a0c)
+
 
 
 - **`fileHandle(tempHandle, CloseHandle)`** is constructing the **`std::unique_ptr`**. It's initialized with **`tempHandle`** (the **HANDLE** returned by **CreateFileW**), and **`CloseHandle`** as the custom deleter.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/66e50f92-00f9-47b0-b4db-65bf7f6d6682)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/88dfbf7e-81dd-4fd8-890c-e40de730acf0)
+
 
 This **`std::unique_ptr`**, **`fileHandle`**, now owns the file handle. When **`fileHandle`** is destroyed (which will happen automatically when it goes out of scope at the end of **`main`**), it will automatically call **`CloseHandle`** on the owned handle. 
 
@@ -229,19 +232,23 @@ int main() {
 
 This line declares a vector **`fighters`** that will hold shared pointers to **`Fighter`** objects. This means the **`Company`** class holds a list of shared pointers to **`Fighter`** objects.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5b31cbeb-ab8d-439a-acfe-4da244788d13)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a55847ec-eea4-4154-a238-086845ec1c99)
+
 
 The **`addFighter`** method dynamically allocates a new **`Fighter`** and adds a **`std::shared_ptr`** to it in the fighters vector. **`std::make_shared`** is a utility function that creates a **`std::shared_ptr`**. **`std::make_shared`** is a utility function template in C++ that constructs an object of the given type and wraps it in a **`std::shared_ptr`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/26ba363c-d038-4672-b0bc-d67dd2b1de26)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1e43a849-186f-401b-b2d1-608f85857332)
+
 
 The **`setChampion`** method sets **`currentChampion`**, which is a **`std::shared_ptr<Fighter>`**, to point to the **`Fighter`** object with the given name. This demonstrates shared ownership, as both **`currentChampion`** and an element of **`fighters`** are now **`std::shared_ptr`** instances pointing to the same **`Fighter`** object.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1eda016c-b66e-48e1-8731-475e178f3fef)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f786259b-defd-4767-bf62-286200d35faf)
+
 
 When the **`Company`** object **`ufc`** goes out of scope at the end of **`main`**, the **`fighters`** vector and **`currentChampion`** are automatically destroyed. This triggers the destruction of the **`std::shared_ptrs`**, which automatically delete the objects they own if they are the last **`std::shared_ptr`** owning the objects. This means all **`Fighter`** objects are automatically deleted when **`main`** ends, reducing memory leaks.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/52828c9f-b0ad-42df-9233-20f4a6c605a7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b90aa0ff-fdac-4d32-a424-752a5ead3091)
+
 
 # What is Shared Ownership?
 
@@ -249,7 +256,8 @@ At the **`setChampion`** method, we discussed the following:
 
 *The **`setChampion`** method sets **`currentChampion`**, which is a **`std::shared_ptr<Fighter>`**, to point to the **`Fighter`** object with the given name. This demonstrates **shared ownership**, as both **`currentChampion`** and an element of **`fighters`** are now **`std::shared_ptr`** instances pointing to the same **`Fighter`** object.*
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/37ebbee4-e4fa-4d5f-b77a-0b8122017dc3)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7d1d39d9-df26-4a7e-b91c-923d60a6e616)
+
 
 
 This may be confusing for the first time, so let's use an ASCII visualization to gather a better understanding.
