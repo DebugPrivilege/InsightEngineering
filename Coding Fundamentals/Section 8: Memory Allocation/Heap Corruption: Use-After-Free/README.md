@@ -77,13 +77,15 @@ int main() {
 
 Start compiling this code and run it:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/055b1539-4194-4d47-aaa0-e59320598f78)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a1e25548-f175-4d0e-bc93-dc7d7fb33b9b)
+
 
 The program attempts to write to the memory that was just freed by changing the value at **`corruptPtr[4]`** to **`'A'`**. This is the "use-after-free" part, which leads to heap corruption.
 
 After we created a file on disk, the program will start crashing. When we open **Event Viewer** and go to the **Application** logs. We can indeed see that this program has crashed:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/be6fe9cb-392c-43b5-b2d7-291c7122444c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/02e3133d-0abd-4a27-a6b9-f6a77439e2d1)
+
 
 The error code **0xc0000374** is a status code which corresponds to **STATUS_HEAP_CORRUPTION**. In simpler terms, this error indicates that there's been a corruption in the heap, which is the region of a computer's memory space used for dynamic memory allocation.
 
@@ -100,7 +102,8 @@ When a program encounters heap corruption, its behavior becomes unpredictable, a
 
 Load the memory dump of the crashed program in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4a8b5fe7-53e0-4af5-9625-874f779d6958)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/afba7347-2252-437e-95dc-7b8b65d470e4)
+
 
 Start with the **`!analyze -v`** command:
 
