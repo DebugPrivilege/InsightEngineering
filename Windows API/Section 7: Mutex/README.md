@@ -156,19 +156,23 @@ If we run this code, it will create ten threads; half of them will write a messa
 
 Here we already can see some inconsistent data in the console output:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/168a7042-a587-4875-9c0d-2ee8338e980e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2841999b-5690-49d1-8af4-e1f2f28cb6d9)
+
 
 The written file happens to be in this case also 0 KB:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1e943899-568c-4541-89a5-73f967d6364a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4d1b7e8e-06b6-48e8-8c1e-5efdbb6c1d2e)
+
 
 When we re-run our program, it will now give another result. As we can see here, the output is very inconsistent due to the race condition.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/65205b6b-008b-4ec7-802d-5e41b6244fc3)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/13f91512-8dc0-4aae-b380-0d390e402eed)
+
 
 This time we have some data in the created text file, but it's only coming from one thread.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/873f5343-96a4-4d8e-a71b-9cf01f00eb1f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/321b2b1c-51e6-4ae7-9030-09bc0aab691e)
+
 
 # Code Sample (2) - Mutex
 
@@ -340,11 +344,13 @@ When a write thread wants to write to the file, it waits until it can acquire th
 
 This time we are getting a much more consistent data because the mutex ensures that access to the file is properly synchronized.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/cda4bcd5-4121-406b-8e62-05bc68366623)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6f650378-cbf7-4589-89dc-87e6f12aad4e)
+
 
 The same thing applies for the data that is written to the created text file, which looks much more consistent now comparing to the previous one.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3ea61023-1e69-4ebf-81f5-99e0be6b48e9)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2920c243-e870-48ec-ae50-65087312fd47)
+
 
 # Process Explorer - View Mutex of Process
 
@@ -352,7 +358,8 @@ As discussed previously, a mutex (short for "mutual exclusion") is a synchroniza
 
 Notice the use of the type name "Mutant" instead of "Mutex".  It's a historic name.  
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fa8f7f78-fc30-46fc-b5c4-621d1409c5d1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e9180b84-c610-47da-9ebe-a332e8fd5f57)
+
 
 # Code Sample (3) - Inter-Process Synchronization
 
@@ -639,7 +646,8 @@ This code will write the following to the log file:
 
 *`Writer Thread <ID> is writing to the log`*
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/63621805-3fc2-4c5c-88f0-d6202b7e57e8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2948abe8-5b2e-4f0b-ad84-15dae74a771b)
+
 
 
 2. At the same time start **Program2.exe**
@@ -648,11 +656,13 @@ This code will write the following to the log file:
 
 *`Thread <ID> says Hi to NewMutex`*
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fdc28812-c751-452e-9b38-e19878bcc77d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6a0bf706-d09d-4b98-9d3c-7a7421d68175)
+
 
 Let's now open the log file in the **C:\Temp** folder and see how it looks like. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3f8a6bb8-1aa6-41cb-a324-85f882a3a0be)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9c851830-f42b-4bb4-b900-83a0867a186f)
+
 
 **Program.exe** has in total 10 threads, but only **5** threads are writing data to the file. Each writer thread performs **100** write operations, so if we are doing the basic math. 5 x 100 = **500** lines. 
 
@@ -660,13 +670,15 @@ While **Program2.exe** has also 10 threads, but all these threads are doing the 
 
 This is why we are seeing **1500** lines in total.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a7f2c511-78f8-4f9a-8c4b-c7c3da08c4e6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b9910f29-1d4d-4f66-970f-2b2705d263be)
+
 
 # Using a Singleton Mutex to Prevent Multiple Instances
 
 We can use a Mutex to ensure that only one single instance of our program is running. The only thing we have to do is check for **ERROR_ALREADY_EXISTS** right after the creation of our Mutex.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/72788015-03b5-49c5-b55c-29c9e8ca53d6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/77187a40-69bc-4e1b-b672-456bdca24e01)
+
 
 Code snippet:
 
@@ -841,5 +853,6 @@ int main() {
 
 If we try to run a second instance of the program while the first instance is still running, the second instance will fail to create or open the singleton mutex because it already exists (as created by the first instance).
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/43d6fbc5-9786-4360-bf69-f50ac11dd533)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a348bd3e-96e7-4b2b-b438-b71350c70040)
+
 
