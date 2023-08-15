@@ -165,15 +165,18 @@ int main() {
 
 When we run this program, it starts to hang after it has created the files in **C:\Temp**. However, the files are not moved to a differrent folder.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/102e0c69-db13-4c12-a44f-7ef687f469ac)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f8792a02-f236-4505-ac04-d0c05457e95a)
+
 
 Open **Process Explorer** and view the wait reason of this program. It means that the wait was requested by the program.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/58745d8b-311b-4147-b9ff-45e584629495)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8204996e-024d-47e0-ae0f-3add5014359a)
+
 
 Create a memory dump while the program is hanging and load it in WinDbg.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/01ab5e69-a3c2-4585-804b-b91c0ab04b94)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6949dfc4-6e8e-4ec3-97b9-1e5629ffe838)
+
 
 # WinDbg Walk Through - Analyzing Memory Dump
 
@@ -243,7 +246,7 @@ Synchronization objects, such as events, mutexes, semaphores, etc., are implemen
 
 This explains why we can see all those synchronization objects at the "Handles" tab in **Process Explorer:**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/9bee9eed-d200-4330-bbb1-d8dc3a83fe63)
+
 
 We can use the **!handle** command to display information about a handle or handles that one or all processes in the target system own. Here is an example to look for event objects within a memory dump:
 
