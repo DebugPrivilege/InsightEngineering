@@ -212,15 +212,18 @@ int main() {
 
 Running this code will lead to inconsistent output, failed operations, and unpredictable behavior due to the lack of synchronization mechanism.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7361fd26-a2b9-4be6-a0cf-c5b8f840d4b1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/62669dce-fdbb-4507-8310-c1729f229945)
+
 
 As we can see here, we have 10 threads in total. However, we can see that only 1 thread has written to the log file. Also, pay a close attention to the size of the file. It is only 5 KB in this example.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/82e8ecd5-29fa-4125-b8cc-aa44754ece53)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/670092af-a6dc-48c7-95a8-534f0815d6fb)
+
 
 We also can see that the log file hasn't moved to the different folder either.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6797bc7c-3bd4-4b8a-9f7a-83bd8516d3e6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/acc89bc3-fb20-43cb-802d-bec23de5404a)
+
 
 
 # Code Sample (2) - Code with Semaphore
@@ -444,11 +447,13 @@ int main() {
 
 This is the same code as the previous one that create multiple threads to write to, read from, and move a file. However, this time there is a semaphore that is used to ensure that these operations do not occur simultaneously, avoiding race conditions. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/9b31e122-e226-42ec-9549-d39da4048fd2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/21df745c-1ff3-40cb-a163-53861228f4be)
+
 
 The file has now been moved successfully and we are able to see that more threads have written to the file.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/efd8eb08-b680-45fb-bbac-0e547285a418)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9a119091-7aea-404a-b08a-50a0d04a64b7)
+
 
 # How does this Semaphore works within our code?
 
@@ -466,13 +471,15 @@ Let's now break down the code and later on... We will start playing around with 
 
 The semaphore is created in the **`main`** function with an initial count of **1** and a maximum count of **1**:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a76b997b-cec2-43cd-b78d-b405e539fc4d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f672f75c-5ebe-4de9-a8e6-06367d677760)
+
 
 This line creates a semaphore with an initial count of 1 and a maximum count of 1. This means that only one thread can access the semaphore at a time.
 
 Throughout the code, there are several places where a thread waits for the semaphore to become available:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/662c4560-1925-4b2f-8e51-9c3d0091ef6a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6172d1d3-1d70-45ba-95d0-71c56810d935)
+
 
 This line attempts to reduce the semaphore's count. If the semaphore's count is greater than **0**, the function immediately returns and the count is reduced. If the semaphore's count is **0**, the function blocks until the semaphore is released by another thread.
 
@@ -482,7 +489,8 @@ If the semaphore's count is already **0** when **WaitForSingleObject** is called
 
 Once the thread is done with the resource, it releases the semaphore, which increments the count:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/294d4cd4-3aac-475d-8f79-00e85225a0f2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b4829e9c-9ecb-4b43-8998-8f5425da3bf4)
+
 
 This signals that the resource is now free for other threads to use.
 
@@ -715,11 +723,13 @@ int main() {
 
 Once the code has been compiled. Let's go to the **main** function and change the following values to **0** of the **lInitialCount** and **lMaximumCount** parameters:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/24393ffb-caf2-4622-850f-2f2f9916f890)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/cf86037a-736c-483f-beca-d9ac36efce11)
+
 
 When we are trying to run this code, we encounter an error code:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d2e85db8-53b2-402f-b0a9-9aa126dc9061)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4d240f9e-1236-4651-9e6a-1b63b881d1fd)
+
 
 Why is this the case? Well, this is pretty straightforward. The error code **87** in Windows corresponds to **ERROR_INVALID_PARAMETER**. This means that one or more parameters we passed to the function **CreateSemaphore** are invalid.  We are setting both the **initial count** and the **maximum count** to 0. 
 
@@ -729,31 +739,37 @@ According to the function's documentation, the **maximum count** must be **great
 
 If we initialize the semaphore with **`CreateSemaphore(NULL, 0, 1, NULL)`**, we are setting the semaphore's count to **0** initially, and we're stating that the maximum count for the semaphore can be **1**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/37a655f7-13c2-4075-9ba4-d3a63c7a4592)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/52628962-9907-42fc-bcf1-b2bea2b4ad38)
+
 
 What this means for us is that our semaphore starts in the nonsignaled state (since its count is 0). So, **if we have any thread** that calls **`WaitForSingleObject(hSemaphore, INFINITE)`**, it will block because it's waiting for the semaphore to be available.
 
 Let's run the program now and we will see that it gets stuck, since it's in a nonsignaled state.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/52b88f92-dbf5-4d9b-9e20-f3430abaf245)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1dfe6d26-885a-409f-8655-4b456f848dfa)
+
 
 No threads will be able to acquire the semaphore and start executing code, because the count is 0.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/9e04ce5d-5f6d-4ef8-b762-968e8be41da6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5ddbd69a-b36a-4ee3-8409-d9558882db92)
+
 
 # Hands-on Excercise (3) - Non-Signaled State + Releasing Semaphore at the Start
 
 In the previous example, we were able to observe that the program was getting stuck, since it was still in a **nonsignaled state**. What happens if we keep it in a nonsignaled state, but release a Semaphore at the beginning of a function?
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6cad229e-d9aa-4d70-9d72-28d220026b8a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/892ffe63-ced4-453b-9915-830a0f77d306)
+
 
 Here we are making a call to **ReleaseSemaphore** at the beginning of the **`WriteToFile`** function, incrementing the semaphore's count by **1**. This allows another thread to start executing because **WaitForSingleObject** will not block when the semaphore's count is greater than **0**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d92fc759-e507-443d-85ef-65da472e3a52)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fc12d6de-f3c5-4a8a-b545-6514bb4402c9)
+
 
 The data that we are getting is very inconsistent and incomplete.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/88e3bc32-c4c7-44eb-974c-fe6a1eab19ba)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7597032b-fe4b-48d6-8777-cb952eaaf274)
+
 
 If we release the semaphore at the start of the **`WriteToFile`** function, we're essentially allowing another thread to start working with the file before the current thread has finished its task. The semaphore should be released only after a thread has finished working with the shared resource. This ensures that the shared resource (the file) is accessed by only one thread at a time.
 
@@ -1042,19 +1058,23 @@ int main() {
 
 We are waiting until the **"NewSemaphoreObject"** becomes available.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f25aba68-59a3-4f61-a2ea-6cbcd56de9db)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1712f058-5d95-45e4-86b1-86015b86f28e)
+
 
 2. Now run the second program; **SemaphoreObject.exe**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/63beec7e-e82b-4fa5-bdf6-e3029c1545c5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e205b015-779d-4742-94dc-fbc914fabd50)
+
 
 3. Go back to the **SemaphoreObject2.exe** and see if we have new messages being printed in the console. If the program can successfully open the semaphore, it will proceed with its operations and start writing to the console.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d97e11c2-3d19-46c8-b49c-b2a7fcdfaa1d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5e15a287-b36a-4389-b718-ce50594c4d8b)
+
 
 # Process Explorer - View Semaphore Objects
 
 We can use **Process Explorer** to view (named) Semaphore Objects of a running process. Click on the process and go to the 'Handles' tab. From there, we should be able to see the **"NewSemaphoreObject"** for example.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/713679e9-d540-4519-a960-adc5c6e7f153)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a559454f-a879-4620-aac8-aceccf9187ed)
+
 
