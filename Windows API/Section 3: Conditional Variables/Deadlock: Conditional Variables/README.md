@@ -188,21 +188,25 @@ The deadlock arises due to the misuse of conditional variables: the thread creat
 
 The program starts hanging as we can see here:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/17205c9c-7608-4164-8df0-1b8bc665d591)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7236ea46-e966-463b-9c9f-fefeaa2e39fa)
+
 
 Here we can see that a thread is waiting on something like a conditional variable, critical section or a SRW lock. This can be recognized due to the wait reason **WrAlertByThreadId**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0fdb04b2-13e0-404d-89d5-f4b27e6afa91)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f3c6e1a4-b1a5-40ed-a026-3ee0445dc46f)
+
 
 Let's take a full dump of this program that is currently hanging:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1f461df1-c14b-410d-9f53-583f7b3ce690)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/08a7e516-e611-4dbc-b241-3cdfca2039bb)
+
 
 # WinDbg Walk Through - Analyzing Memory Dump
 
 Start loading the memory dump in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f4fd2045-53d3-45b0-823d-11d503806a84)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/590a7698-eff2-4efc-b42b-d76298ff26a6)
+
 
 Load the **MEX** extension:
 
@@ -265,7 +269,8 @@ Since we have the source code, we can navigate to line of code and gather more i
 
 This line (@ **75**) is where the **`MoveFilesToNewDirectory`** thread is waiting for the **`ConditionVar`** condition variable to be signaled. If the condition variable is not signaled (for instance, if there's a logic error and the **WakeConditionVariable** function isn't being called correctly), the thread will wait indefinitely due to the **INFINITE** timeout, which could lead to a deadlock scenario.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b6669df5-35b9-425c-bfc7-9e5b03e6b8a2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/304cc661-1b33-4e70-b9cd-1e46302f8b59)
+
 
 
 
@@ -295,7 +300,8 @@ Since we have the source code of our program, let's navigate to line **153** and
 3 00000042104ffd10 00007ff63a17fc30 Test!main+0x152                          C:\Users\User\source\repos\Test\Test\Test.cpp @ 153
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ac523c29-0b97-470b-ae88-e890b157f19f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/347dab28-64a2-44d3-a894-12f74b08bff4)
+
 
 
 The call to **WaitForMultipleObjects** at line **153** is waiting for all three threads to complete their execution. If any of these threads becomes deadlocked or is delayed indefinitely, the **`main`** thread will remain blocked at this line.
@@ -304,11 +310,13 @@ The call to **WaitForMultipleObjects** at line **153** is waiting for all three 
 
 The macro **`NUM_FILES`** is set to **1000**. The loop in the **`CreateAndWriteFiles`** function ensures that exactly **1000** file names are added to the **`fileQueue`**. Therefore, the size of **`fileQueue`** will never exceed 1000 during the program's execution.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b2fe59ea-455a-448a-acde-66f6755b2e51)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/828514dd-0004-4a8e-b880-292f28595c55)
+
 
 The condition **`if (fileQueue.size() > NUM_FILES)`** checks if the size of **`fileQueue`** is greater than 1000. But, given the program's logic, this condition will never be true. As a result, the code inside this conditional block, specifically **`WakeConditionVariable(&ConditionVar)`**, will never be executed.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5aa62772-1db6-44ee-a9b3-a0bb11685bdf)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/595bde91-d51a-4098-a7f2-8ef6ce17d7e9)
+
 
 Since the **WakeConditionVariable** function is what signals the condition variable to wake up other waiting threads, the failure to execute this function means the waiting threads will never be woken up, leading to a deadlock.
 
@@ -664,17 +672,20 @@ int main() {
 
 When we run our program, we can see that it will start to hang and both threads are in a waiting state:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7c20c2a2-1dbb-4e2a-b7d8-4d6e2dcf2ed6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/44dfbaf4-982b-4b91-bfed-7dd20780a887)
+
 
 Let's take a memory dump of this process, while it is hanging:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ad7e1555-c125-4472-9021-52929d0cb8bd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7e7d7372-e71d-423a-acb6-130ff9b38803)
+
 
 # WinDbg Walk Through (2) - Analyzing Memory Dump
 
 Start loading the memory dump in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f4fd2045-53d3-45b0-823d-11d503806a84)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3805bf92-db11-4cb1-a140-e6b2d28bc451)
+
 
 Load the **MEX** extension:
 
@@ -720,7 +731,8 @@ Since we have the source code, let's navigate to line **155**:
 
 At line **155** of the **`main`** function, the thread is paused due to a call to **WaitForMultipleObjects**. This means it's waiting for several threads to complete before resuming its tasks.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b316f8c6-3b10-46fe-94d9-567f8f78f25f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/353a0b67-9445-422c-ad2c-4d67d91b4781)
+
 
 Here we are reviewing the call stack of the second thread ID which is **30f0**. Based on this call stack, we can see that a thread was running inside the **`CreateAndWriteFiles`** function. At some point, this function made a call to **RtlSleepConditionVariableCS** to wait on a condition variable. This means the thread has paused its execution and is currently waiting for a particular condition to be signaled before it can resume its work.
 
@@ -746,7 +758,8 @@ Since we have the source code, let's navigate to line **61**:
 
 The **`CreateAndWriteFiles`** function, which makes and fills files, adds the new file's name to a queue once it's done. Then, it waits and won't move on until the other thread has taken and used (or "consumed") that file name from the queue.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c60c4680-d64b-42d4-a6de-c8f6aac94f3c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d95e838b-0f2f-4c24-bfa4-781e569925a6)
+
 
 Let's now review the last thread and look at the call stack of thread ID **1c50**. Based on this call stack, the thread was executing the **`MoveFilesToNewDirectory`** while executing this function, it reached a point where it needed to wait for a condition to be signaled. As a result, the thread went to sleep using the **RtlSleepConditionVariableCS** function, waiting for the specified condition to be met.
 
@@ -772,7 +785,8 @@ Since we have the source code, let's navigate to line **78**:
 
 The **`MoveFilesToNewDirectory`** function, which handles moving files, starts by waiting for a sign that there's a new filename to move. But it doesn't check if there are already filenames waiting in the **`fileQueue`**. This means it might just sit and wait for the other thread to add a new filename, even if there are filenames already in the queue ready to be moved.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ad2636d8-a33e-4b72-9417-454c75c563eb)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/dbb96e02-d4ec-4f10-86ba-3f436d96529d)
+
 
 These behaviors together create a deadlock:
 
@@ -786,11 +800,13 @@ The deadlock occurred because both threads were waiting unnecessarily and indefi
 
 Instead of waiting for the **`fileQueue`** to be empty after pushing every file, **`CreateAndWriteFiles`** function now immediately signals the **`MoveFilesToNewDirectory`** function after adding a file to the **`fileQueue`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/19266db2-ebef-4640-8d35-d74ea5d586d5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9e519ab2-3100-4a5a-b1be-0fe08607bb87)
+
 
 **`MoveFilesToNewDirectory`** function should only wait if the **`fileQueue`** is empty. This ensures that if there are files in the queue, it processes them immediately. If the queue is empty, it will then wait for the producer to add files and signal.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b67ac3a2-5a6c-4b11-bd26-7ed286323847)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/94f9a582-3a47-4384-a1a1-e1fefb202124)
+
 
 Here is the full code that should work as expected:
 
