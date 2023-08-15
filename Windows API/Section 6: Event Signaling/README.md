@@ -766,10 +766,10 @@ int main() {
 }
 ```
 
-This code creates and writes to a number of files in one thread and moves them to a new directory in another thread. The execution of these threads is synchronized using two event objects: **hFilesCreatedEvent** and **hFilesMovedEvent**.
+This code creates and writes to a number of files in one thread and moves them to a new directory in another thread. The execution of these threads is synchronized using two event objects: **`hFilesCreatedEvent`** and **`hFilesMovedEvent`**.
 
-- **hFilesCreatedEvent** is signaled once all files have been created and written to. This event is used to synchronize the **CreateAndWriteFiles** and **MoveFilesToNewDirectory** threads. The **MoveFilesToNewDirectory** thread waits for this event to be signaled before it starts moving the files.
-- **hFilesMovedEvent** is signaled once all files have been moved to the new directory. This event can be used by other threads or processes to know when all the files have been moved.
+- **`hFilesCreatedEvent`** is signaled once all files have been created and written to. This event is used to synchronize the **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`** threads. The **`MoveFilesToNewDirectory`** thread waits for this event to be signaled before it starts moving the files.
+- **`hFilesMovedEvent`** is signaled once all files have been moved to the new directory. This event can be used by other threads or processes to know when all the files have been moved.
 
 The reason why **manual-reset** events are used here is to separate the completion of two distinct stages of the process: the creation of the files and the moving of the files. This allows other threads or processes to synchronize their operations based on these two stages.
 
@@ -876,7 +876,7 @@ int main() {
 
 The event object is used for inter-process synchronization: the primary process creates and signals the event when it has finished moving the files, and this process waits for the event to be signaled before it starts processing the files.
 
-This block of code is attempting to open an existing event object named **Global\\FilesMovedEvent** using the **OpenEvent** function. The **`WaitForSingleObject(hEvent, INFINITE)`** line then blocks execution until the **FilesMovedEvent** is signaled by the other process. This is the synchronization point where this process is waiting for the other process to finish moving all the files. Once the event is signaled, this process knows that all files have been moved and it can proceed with its operations, which in this case is writing to the files.
+This block of code is attempting to open an existing event object named **`Global\\FilesMovedEvent`** using the **OpenEvent** function. The **`WaitForSingleObject(hEvent, INFINITE)`** line then blocks execution until the **`FilesMovedEvent`** is signaled by the other process. This is the synchronization point where this process is waiting for the other process to finish moving all the files. Once the event is signaled, this process knows that all files have been moved and it can proceed with its operations, which in this case is writing to the files.
 
 ![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3385773d-0b26-4f30-a8b0-2df0d4d4abc2)
 
@@ -890,7 +890,7 @@ This block of code is attempting to open an existing event object named **Global
 
 ![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/972f452a-4c65-48e3-b511-171085d7d8bc)
 
-3. Pay a close attention to **EventObject2.exe**, the program won't run right away. As discussed previously, the **`WaitForSingleObject(hEvent, INFINITE)`** line blocks execution until the **FilesMovedEvent** is signaled by the other process.
+3. Pay a close attention to **EventObject2.exe**, the program won't run right away. As discussed previously, the **`WaitForSingleObject(hEvent, INFINITE)`** line blocks execution until the **`FilesMovedEvent`** is signaled by the other process.
 
 ![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c8a41c01-c42a-4aa6-9798-3bea9224e443)
 
@@ -910,7 +910,7 @@ This block of code is attempting to open an existing event object named **Global
 
 This section will be all about using **Process Explorer** to view the **Event** objects of all the running processes. This can be achieved by clicking on a process and then go to the 'Handles' tab.
 
-Before we are doing this, let's quickly review the code of **EventObject.exe** again. As we can see, there are two event objects created. **Global\FilesCreatedEvent** is manual-reset event object that is signaled when all the files have been created and written to. **Global\FilesMovedEvent** is a manual-reset event object that is signaled when all the files have been moved to a new directory.
+Before we are doing this, let's quickly review the code of **EventObject.exe** again. As we can see, there are two event objects created. **`Global\FilesCreatedEvent`** is manual-reset event object that is signaled when all the files have been created and written to. **`Global\FilesMovedEvent`** is a manual-reset event object that is signaled when all the files have been moved to a new directory.
 
 Threads or processes can wait for these events to know when they can safely start their operations that depend on the completion.
 
