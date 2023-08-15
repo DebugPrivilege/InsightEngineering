@@ -8,7 +8,8 @@ This extension can be downloaded here: https://www.microsoft.com/en-us/download/
 
 In order to start navigating with **MEX**, we need a memory dump first. Let's configure our virtual machine to support **complete memory dump**. A **complete memory dump** is a comprehensive capture of the system's physical memory (RAM) contents at the time of a crash. This dump contains both the kernel-mode and user-mode memory spaces.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6e1cb81c-c2c4-4edc-98b2-45ef8d667cee)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5a360e72-47f2-429c-ba72-718da8796b5d)
+
 
 The reason we configure a **complete memory dump** is that it facilitates demonstrations when compared to a **kernel memory dump**. The latter captures only the memory used by the kernel and excludes memory allocated to user-mode applications. However, I highly recommend taking memory dumps of both types to better understand the differences between them.
 
