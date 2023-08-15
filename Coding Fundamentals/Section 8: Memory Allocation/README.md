@@ -127,9 +127,11 @@ wchar_t filenames[3][50];
 
 Here we can see that we have created 3 files successfully on disk.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f1e567aa-832a-43a9-8933-b3b6f267e459)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/aa91ff18-13d7-4d0c-ac08-29bc9e985b74)
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fe9fbaeb-caff-4655-8db3-77fe5f086b17)
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a4c01687-e41a-4e25-82f8-d8f033befebf)
+
 
 # Improper Memory Allocation
 
@@ -182,7 +184,8 @@ int main() {
 
 When we run our code again, there will be an error. We declared the array to hold three filenames, each of which can contain only **2** wide characters (including the null terminator). This is insufficient to hold a typical filename. **`"file1.txt"`** is much longer than 1 character (the maximum length that can be safely stored in filenames[i]). As a result, **wscanf_s** overflows the buffer, and writes past the end of **`filenames[i]`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f71e9c92-eac9-4c14-9fae-638ed169f993)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fca277bf-e164-42fa-9ca0-9c8a993aed6a)
+
 
 # Dynamic Memory Allocation
 
@@ -303,7 +306,8 @@ The program prompts the user to enter the filename. It then reads the characters
         }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b9826d20-933c-470d-b980-165e4044b057)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/10ff1fa8-af0e-4ed4-ae4b-f7a3e122b8d3)
+
 
 In the code with dynamic memory allocation, the filenames are stored as an array of wide character pointers (wchar_t* filenames[3]). During runtime, memory is dynamically allocated for each filename using **malloc** and **realloc** as needed. The buffer size starts with **1** character and grows dynamically when necessary to accommodate the user input. This allows for flexibility in handling filenames of varying lengths.
 
@@ -319,7 +323,8 @@ When the length becomes equal to the bufferSize, it means that the buffer is ful
 
 What happens if we type in **'security.txt'**?
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4cc0e9ba-5202-4712-828b-48e66c69b4fb)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6bd36d33-0e16-4384-bd65-10f39bc23b1c)
+
 
 This is a step-by-step explanation on how we are reallocating memory. Since explaining what a 'buffer' can be difficult, so we have to put it into different pieces.
 
@@ -532,4 +537,5 @@ After this line, the memory that was allocated with **malloc** is still allocate
 
 When we try to run this code, we will see this:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fd98881a-1886-47a1-94db-66d32a855cd2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/eb0f9109-3e5e-4c39-b83f-71285d2efed0)
+
