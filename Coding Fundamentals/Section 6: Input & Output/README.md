@@ -37,7 +37,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/70d5d3e2-c529-4b25-8ecf-623d86518aaa)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4cf888bb-070c-4ae3-8127-3b9dfb91e0b7)
+
 
 # scanf
 
@@ -63,7 +64,8 @@ int main() {
 ```
 **scanf** is used to read user input for the **age** and **height** variables. The format specifiers **%d** and **%f** in the **scanf** calls specify that an **integer** and a **floating-point** number should be read.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/16b31013-7ef2-47d9-b8ab-75c99f284065)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/45c5501a-bcb7-4894-8d05-44006c638ce8)
+
 
 # getchar
 
@@ -90,7 +92,8 @@ int main() {
 
 **getchar()** function only reads a single character at a time from the input. If we enter "Hello", the first call to **getchar()** would only read the **'H'**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a0a28946-69eb-4c34-8c6e-9ad79a7c1fe8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5e53304d-8bc9-4ff2-abf5-ba9c39535d56)
+
 
  If we want to read the entire word, we need to use a loop that calls **getchar()** multiple times.
 
@@ -110,7 +113,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b88bde29-0f38-4c21-8cac-4b6ad99f2d31)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b61e21d8-f704-432f-bd94-124e0d99118f)
+
 
 # fgets
 
@@ -136,7 +140,8 @@ int main() {
 
 The **stdin** stream is used as the input source for the **fgets()** function. This means **fgets()** will read from standard input, which is usually the keyboard.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d9b6d504-d761-44b7-81ae-cfcfeb5273b5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0d59a2b1-387d-4180-8f56-718ea54ee8c7)
+
 
 # puts
 
@@ -156,7 +161,8 @@ int main() {
 ```
 We first define a string "Hello, World!" and store it in the array **str**. Then we call **puts(str)**, which writes the string to the standard output (console).
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5a3d1f34-9115-496e-9add-ae619680a8f8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ac18f710-9f8a-4a0a-9667-6284dc3ec779)
+
 
 # fscanf
 
@@ -216,7 +222,8 @@ int main() {
 ```
 At this example, we have a notepad file that contains two lines.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a2fe32ed-b252-4b28-ba65-def9dc397df3)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/082d06eb-fd42-42e8-acd9-52cee6ca03ed)
+
 
 Let's break down the code in small pieces:
 
@@ -258,7 +265,8 @@ This line prints each line read from the file.
 printf("Read string: %s \n", str);
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/35296a06-0512-4d2b-99e7-23aea38626dd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f1231d29-1ea4-4f35-875d-1f16426bd398)
+
 
 
 # fprintf
@@ -296,12 +304,14 @@ int main() {
 
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e02badca-d278-44c3-a136-6f7892b78c62)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/39f47b45-445f-4175-b58e-453362a19f22)
+
 
 
 A file is created on disk when the **fopen_s** function is invoked with the "w" (write) mode. If the file named "file.txt" does not exist, it will be created. If it does exist, it will be truncated. Once the file is opened, the **fprintf** function is used to write a message into the file.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7cd9400f-f767-4769-9429-6f32199ba26b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/be2bf672-6f5c-446a-a3d8-156691c60b26)
+
 
 # sprintf
 
@@ -326,4 +336,5 @@ int main() {
 
 This code creates a character array named **buffer** to hold the formatted string. It then uses **sprintf_s** to store the string "Hello, World!" in buffer. The size of buffer is specified in the call to **sprintf_s** to prevent buffer overflows.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a14cf088-76fa-44e1-8943-86d692c20f50)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b0bbccc4-8c34-4979-b7f4-6c94dc2dfd6d)
+
