@@ -170,7 +170,8 @@ int main() {
 
 When we run this program, it will start to hang:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3d805b4c-31c6-4d91-aeca-6e7d02bc65d2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/12a792ad-cc90-469a-b8b8-279112cac22f)
+
 
 
 
@@ -266,5 +267,6 @@ Let's use the **!handle** command to display the event object:
 
 The output describes an auto-reset event named **`FileProcessingEvent`** that is currently in a non-signaled (waiting) state. We can also see this in **Process Explorer**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0cec85b2-88a5-4bfa-97b6-5cb24dbdfcc2)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/95f98eca-6421-42d9-be73-70782b5e0d7c)
+
 
