@@ -227,11 +227,13 @@ int main() {
 
 When we run this code, it will start to hang as we can see here:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8d7fcaeb-0d99-4628-bdd4-9c8bcf7c387f)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5d13c210-e2a0-4702-81b6-7f8b7793b9f8)
+
 
 Open **Process Explorer** and view all the threads of this program. We will notice that almost all of the thread wait reasons are **WrAlertByThreadId** and in this case, this means that a thread is waiting on a Slim Reader & Writer Lock.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/75312256-f7bc-437a-82c7-554cf652c3ad)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4f4ddb18-842c-4d87-85ac-76cf3d81c39c)
+
 
 # WinDbg Walk Through - Analyzing Memory Dump
 
@@ -300,7 +302,8 @@ Since we have the source code of our program, let's navigate to line **197** and
 
 The **CloseHandle** function is used to close an open object handle. In this context, it's being used to close the thread handles after waiting for all of them to complete their tasks. The program waits for all the threads in the **`hThreads`** array to complete. The **`INFINITE`** parameter in **WaitForMultipleObject** ensures it will wait indefinitely until all threads have completed.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6043010b-76cd-40bf-a3d6-608a95113f2b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/28f0d139-7951-483b-a4e6-5b653b885dec)
+
 
 There are 13 threads, so instead of viewing thread by thread. Let's use the **!mex.us** command, which will display all the call stack of each thread within the process:
 
@@ -394,13 +397,15 @@ Thread Statistics:
 
 At line **25**, we are acquiring an SRW lock in exclusive mode. This is a standard usage, ensuring that the thread has exclusive access to the shared resource, which in this case is the file. The **10** threads are blocked at line **28** which is attempting to open the file for writing with the **CreateFile** function.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/36ba5dce-1034-40af-93c4-c7bed6f440f5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/532927aa-d7fb-4495-927c-1c5ff4b617fe)
+
 
 Releasing the lock right after **`CloseHandle()`** ensures that other threads waiting to acquire the lock can proceed as soon as the file operations are completed. This minimizes the time the lock is held, which in turn reduces contention and the chances of deadlocks. 
 
 In this example, we commented out line **56**, but at this line we should have to release the SRW lock by calling **ReleaseSRWLockExclusive**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/07261b90-7fd4-49f0-95f0-79f79f140bba)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/21721208-ece8-41ed-898b-6eeb146d067c)
+
 
 Let's now uncomment this and compile the code again and run it:
 
@@ -610,11 +615,13 @@ int main() {
 
 The program is now writing data to the file and it has been moved to the **C:\Temp2**, but the size of the file is very small comparing on what we should expect.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/32862392-e0dc-4c23-8744-8de03f84daa5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7ecf1ee7-0c45-4401-8549-da30b2597a62)
+
 
 Open **Process Explorer** and view the wait reasons of this program. We can see that there are two threads waiting on a Slim Reader & Writer lock:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8a0af358-efd3-416d-817b-1cc65c887d7d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c7eb614b-37e0-4798-b702-d387eb3a9025)
+
 
 Take a memory dump of the process that is hanging and load it in WinDbg.
 
@@ -657,7 +664,8 @@ This call stack suggests that a thread is attempting to acquire an SRW lock in t
 2. It performs some operations **without releasing the lock**.
 3. Then, it attempts to acquire the same SRW lock again with **`AcquireSRWLockExclusive(&srwLock)`** to increment the **`completedThreads`** variable.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f3a8269f-9845-4ee0-84d0-6548370d1524)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e49ee879-c6f5-4d34-ad4c-978663bac899)
+
 
 This attempt to re-acquire the same SRW lock, without releasing it first, leads to the self-deadlock. A self-deadlock occurs when a thread, which has already acquired a non-reentrant lock, tries to acquire the same lock again without first releasing it. Since the thread is waiting for a resource (in this case, the SRW lock) that it itself holds, it will wait indefinitely, leading to a deadlock.
 
@@ -888,7 +896,8 @@ int main() {
 
 The code is now running fine and has completed it tasks:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3fff4afc-aa17-4030-842e-a6ad4891e72c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7138b990-b01e-4ea4-83db-cf24f269b74e)
+
 
 # Conclusion
 
