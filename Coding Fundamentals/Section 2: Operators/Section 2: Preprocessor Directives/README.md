@@ -14,7 +14,8 @@ These directives tell the preprocessor to perform specific actions, such as incl
 | `#error`        | This directive prints a user-specified error message on stderr at compile time if a certain condition is not met. |
 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8bb406de-5160-430f-853e-7eba96a16b6b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0af753a4-dc7a-427a-8af2-b3d6a1e67fd9)
+
 
 
 
@@ -30,7 +31,8 @@ int main() {
     return 0;
 }
 ```
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/c62b3d2e-5032-4c75-8769-96e70ef6d4ee)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/c78c69e3-f0a4-49e9-b458-b91b62b97171)
+
 
 # #define directive
 
@@ -60,7 +62,8 @@ int main() {
 **#define DAYS_IN_WEEK 7** defines a macro that represents the number of days in a week. Then we calculate the number of days in 3 weeks with the * operator and then print it out. In this case, every instance of **DAYS_IN_WEEK** in the code is replaced with **7** before the program is compiled.
  
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b8ec729d-62da-4c26-a1df-83231e79f281)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3a7853b0-f8da-47b1-890d-88c9effd4c4c)
+
 
 # #if directive
 
@@ -89,7 +92,8 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/fae23df1-2be0-476b-af57-0cedbb86fbaa)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/01c10d18-cae1-4574-925e-ad7ec263bec6)
+
 
 Another simple example:
 
@@ -117,7 +121,8 @@ The preprocessor will check the value of **PLATFORM**. If **PLATFORM** is **1**,
 
 The **#elif** directive stands for "else if". It allows you to test for multiple different conditions.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6d2cb597-5c13-46bf-b651-c76e93274059)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/aeb9591f-676c-4057-84d9-fdb412358cb0)
+
 
 # #pragma directive
 
@@ -137,7 +142,8 @@ int main() {
 ```
 We are telling the linker to include the **user32.lib** library, which provides the **MessageBox** function. Usually this is done through dynamic library loading, but as example we use the **#pragma** directive.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a34ac697-55ce-43bb-8a07-f5c6081dadc7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9de19a85-b2e8-477f-8133-44b3e9909d56)
+
 
 Another example, which you should never do. However, we can use the **#pragma** directive to disable a specific warning for example. **#pragma warning(disable : 4996)** disables warning C4996, which is generated for certain functions that Visual Studio considers to be unsafe, like **scanf()**.
 
@@ -159,5 +165,6 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/123ed121-fe17-4e19-b2dd-1416c45c96a8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1545ae40-aa56-41c3-a2ce-367be3b04e16)
+
 
