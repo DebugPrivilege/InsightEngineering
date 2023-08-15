@@ -176,21 +176,25 @@ Within this code, a deadlock scenario arises between the **`CreateAndWriteFiles`
 
 When we run this code, the program will start enumerating running processes via the **`EnumerateProcesses`** function. However, the program will get stuck right in the middle. It won't create any files in **C:\Temp** and it won't move files to **C:\Temp2**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/47c32232-64b5-45ca-88a7-4a5566b5c03d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d988cade-b7f2-494b-9854-c00d088adf8e)
+
 
 Open **Process Explorer** and go to our program. We are able to see that the wait reason is **WrAlertByThreadId** which is generated when a thread is waiting for things like **Critical Sections**, Conditional Variables, or Slim Reader/Writer locks. 
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d2f27814-ccf4-44c1-b2e1-2d6758d058c8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1fc10ade-856d-4fa6-b7bf-dda14768fb0c)
+
 
 Let's now take a full memory dump of our program that is currently hanging.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/55fd0fc3-d7df-4c9b-b501-2c8131ddc5cb)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/40d48b28-5d96-451c-a3ec-ff7b14166178)
+
 
 # WinDbg Walk Through - Displaying Critical Sections
 
 In the previous section, we took a memory dump of our program. Load the .dmp file in WinDbg, so we can analyze it further.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8df60569-602d-42b7-a712-d666a8c31b43)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/573b2acd-d6da-4130-a958-20c910932050)
+
 
 
 The **!ntsdexts.locks** extension displays a list of critical sections associated with the current process. If the **-v** option is used, all critical sections are displayed.
@@ -462,7 +466,8 @@ This code has two critical sections which happens to be **`critSection`** and **
 
 Both of these critical sections are initialized in the **`main`** function and are used in the **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`** functions to synchronize access to shared resources to minimize race conditions and ensure thread safety.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7789c3fc-9d22-4813-9f59-65713625c77e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a2ec7111-65b9-467b-9a2d-7f4cc0043e87)
+
 
 Let's now review the **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`** functions:
 
@@ -471,14 +476,16 @@ Let's now review the **`CreateAndWriteFiles`** and **`MoveFilesToNewDirectory`**
 - First, **`critSection`** is acquired.
 - After a sleep of 50ms, **`consoleCritSection`** is acquired.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5f34a62e-ccfe-4858-8f92-8f7a872754e5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7285314d-2720-4dc6-8055-6ad0d17caee1)
+
 
 **`MoveFilesToNewDirectory:`**
 
 - First, **`consoleCritSection`** is acquired.
 - Again, after a sleep of 50ms, **`critSection`** is acquired.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/025b215f-8024-4822-b218-efc394e45ecd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7da7bd2f-9034-4420-8963-ba9c16079765)
+
 
 This creates a classic deadlock scenario when both functions run concurrently:
 
