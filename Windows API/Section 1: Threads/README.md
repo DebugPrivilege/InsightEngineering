@@ -291,11 +291,12 @@ Let's examine the threads again with **Process Explorer**
 
 Here we are able to see the **`EnumerateProcesses`** function in a call stack of a thread.
 
-![image](https://private-user-images.githubusercontent.com/63166600/256336837-666d1f17-6d53-428f-8239-c71db9f1e35a.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTE0NTMsIm5iZiI6MTY5MjA5MTE1MywicGF0aCI6Ii82MzE2NjYwMC8yNTYzMzY4MzctNjY2ZDFmMTctNmQ1My00MjhmLTgyMzktYzcxZGI5ZjFlMzVhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTkxM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTljZTAwNzZlOGIwNzFhOGY5NTA0N2Q1NmUyZDk5NDhkY2MxNWVlZWZjNjE2MTA4ZjIxYmRiOTkxNDI0NTJlZjImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.3_p-FPNpqSLH3KiiZhrN6xweg1sZD6svEdBKN0Snxk4)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b248e655-07de-4185-9b04-5f5b6363a724)
+
 
 In this example, we are able to see the **`CreateAndDeleteFiles`** function, but this function call is in a separate call stack of a different thread.
 
-![image](https://private-user-images.githubusercontent.com/63166600/256337372-caf76f31-d1e4-4ffd-9834-f91b5e017e38.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTE0NTMsIm5iZiI6MTY5MjA5MTE1MywicGF0aCI6Ii82MzE2NjYwMC8yNTYzMzczNzItY2FmNzZmMzEtZDFlNC00ZmZkLTk4MzQtZjkxYjVlMDE3ZTM4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTkxM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTY4OWFkMThmOGE1MDg5MDFiZjZmMzk2YjU5ZDQyMmY4ZWIwNGNiZjQ2OTZlODQ4YjNhZGIxMmIyZDM0Y2I2MGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ceJ6ZljcLY0GBFdQssXvceReB4gHQ8qSuJONpZpbjdY)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5eb81501-ab1b-4ca1-8a05-6ef09e63fab6)
 
 
 In our code, we've designated these two functions to run on separate threads. Therefore, each function will have its own independent call stack. The call stack of a thread is a record of the functions that the thread is executing or has executed. Since these two functions are running on separate threads, each one will have its own call stack. 
@@ -418,7 +419,8 @@ int main() {
 ```
 In this example, it took around 50 seconds to complete the execution. This will always be different every time we run our code.
 
-![image](https://private-user-images.githubusercontent.com/63166600/256340264-b5682ea8-86d2-40b2-a96a-05dd9415a6d5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTE0NTMsIm5iZiI6MTY5MjA5MTE1MywicGF0aCI6Ii82MzE2NjYwMC8yNTYzNDAyNjQtYjU2ODJlYTgtODZkMi00MGIyLWE5NmEtMDVkZDk0MTVhNmQ1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTkxM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTFhNjNmN2QyNmJhZTRmNTM2YTliZGE1OGZkODg1MzgwM2Y4ODkwOWE5NmJlNmUwNjZkNzZkNDk1ZDYyY2QwYmYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.Kq9HjMXKLDj8hhG_UDfmx96PaO8mFde_e3sd6c1LsYo)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3cf22afa-9247-4ab1-b345-ce1f0d0cbd29)
+
 
 - **Multi-threaded Program**
 
@@ -543,7 +545,8 @@ int main() {
 ```
 In this example, it took around 32 seconds to complete the execution. This will always be different every time we run our code.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/daa8226b-a774-43d2-940b-7df89f7048e0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9a9c0e23-abf0-47d0-a3f4-619c57b901b5)
+
 
 # Why is the Multi-threaded program faster?
 
