@@ -246,7 +246,7 @@ Synchronization objects, such as events, mutexes, semaphores, etc., are implemen
 
 This explains why we can see all those synchronization objects at the "Handles" tab in **Process Explorer:**
 
-
+![image](https://private-user-images.githubusercontent.com/63166600/260037967-9bee9eed-d200-4330-bbb1-d8dc3a83fe63.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTM1NTUsIm5iZiI6MTY5MjA5MzI1NSwicGF0aCI6Ii82MzE2NjYwMC8yNjAwMzc5NjctOWJlZTllZWQtZDIwMC00MzMwLWJiYjEtZDhkYzNhODNmZTYzLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5NTQxNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTNiNTIxZGJiNDUxZjc5OTgwMjA0MDk4OTQwZWE4OWM4ODRkMjljYjIyZGE2MDY4NTYxZWJhMmYzYzM4NWRiNWEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.tzSm9GaoQVZdCGb2He2fvKQIvkzOByD0szCDmkD2UXk)
 
 We can use the **!handle** command to display information about a handle or handles that one or all processes in the target system own. Here is an example to look for event objects within a memory dump:
 
