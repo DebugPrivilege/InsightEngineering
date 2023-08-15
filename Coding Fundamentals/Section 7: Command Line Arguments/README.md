@@ -68,11 +68,13 @@ This is important because **'i'** is being used as an index to access the elemen
 
 Let's run this program first without any command-line argument. It will print **Program continues...**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/dc159cf5-9d5f-4872-805f-ecbe3182aecd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8b27cc36-fb41-48a2-a2d7-8ecff80d4dab)
+
 
 If we now run the program with the **--help** option. It will print **How can I help?** this time.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2bbab8b1-b202-4ff9-b17b-291fa4e628ed)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8775e2e8-11e3-4aa0-8215-c169b463d1ca)
+
 
 If we run **HelloWorld.exe --help**, **`argc`** (the count of command-line arguments) would be **2**, and the **`argv`** (argument vector) array would be as follows:
 
@@ -83,7 +85,8 @@ If we run **HelloWorld.exe --help**, **`argc`** (the count of command-line argum
 
 What if we now run **Program.exe --help --invalid** which contains an invalid argument. However, it will still print **"How can I help?"**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/42efab27-0288-48e2-9fd1-df3a244eef8a)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a6ebb1f7-d120-44a6-979d-27c710540f95)
+
 
 The **for** loop iterates over all command-line arguments. When the program sees **--help** as an argument (regardless of its position in the argument list), it calls the **show_help()** function, which prints out **"How can I help?"**.
 
@@ -140,13 +143,15 @@ for(int i = 1; i < argc; i++)
 
 First, let's run our program without specifying any command-line arguments. The program doesn't enter the loop where it would check for **--help** or print an error message for **unrecognized arguments**. Because neither of these conditions are met and the program doesn't print anything.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f42e1fd6-8544-4f35-b0d8-63f8260913e5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/57aaf62b-c761-4b2b-a70d-5caf3c4eaf4b)
+
 
 Let's now run the program with an invalid argument. When we run the command **HelloWorld.exe --help --zzz**, the program checks each argument one by one. First, it checks **argv[1]**, which is **--help**. This matches the condition in the loop **(if(_stricmp(argv[i], "--help") == 0))**, and **helpFlag** is set to **1**.
 
 Next, the program checks **argv[2]**, which is **--zzz**. This does not match the **--help** condition, so it goes into the **else** block of the conditional statement. There, it prints **"Unrecognized argument: --zzz"**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7397aa59-0d8c-4b0d-a1e6-980770197731)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b9d61203-5524-41ce-b72d-b99f5cff966a)
+
 
 # Another Example
 
@@ -224,11 +229,13 @@ The reason we need wide strings **`(_wciscmp)`** has to do with the **CreateProc
 
 First example, we start with the **--A** parameter which will execute **"whoami /all"**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/96f96d68-a902-4eea-8121-4dbe7f7efb02)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fb569143-6d70-46f5-bc24-6fd5fbb6e7ba)
+
 
 Second example, we will type the **--B** parameter which will execute **"net user"**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3330a04e-e5f2-4f97-b524-1ec34cd3cac4)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9da6a83c-4a5c-43c3-aab3-132a034e0be6)
+
 
 
 # Argument Validation
@@ -322,7 +329,8 @@ return 1;  // Exit the program with an error code
 
 The program prints **"Unrecognized argument"** followed by the argument, and then exits with an error code of 1. This means it found an invalid argument.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/06c871f0-e5aa-49e8-a46b-f7b56b1315e5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f843936d-8d30-4c0d-bdeb-27b9068e344e)
+
 
 This code checks all the arguments provided. It doesn't stop checking after it finds a valid argument. The loop in the validation part of the code goes through every argument that is passed:
 
@@ -388,5 +396,6 @@ The first **for** loop is for argument validation. It iterates over each command
 
 The second **for** loop is for executing the commands that is related to each valid command line argument. If an argument matches **"--C"**, it calls **`showMessageHelloWorld()`**. If it matches **"--D"**, it calls **`showMessageHelloEveryone()`**. And if it matches **"--E"**, it calls **`showMessageGoodbyeWorld()`**.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/1ffb9746-f367-46cd-ab55-128088eeab5b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2bd394ce-4e4b-424c-ab23-7ac7a826d3f1)
+
 
