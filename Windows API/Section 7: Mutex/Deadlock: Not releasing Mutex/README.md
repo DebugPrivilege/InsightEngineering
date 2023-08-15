@@ -173,15 +173,18 @@ int main() {
 
 When we run this program, it will start to hang as we can see here:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/ac0dbbe0-f8b8-400d-9eee-f50af4cbf0f7)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a22fe6d5-d2a0-4bc1-96df-4418d60ab0ad)
+
 
 Open **Process Explorer** and we can see multiple threads are currently waiting:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/134b4d80-d380-4798-b09d-325c98f08092)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4a355718-8e02-4d12-a61f-be09377f9f30)
+
 
 Take a memory dump of the process and load it in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/905e5d2a-ad6a-4760-b182-a7cc815e8e01)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e5bb03da-298b-4366-bc23-2493649b772a)
+
 
 # WinDbg Walk Through - Analyzing Memory Dump
 
@@ -326,6 +329,7 @@ DbgID ThreadID      User Kernel Create Time (UTC)
 
 When we set the **bInitialOwner** parameter to **FALSE** during the creation of the mutex, no thread initially owns the mutex. Therefore, when the worker threads start and attempt to acquire the mutex, they can successfully obtain it without any issues.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6ec4ff83-f86c-4165-a17a-3d8fa023e1cd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/6d773ad1-64b7-40f4-a58c-27972bd25aef)
+
 
 If **bInitialOwner** is set to **FALSE:** No thread owns the mutex immediately after creation. The first thread that tries to acquire the mutex using **WaitForSingleObject** (or a related function) will take ownership. That thread then becomes responsible for releasing the mutex. 
