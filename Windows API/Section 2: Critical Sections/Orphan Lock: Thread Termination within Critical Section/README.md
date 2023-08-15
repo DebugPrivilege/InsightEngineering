@@ -178,21 +178,25 @@ The **`MoveFilesToNewDirectory`** function tries to acquire the **`critSection`*
 
 Run the program until you see that is hanging:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f7f926ad-b09a-49c3-961c-1f3f4658508c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/98861563-524b-4a48-b8d8-a6e80600f0da)
+
 
 Open **Process Explorer** and go to our program. We are able to see that the wait reason is **WrAlertByThreadId** which is generated when a thread is waiting for things like Critical Sections, Conditional Variables, or Slim Reader/Writer locks.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/02c11eca-775d-4921-9d92-7bc9649bc15b)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/97703605-ebff-4921-8468-61bff7e2ac1b)
+
 
 Let's now take a full memory dump of our program that is currently hanging.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/55fd0fc3-d7df-4c9b-b501-2c8131ddc5cb)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5739d3d4-abe8-4f52-86f9-6be15479947d)
+
 
 # WinDbg Walk Through (1) - Analyzing Potential Orphaned Lock
 
 In the previous section, we took a memory dump of our program. Load the .dmp file in WinDbg, so we can analyze it further.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8df60569-602d-42b7-a712-d666a8c31b43)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f3407044-0d75-4d78-aaa0-4ab99855c1f9)
+
 
 The **!ntsdexts.locks** extension displays a list of critical sections associated with the current process. If the **-v** option is used, all critical sections are displayed.
 
@@ -278,15 +282,18 @@ Since we can reproduce this issue. Let's use TTD to examine it.
 tttracer -out "C:\Traces" C:\Users\User\source\repos\Wait2\x64\Release\Wait2.exe
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d3a2806f-fdf0-4dc1-a18a-f0e2d140ac29)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8e6176c2-78b7-42af-a5b0-3a194f40004f)
+
 
 2. Here we are able to see that our full trace has completed and dumped in the **C:\Traces** folder.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3f4f02c7-d233-4939-97e7-dbb326910433)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/61693e02-7120-46ed-9793-3734c7276300)
+
 
 3. The **.RUN** file is the recording file of the process which we can load in WinDbg to diagnose the issue.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/6878a095-4fbe-4a98-a21d-ab0639bc2ed5)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/59239e1d-025c-477e-a208-545bf4d9a21f)
+
 
 If the program is still hanging while recording. Open CMD again and run the following command:
 
@@ -294,7 +301,8 @@ If the program is still hanging while recording. Open CMD again and run the foll
 tttracer -stop <PID of program>
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/23ef677c-05c7-4ab9-84ef-07b40455c7cc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b961bc2b-9265-43ca-8b95-af75e9bf5ea4)
+
 
 
 
@@ -302,7 +310,8 @@ tttracer -stop <PID of program>
 
 Load the **.RUN** file in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d093956b-9f25-4bfd-b227-4129ae537076)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/76bc4310-493e-4691-b182-4d63ab7a448e)
+
 
 TTD allows us to use LINQ queries to diagnose the code that has been captured in a time travel trace. Since we know from the memory dump that the issue has something to do with an invalid thread. Let's take a step back and understand the theory again of an orphaned lock.
 
@@ -431,7 +440,8 @@ The root cause of the orphan lock in this code is the use of the **`ExitThread(0
 
 - **Issue within the code:**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/8a3982c6-ded2-4fd8-bf63-d5cc70af6087)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b0ebe335-7d9c-43b4-a1c5-2ddccf88d9bf)
+
 
 This code will work as expected:
 
@@ -750,21 +760,25 @@ int main() {
 
 The program is hanging as we can see here:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/de21634a-418b-441b-970e-8c89d330fefa)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/5b43f08f-822a-4449-8b35-8fabdcddb0f2)
+
 
 The main reason for the orphan lock in our code is the improper termination of the **`CreateAndWriteFiles`** thread using **TerminateThread**. Open **Process Explorer** and we can see the exact same wait reason which is **WrAlertByThreadId**. This happens when a thread is waiting for things like Critical Sections, Conditional Variables, or Slim Reader/Writer locks.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f3f31c36-ccb6-4de9-8914-a541d07de70e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2ca4f783-056a-453c-91c0-d54a49f5a986)
+
 
 Take a memory dump of the process and load it in WinDbg:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/d1093a7a-e641-4d8d-9e20-5ad59b5731be)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b071ab94-9697-4bd6-b98c-1f7c78455816)
+
 
 # WinDbg Walk Through (2) - Analyzing Potential Orphaned Lock
 
 Load the memory dump in WinDbg again.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/0a9ebbaf-34e4-46f8-b385-146f117ad1a8)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/f45dca23-9c7f-4bdc-9ba7-c79b58127031)
+
 
 Run the **!mex.p** command to double check the context of the current process we're in.
 
@@ -853,7 +867,8 @@ Since we can reproduce this issue, let's use TTD and see if we can answer why th
 tttracer -out "C:\Traces" C:\Users\User\source\repos\Wait3\x64\Release\Wait3.exe
  ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2fc5eb68-9308-4cad-bb09-023c4bd782c1)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/8ee98e3b-9622-4e30-ab73-d8bca5ea422e)
+
 
 2. When the program starts hanging, open CMD as an administrator and stop the recording:
 
@@ -861,11 +876,13 @@ tttracer -out "C:\Traces" C:\Users\User\source\repos\Wait3\x64\Release\Wait3.exe
 tttracer -stop <PID of Program>
  ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/4fe330bb-1cff-4c28-a419-5de632375537)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/76e4873a-c7b4-4a40-a699-25f3f5c987f6)
+
 
 3. Let's load the trace file in WinDbg now.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5bb5be07-85f3-4fb3-94c7-606cabf081b4)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/aad71fb9-3d6d-4810-9653-0c0517088554)
+
 
 
 Let's query the API calls that can be used to **exit** or **terminate** a thread:
