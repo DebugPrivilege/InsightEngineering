@@ -20,5 +20,6 @@ A thread wait reason is a status that indicates why a thread is not currently ex
 
 Here is an example in **Process Explorer:**
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/f264e36f-7554-4764-a99f-9ec1bd9fb606)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d82642ec-7cf2-4671-8d94-8afbc78e0606)
+
 
