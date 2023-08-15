@@ -61,7 +61,7 @@ int main() {
 }
 ```
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/e620381d-b104-411f-aa58-eb645dcab354)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e620381d-b104-411f-aa58-eb645dcab354)
 
 Let's cover another example and go a bit more in depth. At this example, we have a struct called **`FileInfo`**. This struct has two members, which happens to be **`filename`** and **`openAttempts`**.
 
