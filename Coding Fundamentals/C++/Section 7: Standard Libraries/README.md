@@ -103,7 +103,8 @@ int main() {
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a7f7a7eb-2fab-4640-82a0-65df815a339f)
 
-![image](https://private-user-images.githubusercontent.com/63166600/255331037-1d8bf47c-fd0e-4b88-af0a-c32aa206c87a.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTA3NTUsIm5iZiI6MTY5MjA5MDQ1NSwicGF0aCI6Ii82MzE2NjYwMC8yNTUzMzEwMzctMWQ4YmY0N2MtZmQwZS00Yjg4LWFmMGEtYzMyYWEyMDZjODdhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MDczNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTgxNmI1OTI5MDYxOWJmNjkwMzIxYzJhYWQ1YTg0OGNiZTQ4MjgzODQ4NWMzOGJiZmExYWE4NDgxYjA2MzkwNjMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.hyHPZkpEQE09FOtgmloo-tF7RHvD7Wg3Ubbf1YNI8nw)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3edd5a96-b14a-4135-bfd1-e516b2537467)
+
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/06bb37f3-b0b4-473d-bcd5-ebc1ed3c7182)
 
@@ -128,7 +129,8 @@ int main() {
 }
 ```
 
-![image](https://private-user-images.githubusercontent.com/63166600/255333489-57cd7c92-7dfb-43d3-8b3e-1ac6da96cbc7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTExNjMsIm5iZiI6MTY5MjA5MDg2MywicGF0aCI6Ii82MzE2NjYwMC8yNTUzMzM0ODktNTdjZDdjOTItN2RmYi00M2QzLThiM2UtMWFjNmRhOTZjYmM3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTQyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWE5MTczNTQ5YmEwZDI1NTUzOWM5ZjQ2NmUyNzVhMzFjZDZmOTQyN2MyNjI4OGMyYWQwMDE2ZTUzNmM2YjU1OWQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.63SKDQQPfneqgRUOA-p18MBOgnc70yx5GLfPT2WPrxI)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4b13a878-ed0f-4df7-9ae8-47f885cc4225)
+
 
 # vector
 
@@ -169,7 +171,8 @@ int main() {
 
 This demonstrates the basic usage of **`std::vector`**, including creating a vector, adding elements to it using **`push_back()`**, and accessing its elements using the indexing operator **`[]`**.
 
-![image](https://private-user-images.githubusercontent.com/63166600/255336498-fc08c6ab-0dd8-4c09-9b5a-6b5114a641c0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTExNjMsIm5iZiI6MTY5MjA5MDg2MywicGF0aCI6Ii82MzE2NjYwMC8yNTUzMzY0OTgtZmMwOGM2YWItMGRkOC00YzA5LTliNWEtNmI1MTE0YTY0MWMwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTQyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQ3YmI2YzU4NjRmNjlhZDEwNzYyOGRkMTJlODZkZmM3NzQ5NjRlZDViZWE0MWRjMzFmZWNhNTEzMTBhZGM3YTMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.dtFAyTSZVPtvugtzn1H1_0FZ8ufSUfVxODsD6XfTAzw)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3e3cc748-4949-4214-a5c4-a739f5f51d4c)
+
 
 # map
 
@@ -202,11 +205,13 @@ This code creates a **`std::map`** where the **keys** are names (strings) and th
 
 This **`for`** loop goes through each name-age pair in the ages map. For each pair, it prints the name and age in the format "Name is Age years old."
 
-![image](https://private-user-images.githubusercontent.com/63166600/255346036-add0dada-0265-49c3-9f1f-cc1c288aff1b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTExNjMsIm5iZiI6MTY5MjA5MDg2MywicGF0aCI6Ii82MzE2NjYwMC8yNTUzNDYwMzYtYWRkMGRhZGEtMDI2NS00OWMzLTlmMWYtY2MxYzI4OGFmZjFiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTQyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQyYjVkZDk0ZDU2MTFiYmIxNWI4MDZhNTRlMDJiNDExNTVhYjY3Nzc5MDYwNTY1YzY2YjE1OGRjYmZhNmVjOWMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ZP_Lqk48jO3UU6TcrZ46qyaOsNvQQCpRY8ICRuOv7N0)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/378ebfde-53e3-4b85-ad57-dfebd133e47c)
+
 
 The **`auto`** keyword is being used to automatically figure out the type of elements in the **`ages`** map. The compiler sees that **`ages`** is a **`std::map<std::string, int>`**, so it understands that pair will be a pair of a **string** and an **integer**.
 
-![image](https://private-user-images.githubusercontent.com/63166600/255377077-54e740d9-8ac3-4d9f-b176-ddb4fb14ccfb.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTExNjMsIm5iZiI6MTY5MjA5MDg2MywicGF0aCI6Ii82MzE2NjYwMC8yNTUzNzcwNzctNTRlNzQwZDktOGFjMy00ZDlmLWIxNzYtZGRiNGZiMTRjY2ZiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTQyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTBjZmJhZTkwNTk5YjMyM2I0MzQ5NTIyMGVjMWI3ODUwOGQyYWMyMTVlNjI0NWQxZjc1OGJmNjkyZDJiZWQ0YjAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.9hzpyGztlwkJfwt6vMhGCoRaS-LRRFACDKgBDsXaYEM)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/a5434fa1-4dc6-4fc0-b1c1-d4e2e8e99da0)
+
 
 # exception
 
@@ -232,7 +237,8 @@ int main() {
 
 This example demonstrates how we can catch any exception derived from **`std::exception`** using a catch block for **`std::exception`**, and how you can use the **`what()`** function to get a description of the exception.
 
-![image](https://private-user-images.githubusercontent.com/63166600/255377568-d3c367a7-4a7f-4fc2-8fa8-7cbbf2025e9b.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTExNjMsIm5iZiI6MTY5MjA5MDg2MywicGF0aCI6Ii82MzE2NjYwMC8yNTUzNzc1NjgtZDNjMzY3YTctNGE3Zi00ZmMyLThmYTgtN2NiYmYyMDI1ZTliLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTQyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWJlZjA2Y2NiZWQ0YWMxNjI1NmZlMWYxMjM1OTg4MmFhNDQyN2I0YTgxY2NkOWU2MDQ1ZjNiNTE5ZTk5YmY4ODgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.9gMfxBpLMUhuX6lJUZncD5PIXvatXYNGPfQJniBasNY)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7038711c-cf69-4649-97cb-0986c0e6d916)
+
 
 # memory
 
@@ -310,5 +316,6 @@ The benefit of using **Smart Pointers** in this case is that they provide automa
 
 By leveraging the **`std::unique_ptr's`** automatic destructor, the code ensures that the file handle is always closed properly, which is a crucial aspect of resource management in programming.
 
-![image](https://private-user-images.githubusercontent.com/63166600/255378367-7b181570-e71f-4224-9b8a-a9ea8070c331.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIwOTExNjMsIm5iZiI6MTY5MjA5MDg2MywicGF0aCI6Ii82MzE2NjYwMC8yNTUzNzgzNjctN2IxODE1NzAtZTcxZi00MjI0LTliOGEtYTllYTgwNzBjMzMxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDA5MTQyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTAzNzU1NzBlYzNmNzkzYmNlMWVhMDJjM2UyM2FiZGRkYTBkOGQxY2YxYmEyNWM0ZjI2NmYzNmY3MDI2Y2Q2NGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.vU2Or44HZUX27cvI8HEbeDCn45S4aKuc3HFfqGOyW0o)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2002ee54-8259-40ca-bee8-f0261497a524)
+
 
