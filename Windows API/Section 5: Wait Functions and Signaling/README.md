@@ -111,7 +111,8 @@ int main() {
 
 Since we never signal **`hEvent`**, **WaitForSingleObject** waits until the timeout period expires. As a result, it returns **WAIT_TIMEOUT**, indicating that the wait ended due to a timeout. This is why our program outputs "Wait timed out."
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/5303cfa6-13cd-46f3-867f-2dde43d8804e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/52a97a03-4f1a-47a5-8578-9d634f35ccd7)
+
 
 # Code Sample (2) - Wait Return values
 
@@ -166,4 +167,5 @@ The event object is in the signaled state at the time of the function call. It s
 
 The **WaitForSingleObject** function found that the event it was waiting for was already signaled. The timeout value of 1000 milliseconds isn't relevant in this specific scenario because the event is signaled before the wait function is even called, causing the function to return immediately.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/7ac92b9a-ba7e-40cf-8dd1-91d58ed3b8dd)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/72dc0880-4c4e-4609-8ba8-20864511a6cd)
+
