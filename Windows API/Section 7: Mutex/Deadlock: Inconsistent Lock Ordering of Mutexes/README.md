@@ -184,11 +184,13 @@ int main() {
 
 The program starts hanging as we can see here:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/9cb1fb9e-00fe-4fa5-81d6-ef3bba3529a6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/361955ca-5153-485b-846c-825cd559eb3d)
+
 
 Open **Process Explorer** and view the wait reasons of this program. Further, take a memory dump while the program is hanging.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/a5b21920-d8f8-45ad-8b50-a8f01a81561e)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/91829b18-46a9-42c6-ba78-a98b3c864ccd)
+
 
 # WinDbg Walk Through - Analyzing Memory Dump
 
