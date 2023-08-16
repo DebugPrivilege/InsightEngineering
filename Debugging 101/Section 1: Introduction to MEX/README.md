@@ -193,7 +193,7 @@ Crashing Stack
 
 # Threads
 
-After we ran the **!crash** command and got our initial analysis of the crashing call stack. Let's find out to which thread this call stack belongs to. We can use the **!w** command, which is short for *'Where am I?'* - The output provides details about a specific process, which includes the associated thread and session ID in which the process was running.
+After we ran the **`!crash`** command and got our initial analysis of the crashing call stack. Let's find out to which thread this call stack belongs to. We can use the **`!w`** command, which is short for *'Where am I?'* - The output provides details about a specific process, which includes the associated thread and session ID in which the process was running.
 
 ```
 0: kd> !w
