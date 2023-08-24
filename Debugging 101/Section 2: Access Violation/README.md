@@ -748,7 +748,7 @@ Base Address:           000001f3`ef330000
 End Address:            000001f3`ef331000
 Region Size:            00000000`00001000 (   4.000 kB)
 State:                  00001000          MEM_COMMIT
-Protect:                00000004          PAGE_READWRITE
+Protect:                00000004          PAGE_READWRITE <--- The protection attributes of the region. PAGE_READWRITE means that the region is readable and writable but not executable.
 Type:                   00020000          MEM_PRIVATE
 Allocation Base:        000001f3`ef330000
 Allocation Protect:     00000004          PAGE_READWRITE
