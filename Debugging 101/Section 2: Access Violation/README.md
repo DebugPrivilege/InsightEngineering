@@ -762,5 +762,49 @@ The fix involves changing the memory protection flag from PAGE_READWRITE to **`P
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d2cf4444-0c5a-441b-8e34-6a496dd4ee82)
 
+Another way to fix the issue is by using the **VirtualProtect** function to change the memory protection of the allocated region after writing the code to it. We can start by allocating the memory with read and write permissions, and then use **VirtualProtect** to **grant execute** permissions.
 
+```c
+#include <windows.h>
+#include <iostream>
+
+int main() {
+    // Create a buffer for code
+    unsigned char code[] = { 0xC3 }; // RET instruction in x86
+
+    // Allocate a read-write page of memory
+    LPVOID lpAddress = VirtualAlloc(NULL, sizeof(code), MEM_COMMIT, PAGE_READWRITE);
+    if (lpAddress == NULL) {
+        std::cerr << "Memory allocation failed. Error: " << GetLastError() << std::endl;
+        return 1;
+    }
+
+    // Copy the code to the read-write memory
+    memcpy(lpAddress, code, sizeof(code));
+
+    // Change the protection to read-write-execute (Fix: Using VirtualProtect)
+    DWORD oldProtect;
+    if (!VirtualProtect(lpAddress, sizeof(code), PAGE_EXECUTE_READWRITE, &oldProtect)) { // Fix applied here
+        std::cerr << "Failed to change memory protection. Error: " << GetLastError() << std::endl;
+        return 1;
+    }
+
+    // Define a function pointer type that takes no arguments and returns void
+    typedef void (*SimpleFunction)();
+
+    // Cast the memory address to the function pointer type
+    SimpleFunction function = (SimpleFunction)lpAddress;
+
+    // Attempt to execute the code at the memory address
+    // Since the memory protection has been changed to read-write-execute, this will not cause an access violation
+    function(); // Fix ensures no Access Violation (EXECUTE)
+
+    // Free the allocated memory
+    VirtualFree(lpAddress, 0, MEM_RELEASE);
+
+    return 0;
+}
+```
+
+The key fix here is the addition of the **VirtualProtect** function, which changes the memory protection of the allocated region to **`PAGE_EXECUTE_READWRITE`** after the code has been written. This ensures that the region is executable, and the attempt to call the function will not cause an access violation.
 
