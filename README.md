@@ -13,7 +13,8 @@ The following topics will be covered:
 ```
 - Section 0: How to get started?
 - Section 1: Introduction to MEX Extension
-- Section 2: Access Violation
+- Section 2: Enable Postmortem Debugging
+- Section 3: Access Violation
 ```
 
 **Coding Fundamentals**
