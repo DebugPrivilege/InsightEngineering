@@ -15,6 +15,7 @@ The following topics will be covered:
 - Section 1: Introduction to MEX Extension
 - Section 2: Enable Postmortem Debugging
 - Section 3: Access Violation
+- Section 4: Setup and Create First Driver
 ```
 
 **Coding Fundamentals**
