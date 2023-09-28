@@ -16,6 +16,8 @@ The following topics will be covered:
 - Section 2: Enable Postmortem Debugging
 - Section 3: Access Violation
 - Section 4: Setup and Create First Driver
+- Section 5: Code Defect
+- Section 6: Handles
 ```
 
 **Coding Fundamentals**
