@@ -183,7 +183,5 @@ int main() {
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/cd842e7d-8151-4075-a8bc-e0ef4ca534c1)
 
 
-Remember, since is an API-specific handle, so when we're done using it, we should close it using the **`CloseEventLog`** function to free up resources.
-
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/3ebc244a-553d-4230-b44b-a24e1ffadfb8)
 
