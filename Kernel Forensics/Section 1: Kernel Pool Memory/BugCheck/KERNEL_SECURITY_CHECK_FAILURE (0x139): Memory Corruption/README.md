@@ -8,7 +8,7 @@ Link to this CrashDump: https://mega.nz/file/W9lHjRRR#OuyTWA4ar4nLJNY-XywbxOIJUB
 
 Load the CrashDump in WinDbg:
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e1ca9b3f-0a43-4323-8537-bd6327c74b6d)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/1595e14c-aded-4b00-ae21-6294600a1197)
 
 
 Start with loading the **MEX** extension:
@@ -360,10 +360,47 @@ nt!RtlRbRemoveNode+0x249f73:
 fffff807`1b09aae3 cd29            int     29h
 ```
 
-The **`rax`** value seems suspicious **`(rax=4141414141414140)`** and might indicate that some memory corruption (potentially a buffer overflow) has occurred. The **`int 0x29`** instruction is used to trigger a "fast fail" mechanism in Windows. The "fast fail" mechanism is designed to immediately terminate a process when severe corruption or a security issue is detected.
+The **`rax`** value within the function **`nt!RtlRbRemoveNode+0x249f73`**  seems suspicious **`(rax=4141414141414140)`** and might indicate that some memory corruption (potentially a buffer overflow) has occurred. The **`int 0x29`** instruction is used to trigger a "fast fail" mechanism in Windows. The "fast fail" mechanism is designed to immediately terminate a process when severe corruption or a security issue is detected.
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7407a868-c998-4b69-8b35-278ebe2148c6)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0cc7dc7e-d07e-4763-ba8d-37cbee9ab8c5)
 
+
+The command **`.frame /r 4`** sets the context to the 4th frame in the stack trace and displays the register values at that moment. By examining the register values and the current instruction, we can get insights into what the function is doing at that point.
+
+This is a snapshot of the CPU state at the 4th frame of the stack, which is within the **`nt!RtlRbRemoveNode`** function.
+
+```
+0: kd> .frame /r 0n4
+04 ffffb88f`1487edc0 fffff807`1ae50692     nt!RtlRbRemoveNode+0x249f73
+rax=4141414141414140 rbx=00000000000000c8 rcx=000000000000001d
+rdx=ffff8005fed09f78 rsi=ffff8005fe38b7a8 rdi=0000000000000000
+rip=fffff8071b09aae3 rsp=ffffb88f1487edc0 rbp=0000000000000001
+ r8=ffff8005fe38b7a8  r9=0000000000000000 r10=ffff8005ef6002d0
+r11=ffff8005fdfb7b28 r12=000000000000017c r13=ffff8005fe387000
+r14=000000000000017e r15=ffff8005fe38b7a0
+iopl=0         nv up ei ng nz na pe nc
+cs=0010  ss=0018  ds=002b  es=002b  fs=0053  gs=002b             efl=00040282
+nt!RtlRbRemoveNode+0x249f73:
+fffff807`1b09aae3 cd29            int     29h
+```
+
+The **RSI** register holds an address that is pointing to the  **`_RTL_BALANCED_NODE`** structure that is supposed to maintain balanced binary trees, which is important for various operations in the kernel. The **`Children`**, **`Left`**, **`Right`**, and **`ParentValue`** fields of the **`_RTL_BALANCED_NODE`** should typically point to valid memory addresses or null, which is not in our case.
+
+```
+0: kd> dt nt!_RTL_BALANCED_NODE ffff8005fe38b7a8 -r1
+   +0x000 Children         : [2] (null) 
+   +0x000 Left             : (null) 
+   +0x008 Right            : 0xffff8005`fed09f78 _RTL_BALANCED_NODE
+      +0x000 Children         : [2] 0x41414141`41414141 _RTL_BALANCED_NODE
+      +0x000 Left             : 0x41414141`41414141 _RTL_BALANCED_NODE
+      +0x008 Right            : 0x41414141`41414141 _RTL_BALANCED_NODE
+      +0x010 Red              : 0y1
+      +0x010 Balance          : 0y01
+      +0x010 ParentValue      : 0x41414141`41414141
+   +0x010 Red              : 0y0
+   +0x010 Balance          : 0y00
+   +0x010 ParentValue      : 0xffff8005`fdfb7b28
+```
 
 The output from the **`.exr`** command is showing the details of an exception record. It indicates that there's been a critical failure in the system involving a corrupted balanced tree data structure within the **`nt!RtlRbRemoveNode`** function. 
 
