@@ -6,7 +6,7 @@ Kernel memory pool operations often surface in crash analysis, making them impor
 - Explore the components of memory pools like pool headers and pool tags.
 - Practical lab data with different crashdumps
 
-It's a good idea to review each crash dump analysis, as various commands and techniques come into play. 
+It's recommended to examine each crash dump analysis, given that different commands and techniques are being used. When you compile and load these drivers, they may trigger a system bugcheck, but keep in mind that the bugcheck codes may vary. With that in mind, it's best to perform all these activities in a lab environment.
 
 # What are the common examples of Memory Corruptions?
 
