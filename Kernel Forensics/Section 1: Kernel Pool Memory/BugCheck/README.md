@@ -4,7 +4,7 @@ Kernel memory pool operations often surface in crash analysis, making them impor
 
 - Familiarize with common used memory manipulation functions like **`ExAllocatePool2`**, **`ExFreePoolWithTag`**, **`RtlCopyMemory`**, **`RtilFillMemory`**, **`MmAllocateContiguousMemory`**, etc.
 - Explore the components of memory pools like pool headers and pool tags.
-- Practical lab data with different crashdumps
+- Practical lab data with different crashdumps. All these crash dumps are coming from a lab machine, and doesn't contain personal information.
 
 **READ ME:** It's recommended to examine each crash dump analysis, given that different commands and techniques are being used. When you compile and load these drivers, they may trigger a system bugcheck, but keep in mind that the bugcheck codes may vary. With that in mind, it's best to perform all these activities in a lab environment.
 
