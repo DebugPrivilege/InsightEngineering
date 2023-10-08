@@ -14,7 +14,8 @@ Open Debug Diag and go to 'Add Data Files' to choose the crash dumps you'd like 
 
 Once the analysis is complete, it will generate an HTML report for us.
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/296ec5e1-f0c9-4a57-83a1-a7720e0b0f32)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b31bc830-b7ce-4f89-ae88-0d84546b2c95)
+
 
 
 If we scroll down in the report, we can see additional details that is similar to the output of the **`!analyze -v`** command in WinDbg.
