@@ -18,6 +18,7 @@ The following topics will be covered:
 - Section 4: Setup and Create First Driver
 - Section 5: Code Defect
 - Section 6: Handles
+- Section 7: Debug Diag
 ```
 
 **Coding Fundamentals**
