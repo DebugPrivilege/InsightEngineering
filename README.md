@@ -62,3 +62,9 @@ C++ Code Language:
 - Section 8: Semaphore
 - Section 9: Slim Reader/Writer Locks
 ```
+
+**Kernel Forensics**
+
+```
+- Section 1: Kernel Pool Memory
+```
