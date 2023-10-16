@@ -7,7 +7,6 @@ Our primary focus will be on investigating kernel crash dumps to pinpoint the ca
 **Chapters:**
 
 ```
-Section 1: Kernel Pool Memory
-
-<COMING SOON>
+- Section 1: Kernel Pool Memory
+- Section 2: ERESOURCE
 ```
