@@ -678,7 +678,7 @@ PID            Address          Name                                   !! Rn Ry 
 Warning! Zombie process(es) detected (not displayed). Count: 5 [zombie report]
 ```
 
-There is a thread that is waiting on an **ERESOURCE** as we can see from the output above. 
+There is a thread that is waiting on an ERESOURCE as we can see from the output above. 
 
 ```
 0: kd> !mex.lt ffff8b034a09a040 -wr WrResource
@@ -689,7 +689,7 @@ System    4 ffff8b03515d5040 2018 Waiting 15ms WrResource
 Thread Count: 1
 ```
 
-This thread has been waiting **15ms** on an **ERESOURCE** **`ffff8b0352014a90`** owned exclusively by System thread **`ffff8b0351756040`**
+This thread has been waiting **15ms** on an ERESOURCE **`ffff8b0352014a90`** owned exclusively by System thread **`ffff8b0351756040`**
 
 ```
 0: kd> !mex.t ffff8b03515d5040
@@ -713,7 +713,7 @@ Thread at address 0000000000060001 is invalid. Not adding to waiter list.
 8 ffff82871d9475e0 0000000000000000 nt!KiStartSystemThread+0x28
 ```
 
-The **ERESOURCE** is currently owned by a thread in the **System** process, and it has been held for a significantly long time (over 13 minutes).
+The ERESOURCE is currently owned by a thread in the **System** process, and it has been held for a significantly long time (over 13 minutes).
 
 ```
 0: kd> !mex.eresource ffff8b0352014a90
