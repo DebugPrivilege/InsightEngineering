@@ -188,15 +188,15 @@ Here are the interesting columns in the CPU Usage (Precise) table.
 | SwitchInTime(s)    | The time when the new thread was switched in.                                                                 |
 | Waits (s)          | Amount of time a thread waited on a logical or physical resource. Ends when NewThreadId is signaled by ReadyingThreadId. |
 
-In WPA, the **New Thread Stack** column indicates threads that are currently in a waiting state. For instance, in this example, thread ID **6788** is in a waiting state to obtain a Critical Section lock.
+In WPA, the **New Thread Stack** column indicates threads that are currently in a waiting state. For instance, in this example, thread ID **6768** is in a waiting state to obtain a Critical Section lock.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9d04018e-0eb2-4130-8e03-3ebaf01fbbf6)
 
-The **Ready Thread Stack** column in WPA represents the thread responsible for freeing up the waiting thread. For example, in this case, thread ID **6640** clears the wait condition for thread ID **6788** by calling the **`LeaveCriticalSection`** function.
+The **Ready Thread Stack** column in WPA represents the thread responsible for freeing up the waiting thread. For example, in this case, thread ID **6640** clears the wait condition for thread ID **6768** by calling the **`LeaveCriticalSection`** function.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/74435224-1e28-44df-ac51-c11d224f31f4)
 
-From the console output, it's evident that thread ID **6640** removes the wait condition for thread ID **6788**, allowing it to execute. However, as soon as thread ID **6788** starts running, the program gets stuck specifically because this thread enters into a deadlock.
+From the console output, it's evident that thread ID **6640** removes the wait condition for thread ID **6768**, allowing it to execute. However, as soon as thread ID **6768** starts running, the program gets stuck specifically because this thread enters into a deadlock.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ded0a567-b9cc-43aa-98d9-b0b1874be568)
 
