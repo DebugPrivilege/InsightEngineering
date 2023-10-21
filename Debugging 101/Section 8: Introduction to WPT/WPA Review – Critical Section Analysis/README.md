@@ -158,7 +158,7 @@ Thread ID **8012** happens to be the thread that executes the **`main()`** funct
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4803bc82-c9d9-4650-8e68-03d0e3a5ce5a)
 
-If we start exploring other threads and view it's call stack. We can see that the thread with ID 1520 is in a deadlock situation. The call stack reveals that the thread is stuck at the function **`RtlpWaitOnCriticalSection`**, which means it is waiting to acquire a Critical Section lock.
+If we start exploring other threads and view it's call stack. We can see that the thread with ID **1520** is in a deadlock situation. The call stack reveals that the thread is stuck at the function **`RtlpWaitOnCriticalSection`**, which means it is waiting to acquire a Critical Section lock.
 
 The thread is unable to proceed because it's waiting for a resource that is held by another thread, which in turn is likely waiting for a resource held by this thread or is in a state that prevents it from releasing the lock.
 
