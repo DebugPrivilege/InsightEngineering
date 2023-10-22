@@ -232,7 +232,7 @@ Here are the interesting columns in the CPU Usage (Precise) table.
 | SwitchInTime(s)    | The time when the new thread was switched in.                                                                 |
 | Waits (s)          | Amount of time a thread waited on a logical or physical resource. Ends when NewThreadId is signaled by ReadyingThreadId. |
 
-In WPA, the **New Thread Stack** column indicates threads that are currently in a waiting state. For instance, in this example, thread ID **6768** is in a waiting state to obtain a Critical Section lock.
+In WPA, the **New Thread Stack** column indicates threads that are (usually) in a waiting state. For instance, in this example, thread ID **6768** is in a waiting state to obtain a Critical Section lock.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9d04018e-0eb2-4130-8e03-3ebaf01fbbf6)
 
