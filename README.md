@@ -19,6 +19,7 @@ The following topics will be covered:
 - Section 5: Code Defect
 - Section 6: Handles
 - Section 7: Debug Diag
+- Section 8: Introduction to Windows Performance Toolkit
 ```
 
 **Coding Fundamentals**
