@@ -121,6 +121,50 @@ The **`main`** thread first locks **`zoneA`** and then attempts to lock **`zoneB
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/ac8edce3-191d-4464-b10c-d4666ca88087)
 
+Here's a simple example:
+
+1. **`main()`** locks **`zoneA`** and then tries to lock **`zoneB`**.
+2. Meanwhile, **`ExtraThreadFunction()`** locks **`zoneB`** and then tries to lock **`zoneA`**.
+3. Now, **`main()`** is waiting for **`zoneB`** to be released by **`ExtraThreadFunction()`**, and **`ExtraThreadFunction()`** is waiting for **`zoneA`** to be released by **`main()`**.
+
+```
+     +-----------------------------------+
+     |               main()               |
+     +------------------+----------------+
+                        |
+                        | Acquires zoneA
+                        |
+               +--------v--------+
+               |   zoneA locked  |
+               +--------+--------+
+                        |
+                        | Tries to acquire zoneB
+                        |
+                        |
+     +-----------------------------------+
+     |       ExtraThreadFunction()       |
+     +------------------+----------------+
+                        |
+                        | Acquires zoneB
+                        |
+               +--------v--------+
+               |   zoneB locked  |
+               +--------+--------+
+                        |
+                        | Tries to acquire zoneA
+                        |
+                        |
+                        |
+      +-----------------+----------------+
+      |                                  |
+      |        DEADLOCK SITUATION        |
+      |                                  |
+      +-----------------+----------------+
+                        |
+                        |
+                        v
+```
+
 # Start Capturing WPA Trace
 
 1. Open **Windows Performance Recorder** (WPRUI.exe) as an Administrator
