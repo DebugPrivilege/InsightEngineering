@@ -1,6 +1,3 @@
-**README:** An example of an **.etl** trace file has been attached, which allows you to download and start practicing.
-
-
 # What is a Critical Section?
 
 A "critical section" in programming is like a special zone where only one task can go at a time. It's used to **protect** parts of a program that deal with shared stuff (like data or files), so that multiple tasks don't mess things up by trying to use or change them all at once.
