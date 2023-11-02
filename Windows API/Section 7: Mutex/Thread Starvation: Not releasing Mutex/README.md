@@ -1,4 +1,4 @@
-# What is the root cause of this deadlock within this code sample?
+# What is the root cause of this code sample?
 
 The purpose of this code is the following:
 
@@ -7,7 +7,7 @@ The purpose of this code is the following:
 
 **Description:**
 
-The root cause of the deadlock is that the main thread immediately claims the mutex using **CreateMutex** set with **TRUE** at the **bInitialOwner** parameter, meaning it owns the mutex from the start. However, the main function **never releases** this ownership using **ReleaseMutex**. When worker threads try to access the mutex through **WaitForSingleObject**, they can't, as the main thread has it locked and never lets it go.
+The root cause of this code is that the **main** thread immediately claims the mutex using **CreateMutex** set with **TRUE** at the **bInitialOwner** parameter, meaning it owns the mutex from the start. However, the main function **never releases** this ownership using **ReleaseMutex**. When worker threads try to access the mutex through **WaitForSingleObject**, they can't, as the main thread has it locked and never lets it go.
 
 Compile and run the following code:
 
