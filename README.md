@@ -69,4 +69,5 @@ C++ Code Language:
 ```
 - Section 1: Kernel Pool Memory
 - Section 2: ERESOURCE
+- Section 3: KMUTEX
 ```
