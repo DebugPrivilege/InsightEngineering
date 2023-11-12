@@ -11,6 +11,8 @@ The following two extensions are being used during this analysis:
 - **MEX**
 - **SOSEX**
 
+Please click on the 'Extensions' folder on how to get access to these two extensions.
+
 # What is ProxyShell?
 
 ProxyShell is a set of vulnerabilities in Microsoft Exchange Servers that refers to a combination of three vulnerabilities that, when exploited together, allow an authenticated attacker to perform remote code execution. The following CVE's are involved within ProxyShell:
