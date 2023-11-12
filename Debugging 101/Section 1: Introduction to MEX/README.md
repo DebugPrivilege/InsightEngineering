@@ -962,7 +962,7 @@ PID           Address          Name                                    Ses
 Let's filter only on processes that are running in session 3.
 
 ```
-0: kd> !tl 3
+0: kd> !tl -s 3
 PID           Address          Name
 ============= ================ ===================
 0xe94  0n3732 ffffa389b3b22080 AnyDesk.exe*32
