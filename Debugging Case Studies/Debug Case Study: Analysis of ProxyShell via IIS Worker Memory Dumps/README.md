@@ -65,11 +65,11 @@ C:\Windows\System32\inetsrv>appcmd list apppool "MSExchangeOWAAppPool" /text:Rec
 
 When an Application Pool gets recycled, the associated worker process **(w3wp.exe)** is terminated and a new one is created. This action releases the memory and other system resources that were allocated to the old worker process.
 
-The command **appcmd list wp** can be utilized to display all the IIS Worker Processes operating on an Exchange server, along with their Process IDs (PIDs).
+The command **`appcmd list wp`** can be utilized to display all the IIS Worker Processes operating on an Exchange server, along with their Process IDs (PIDs).
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/79f7359a-84a2-427f-8e41-23fca6a3c0c3)
 
-Determining which IIS Worker Process to take a memory dump from is key when investigating this attack. The Mandiant article (https://www.mandiant.com/resources/blog/pst-want-shell-proxyshell-exploiting-microsoft-exchange-servers) indicates that ProxyShell interacts with the Exchange PowerShell Backend and writes a Webshell to the disk, so our best bet would be to take a memory dump from the `MSExchangeOWAAppPool` and `MSExchangePowerShellAppPool` Application Pool.
+Determining which IIS Worker Process to take a memory dump from is key when investigating this attack. The Mandiant article (https://www.mandiant.com/resources/blog/pst-want-shell-proxyshell-exploiting-microsoft-exchange-servers) indicates that ProxyShell interacts with the Exchange PowerShell Backend and writes a Webshell to the disk, so our best bet would be to take a memory dump from the **`MSExchangeOWAAppPool`** and **`MSExchangePowerShellAppPool`** Application Pool.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/90d0fe1a-5292-41c8-931a-24f1ea617b7b)
 
