@@ -927,28 +927,32 @@ Cafe-WindowsIdentity;[{"Key":"Item-Identity","Value":"<%3fX-Rps-CAT%3dVgEAVAdXaW
 0000014e`39cd29a8  64 6f 77 73 49 64 65 6e-74 69 74 79 3e 22 7d 2c  dowsIdentity>"},
 ```
 
-Let's attempt to determine where this ProxyShell request was originating from. The **`X-Forwarded-For`** field in HTTP headers is used to identify the originating IP address of a client connecting to a web server through an HTTP proxy or a load balancer.
-
-This command is performing a memory search operation. The **`-a`** parameter is an option that specifies the search should be for ASCII text. Please keep in mind that this doesn't always work though.
+Let's attempt to determine where this ProxyShell request was originating from. This command is performing a memory search operation. The **`-a`** parameter is an option that specifies the search should be for ASCII text. 
 
 ```
-0:000> s -a 0 L?0x7fffffffffffffff "X-Forwarded-For"
-0000014e`4b8578c7  58 2d 46 6f 72 77 61 72-64 65 64 2d 46 6f 72 3a  X-Forwarded-For:
+0:000> s -a 0 L?0x7fffffffffffffff "Accept: */*"
+0000014e`4b856e38  41 63 63 65 70 74 3a 20-2a 2f 2a 0d 0a 41 75 74  Accept: */*..Aut
+0000014e`4b857ac8  41 63 63 65 70 74 3a 20-2a 2f 2a 0d 0a 41 75 74  Accept: */*..Aut
+0000014e`4b858758  41 63 63 65 70 74 3a 20-2a 2f 2a 0d 0a 41 75 74  Accept: */*..Aut
 <<< SNIPPET >>>
 ```
 
-We can now display the memory in a formatted way, which will reveal the originating IP that was making the request.
+We can now display the memory in a formatted way, which will reveal the originating IP that was making the request. However, keep in mind that this is not a silver bullet method. To cross-verify, examine the User-Agent and compare it with previous analysis findings. This could be a reliable way to identify the source IP where the request originated.
 
 ```
-0:000> dc 0000014e`4b8578c7
-0000014e`4b8578c7  6f462d58 72617772 2d646564 3a726f46  X-Forwarded-For:
-0000014e`4b8578d7  32373120 2e33322e 2e333931 0d383431   172.23.193.148.
-0000014e`4b8578e7  462d580a 6177726f 64656472 726f502d  .X-Forwarded-Por
-0000014e`4b8578f7  36203a74 35313633 2d580a0d 452d534d  t: 63615..X-MS-E
-0000014e`4b857907  49656764 0d203a50 452d580a 6d6f4378  dgeIP: ..X-ExCom
-0000014e`4b857917  3a644970 696c4320 41746e65 73656363  pId: ClientAcces
-0000014e`4b857927  6f724673 6e45746e 580a0d64 69724f2d  sFrontEnd..X-Ori
-0000014e`4b857937  616e6967 7165526c 74736575 74736f48  ginalRequestHost
+0:000> da /c 100 0000014e`4b856e38 l5000
+0000014e`4b856e38  "Accept: */*..Authorization: Negotiate YIIHfgYJKoZIhvcSAQICAQBuggdtMIIHaaADAgEFoQMCAQ6iBwMFACAAAACjggWSYYIFjjCCBYqgAwIBBaENGwtDT05UT1NPLkNPTaIrMCmgAwIBAqEiMCAbBEhUVFAbGGV4Y2hhbmdlMjAxMi5jb250b3NvLmNvbaOCBUUwggVBoAMCARKhAwIBAaKCBTMEggUvrw1Rq0PeoXrGFQMituuqpK"
+0000014e`4b856f38  "aQRRh10xgShI1gjnxNDkiKBSPOrqik7QIgBzcyOFuJGyepmrn5/8mdu6Fuj+yV8Xk1Tzf5yERxofuQSTMMQoDiuMKPuTlLV9n4l7odc1vf/Gq5vPShPy7+QvCg+hQMKmXMGN6qQpdh/ES6iw9JDU4x3qaGsUhSPhKc7Sm5qs9NUVFNoGWy+hh0xpOyMAA/eEH9Ivc0wf9WQYPsnvB8ZBEkFxvIs9R1dODUe5Pf9k/c0cUfsjMJKNJn3kd5CrpL3v"
+0000014e`4b857038  "L25bNSalYS/tKcrJ0vC5ZeJ90MuDFdY0iw2JSmMCoU/1G8iZ+vJtL0eMZapDOw+bq7qI9Y7SlVIVjt9XSNwVc2MuCOqsqDapGoD3u3ifnWRYH7gIAIU+30yyWnglxcJdE3rR/vw5sSaT2GZm+J1hVKY8tSywwOs9Cj1W0yWWWVj9LmxqXUGe6yeMpxCB6FDIgurkGNraHfOuAUlgDedf3aMwdy+l62iQAPR4QFNfy72MsgFZTd8w0XV+fSLz5bYE"
+0000014e`4b857138  "E+UNzLHSratOai4ehAReMB0K77NbyJTZOggs05s8O8Vpv06GbHAq6k7ThRgGOvo5/4+pXPA96GCdUW/Vd9/sMXHHCwNk8r0qDKY/rezn6MEaOcCleTuCrjBJhVRntAaLDvifUIE9t0HQkilBMvtoR9g7CSn1TtZQh7MBf3ZgWJk8zQhvtUgGGZ6AgeXqEnqof7G+FIiD2UNtGCxoc80oqFgPWSFwVFkwlhFamCFSAsEgSxJe8KVGR8KwRiVpjGEF"
+0000014e`4b857238  "drTcV1y89MTGUPV53c0dT1Gr6IWHtZqgyQ1eoKb7MJhkK9aU8DriYnh9SAOspY5GjORvNBN10Lp91O6lmSt7/S53RCgDqwYgWJWp+7/ehU62FNWQTG2qIsLyiHl95o8YRTfDj1xwpQktEnXWza2tmAxfOm5T+zjSiW7SHE6U0Ub+Vonb1WwxOQsx4ZmJ6X6Rl0viNeNH/CVURk5PTW1/8rwOTmfuTsvATKGpapc3m7o4fHAnYLrLf9ar9GsAxQtK"
+0000014e`4b857338  "I7RchMd8eBvIG0wGDpSu1rMUUGL8ZIF0gZ+qSGWnR+uJX/NTLlT/CVnv7fqNr2qC3nnkHP/5lS7NjlSn5hZRcFhVnt3ermyZ7g5hzpgaxpzI+9MbKZ6/c7d1nzICI8BAbMM5eEudrogQ//l8NoqEBhpwh6MaScNeTfs7KaKOJ4fWQKpdADi5v3pCyvkqbb8vNjfaHAiTCcomDBE7ogmWeWqp4juK9+fwg3hCN9lp4atYqp4U6s/DSpr5EEKOrj9i"
+0000014e`4b857438  "LhCc5vUBMxWRl8ZKqARxS5sr2li1nyaBh5U7KMWy59xG8TFtGpoNazR1HnLdtNxak/1jimffbzuwT06CJ2lycv3iAVCz1zMI3nCOdGsTkRvnWbYF2wTIfNtgyU8nHlhcDWgBlAiDV1DIL2tA2l2yHeXmE64AdfwzMkKfcJ7CQeiIj8GkKF3HFgKGJGpVJA6wkigqaL3im+bmCxz0bPEWS55kBbm7G1tfr6t3+vrEopsGqs6DAaFy/MmS1hiqTCI7"
+0000014e`4b857538  "a44qkVN5kg/yDiQVSvu12wIJeZgae1WdkFzMw6UnhbjMhE/Ffcp56RyF/odY/wmyE+H9a4UVCE4claOz+OgtQf1xh/O+H/Ofh2uRvZ2dp83Gz4rchsav30Ctxc22rrzFrg+w+OC3FGrOuh+KLMbGT4EyG6c9BEXrS2yQvN+UM7AtUaAmw5BZHpTNI7rd7oUxqdfEZb7PqeAXJ4CE4QxaSCAbwwggG4oAMCARKiggGvBIIBqyKx19JDCetBVnApKT"
+0000014e`4b857638  "EXkbz76PRfaSzQYcUTSUHL5J3II2kNrHMujgVwBahlohL9qAUFAD34/Fd7vHB1sjRoHo27DdbWoxARdRFWnPtzqsz5mCpjPOSt7GmXR9CrwJrFYxM2hUFTLekkq7zmTWXOb3Jxf9INoaOsh4MnHPxXMCGqBE3fTsBn7gSxqbg+8BBhuY1Qz1BKUgegIfbXHfFYkWREHx8QkaN2r1SU02x3stSFDLM8oPfESVb4UbNrmUfWrchgzctnvfO5zcJoP5"
+0000014e`4b857738  "X2g9BjOTx1NR5pCIIgyuP8fLEbvCprb/R7uRj2a+sefb6UfBwsYV8/ub7hiVcY8zE8uvQ2O0ODaFTiVg9s0odMcShELGMVBv0spsj8PVRdxj2uTZMRn1GwOBlrxzYP5l2iwtqYq0lftzNYnI1DwBJaZfyhEvr7hHC52rfxRe228VN2q5w0VneBjz97rRY37C1bGqWLdLizYX70Qa+TCGIwESFJkzVhScosDcjSH6woTWnDqsEoWV8BFWrxaKK5h4"
+0000014e`4b857838  "wpBYs+Te7Q5yH9p+EmM3YN72Kq9DwP04MPWMI09ec=..Host: exchange2012.contoso.com:444..User-Agent: Python PSRP Client..X-FE-ClientIP: 172.23.193.148..X-Forwarded-For: 172.23.193.148..X-Forwarded-Port: 63615..X-MS-EdgeIP: ..X-ExCompId: ClientAccessFrontEnd..X-Orig"
+0000014e`4b857938  "inalRequestHost: exchange2012.contoso.com..X-OriginalRequestHostSchemePort: 443:https:exchange2012.contoso.com..X-MSExchangeActivityCtx: V=1.0.0.0;Id=b6bcffc4-a94f-4d6d-86a4-b14bda62c443;C=;P=.."
 ```
 
 According to Mandiant, *"As soon as the attacker is able to execute arbitrary PowerShell commands, and the required ‘Import Export Mailbox’ role is assigned to the impersonated user (which can be achieved by execution of the New-ManagementRoleAssignment cmdlet), the cmdlet New-MailboxExportRequest can be used to export a user’s mailbox to a specific desired path e.g."*
