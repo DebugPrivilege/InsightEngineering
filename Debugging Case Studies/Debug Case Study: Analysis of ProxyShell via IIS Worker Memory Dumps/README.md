@@ -937,7 +937,7 @@ Let's attempt to determine where this ProxyShell request was originating from. T
 <<< SNIPPET >>>
 ```
 
-We can now display the memory in a formatted way, which will reveal the originating IP that was making the request. However, keep in mind that this is not a silver bullet method. To cross-verify, examine the User-Agent and compare it with previous analysis findings. This could be a reliable way to identify the source IP where the request originated.
+We can now display the memory in a formatted way, which will reveal the originating IP that was making the request. However, keep in mind that this is not a silver bullet method. To cross-verify, examine the **User-Agent** and compare it with previous analysis findings. This could be a reliable way to identify the source IP where the request originated.
 
 ```
 0:000> da /c 100 0000014e`4b856e38 l5000
