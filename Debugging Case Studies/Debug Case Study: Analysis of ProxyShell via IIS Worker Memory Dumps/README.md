@@ -929,7 +929,7 @@ Cafe-WindowsIdentity;[{"Key":"Item-Identity","Value":"<%3fX-Rps-CAT%3dVgEAVAdXaW
 
 Let's attempt to determine where this ProxyShell request was originating from. The **`X-Forwarded-For`** field in HTTP headers is used to identify the originating IP address of a client connecting to a web server through an HTTP proxy or a load balancer.
 
-This command is performing a memory search operation. The **`-a`** parameter is an option that specifies the search should be for ASCII text.
+This command is performing a memory search operation. The **`-a`** parameter is an option that specifies the search should be for ASCII text. Please keep in mind that this doesn't always work though.
 
 ```
 0:000> s -a 0 L?0x7fffffffffffffff "X-Forwarded-For"
