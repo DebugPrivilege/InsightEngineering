@@ -11,7 +11,7 @@ The following two extensions are being used during this analysis:
 - **MEX**
 - **SOSEX**
 
-Please click on the 'Extensions' folder on how to get access to these two extensions.
+Please click on the 'Extensions' folder on how to get access to these two extensions. The link to these memory dumps can be found here: https://mega.nz/file/btcy3I4K#7u5q4VrswKkJ0dFkVAjMnTP7icTSjMV_wWtbDiooBhE
 
 # What is ProxyShell?
 
