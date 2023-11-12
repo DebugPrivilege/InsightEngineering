@@ -1,0 +1,7 @@
+# Description
+
+When you install WinDbg, it comes with a set of default extensions. Well, these extensions are great. There are other useful WinDbg extensions out there as well, which can make debugging much easier. Two notable extensions that immediately stand out are:
+
+- **MEX:** MEX is a debugging extension that is written in C#. It simplify common debugger tasks, and provides powerful text filtering capabilities to the debugger. This extension can be downloaded here: https://www.microsoft.com/en-us/download/details.aspx?id=53304
+  
+- **SOSEX:** SOSEX is an extension that is developed by Steve Johnson. It is a powerful extension that enhances the debugging of .NET applications providing deeper insights into .NET internals. The extension was previously accessible at www.stevestechspot.com but the site is no longer online. I have uploaded a copy of the extension; however, should Steve Johnson request its removal, I am willing to comply and take it down
