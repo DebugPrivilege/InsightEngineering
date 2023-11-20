@@ -37,7 +37,7 @@ Each Exchange service runs in its own **Application Pool**, managed by a separat
 
 # What is an Application Pool?
 
-An **Application Pool** is a container that hosts specific Exchange services. Each Application Pool runs in its own worker process **(w3wp.exe)**, providing isolation and resource management for the services it hosts.
+Within the context of an Microsoft Exchange Server, an **Application Pool** is a container that hosts specific Exchange services. Each Application Pool runs in its own worker process **(w3wp.exe)**, providing isolation and resource management for the services it hosts.
 
 | AppPool Name                           | Description                                             |
 |----------------------------------------|---------------------------------------------------------|
