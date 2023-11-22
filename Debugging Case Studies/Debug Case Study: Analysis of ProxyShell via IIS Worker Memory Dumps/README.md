@@ -1097,6 +1097,12 @@ The string **`Powershell,Kerberos,true`** maps to the following:
 | `AuthenticationType` | "Kerberos" - Specifies the type of authentication used for the request, indicating Kerberos authentication. |
 | `IsAuthenticated`  | "true" - Indicates whether the user was successfully authenticated, with "true" confirming successful authentication. |
 
+If the above command doesn't return any results, try the following command:
+
+```
+.foreach (address { s -[l 8]a 0 L?0x7fffffffffffffff "powershell,Kerberos,true" }) { .if ($spat("${address}", "0000*`*")) { .echo Found "Powershell,Kerberos,true" at ${address}; dc ${address} L100 } };
+```
+
 
 Let's now take a look at **`C:\Program Files\Microsoft\Exchange Server\V15\Logging\CmdletInfra\Powershell-Proxy\Cmdlet\Rps_Cmdlet_2023110922-1.LOG`**. This log file captures information about the execution of PowerShell cmdlets. Here is a snippet on how the log file looks like:
 
