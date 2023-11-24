@@ -9,6 +9,11 @@ The SSRF vulnerability **(CVE-2022-41040)** in ProxyNotShell requires the attack
 
 The impact of the ProxyNotShell allows a threat actor to run commands on an Exchange server with elevated privileges as the **NT AUTHORITY\SYSTEM** account.
 
+The following two extensions are being used during this analysis:
+
+- **MEX**
+- **SOSEX**
+
 Link to these memory dumps: https://mega.nz/file/zssHXbRQ#kO_OwSaKIB4kt_umYPAkq2dQnTPENyis4bz1pdcY0Rs
 
 # WinDbg Walk Through - Analysis
