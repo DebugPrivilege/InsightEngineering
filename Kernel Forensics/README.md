@@ -10,4 +10,5 @@ Our primary focus will be on investigating kernel crash dumps to pinpoint the ca
 - Section 1: Kernel Pool Memory
 - Section 2: ERESOURCE
 - Section 3: KMUTEX
+- Section 4: Fast Mutex
 ```
