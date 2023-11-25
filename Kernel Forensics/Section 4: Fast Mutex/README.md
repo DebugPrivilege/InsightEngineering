@@ -308,6 +308,8 @@ However, we can also see that those 1000 files have now been renamed and moved t
 
 # Fast Mutex
 
+This kernel memory dump can be download here: https://mega.nz/file/GgVGARhA#UiJjF7oH5wnp_dCvYiQ7R0r62pfS0jmyq8A3G-DymiQ
+
 This structure is a part of the Windows kernel and is used to implement fast mutexes.
 
 ```
