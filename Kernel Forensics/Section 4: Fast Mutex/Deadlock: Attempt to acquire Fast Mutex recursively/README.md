@@ -185,9 +185,7 @@ Since the thread is in a deadlock, no files will be created in the **C:\Temp** f
 
 If you're using Windows 11, you can initiate the creation of a full kernel memory dump through Task Manager. This is done by targeting the System.exe process:
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/96fafcb4-03be-4120-8b1f-709df94f173d)
-
-
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/93549c18-5275-4931-812c-8516b52810b0)
 
 # WinDbg Walk Through - Analysis
 
