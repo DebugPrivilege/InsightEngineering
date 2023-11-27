@@ -4,4 +4,5 @@ This section focuses on a variety of Debugging Case Studies, where we'll explore
 
 ```
 Debug Case Study: Analysis of ProxyShell via IIS Worker Memory Dumps
+Debug Case Study: Analysis of ProxyNotShell from Memory Dump
 ```
