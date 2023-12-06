@@ -71,4 +71,5 @@ C++ Code Language:
 - Section 2: ERESOURCE
 - Section 3: KMUTEX
 - Section 4: Fast Mutex
+- Section 5: Interrupt Request Levels (IRQL)
 ```
