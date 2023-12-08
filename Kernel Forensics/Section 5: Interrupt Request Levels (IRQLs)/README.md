@@ -20,6 +20,10 @@ Here are some of the common IRQL functions to raise, lower or check the current 
 | `KeLowerIrql`       | Reduces the priority level back to what it was before. This lets the system handle regular, less urgent tasks again.       |
 | `KeGetCurrentIrql`  | Checks the current priority level of the system. Useful for making sure the system is at the right level for certain tasks. |
 
+**IMPORTANT:** It's not the thread itself that runs on a particular IRQL (Interrupt Request Level) level. The concept of IRQLs in Windows is specifically related to the CPU and how it handles interrupts, not directly to the execution of threads. To give an example:
+
+"Thread A runs on CPU 4, and during its execution, the CPU may operate at various IRQLs, including DISPATCH_LEVEL for certain high-priority tasks."
+
 # Code Sample - Get current IRQL level of each thread
 
 In order to demonstrate this demo. Please follow the following steps:
