@@ -72,4 +72,5 @@ C++ Code Language:
 - Section 3: KMUTEX
 - Section 4: Fast Mutex
 - Section 5: Interrupt Request Levels (IRQL)
+- Section 6: Guarded Mutex
 ```
