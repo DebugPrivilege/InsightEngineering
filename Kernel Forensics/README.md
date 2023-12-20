@@ -13,4 +13,5 @@ Our primary focus will be on investigating kernel crash dumps to pinpoint the ca
 - Section 4: Fast Mutex
 - Section 5: Interrupt Request Level (IRQL)
 - Section 6: Guarded Mutex
+- Section 7: Event Signaling
 ```
