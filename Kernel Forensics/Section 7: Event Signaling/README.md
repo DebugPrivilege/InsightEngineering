@@ -308,158 +308,43 @@ However, we can also see that those 1000 files have now been renamed and moved t
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2030dd0e-ae4a-44e3-ba75-f6daa0a49446)
 
 
-# Code Sample - Event Signaling Notification Event
+# Synchronization Event - Visualization
 
-In order to demonstrate this demo. Please follow the following steps:
-
-- Create the following 2 folders:
-  1. **C:\Temp**
-  2. **C:\Temp2**
-
-In our earlier code with the auto-reset event, when we completed the file creation task in the **`FileCreationThread`** and signaled the event, the **`FileMoveThread`** would begin its operation as soon as it detected this signal. Then, the event would automatically reset itself. This automatic reset is like a one-time notification; as soon as one thread responds to it, the notification turns off.
-
-Now, in our current code with the manual-reset event, the process is slightly different. After we finish creating files in the **`FileCreationThread`** and signal the event, the **`FileMoveThread`** starts once it recognizes this signal. However, in this scenario, the event does not reset itself automatically. It remains in the signaled state until we manually reset it. This is akin to an ongoing alert that stays active until we manually turn it off. We have more control over when the event resets, but it also means we need to actively manage it and remember to reset it once our task is complete.
-
-  ```c
-#include <ntifs.h>
-#include <ntstrsafe.h>
-
-// Define a structure to hold our synchronization resources.
-typedef struct _SYNC_RESOURCES {
-    KEVENT FileOperationEvent;  // Notification event for synchronizing file operations.
-} SYNC_RESOURCES, *PSYNC_RESOURCES;
-
-NTSTATUS FileCreationThread(PVOID Context) {
-    PSYNC_RESOURCES SyncRes = (PSYNC_RESOURCES)Context;
-    UNICODE_STRING uniFilePath;
-    WCHAR filePathBuffer[150];
-    char dataToWrite[] = "Hello, World!\r\n";
-    IO_STATUS_BLOCK ioStatusBlock;
-
-    for (int i = 0; i < 1000; i++) {
-        RtlStringCchPrintfW(filePathBuffer, sizeof(filePathBuffer) / sizeof(WCHAR), L"\\DosDevices\\C:\\Temp\\file_%d.txt", i);
-        RtlInitUnicodeString(&uniFilePath, filePathBuffer);
-
-        OBJECT_ATTRIBUTES objAttributes;
-        InitializeObjectAttributes(&objAttributes, &uniFilePath, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
-
-        HANDLE hFile;
-        NTSTATUS status = ZwCreateFile(&hFile, GENERIC_WRITE, &objAttributes, &ioStatusBlock, NULL, FILE_ATTRIBUTE_NORMAL, 0, FILE_OVERWRITE_IF, FILE_SYNCHRONOUS_IO_NONALERT, NULL, 0);
-
-        if (NT_SUCCESS(status)) {
-            for (int j = 0; j < 100; j++) {
-                ZwWriteFile(hFile, NULL, NULL, NULL, &ioStatusBlock, dataToWrite, sizeof(dataToWrite) - 1, NULL, NULL);
-            }
-            ZwClose(hFile);
-        }
-    }
-
-    // Signal completion of file creation and allow the file move operation to proceed
-    KeSetEvent(&SyncRes->FileOperationEvent, IO_NO_INCREMENT, FALSE);
-
-    return STATUS_SUCCESS;
-}
-
-NTSTATUS FileMoveThread(PVOID Context) {
-    PSYNC_RESOURCES SyncRes = (PSYNC_RESOURCES)Context;
-    IO_STATUS_BLOCK ioStatusBlock;
-    WCHAR oldFilePathBuffer[150], newFilePathBuffer[150];
-
-    // Wait for the file creation to complete
-    KeWaitForSingleObject(&SyncRes->FileOperationEvent, Executive, KernelMode, FALSE, NULL);
-
-    // Manually reset the event before starting the file move operation
-    KeResetEvent(&SyncRes->FileOperationEvent);
-
-    for (int i = 0; i < 1000; i++) {
-        RtlStringCchPrintfW(oldFilePathBuffer, sizeof(oldFilePathBuffer) / sizeof(WCHAR), L"\\DosDevices\\C:\\Temp\\file_%d.txt", i);
-        RtlStringCchPrintfW(newFilePathBuffer, sizeof(newFilePathBuffer) / sizeof(WCHAR), L"\\DosDevices\\C:\\Temp2\\NewFile_%d.txt", i);
-
-        UNICODE_STRING oldFilePath, newFilePath;
-        RtlInitUnicodeString(&oldFilePath, oldFilePathBuffer);
-        RtlInitUnicodeString(&newFilePath, newFilePathBuffer);
-
-        OBJECT_ATTRIBUTES objAttributes;
-        InitializeObjectAttributes(&objAttributes, &oldFilePath, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
-
-        HANDLE hFile;
-        NTSTATUS status = ZwOpenFile(&hFile, FILE_ALL_ACCESS, &objAttributes, &ioStatusBlock, FILE_SHARE_READ | FILE_SHARE_WRITE, FILE_SYNCHRONOUS_IO_NONALERT);
-
-        if (NT_SUCCESS(status)) {
-            FILE_RENAME_INFORMATION renameInfo;
-            RtlZeroMemory(&renameInfo, sizeof(FILE_RENAME_INFORMATION));
-            renameInfo.ReplaceIfExists = TRUE;
-            renameInfo.RootDirectory = NULL;
-            renameInfo.FileNameLength = wcslen(newFilePathBuffer) * sizeof(WCHAR);
-            RtlCopyMemory(renameInfo.FileName, newFilePathBuffer, renameInfo.FileNameLength);
-
-            ZwSetInformationFile(hFile, &ioStatusBlock, &renameInfo, sizeof(FILE_RENAME_INFORMATION) + renameInfo.FileNameLength, FileRenameInformation);
-            ZwClose(hFile);
-        }
-    }
-
-    return STATUS_SUCCESS;
-}
-
-VOID UnloadDriver(IN PDRIVER_OBJECT DriverObject) {
-    IoDeleteDevice(DriverObject->DeviceObject);
-}
-
-NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath) {
-    DriverObject->DriverUnload = UnloadDriver;
-
-    PDEVICE_OBJECT DeviceObject = NULL;
-    NTSTATUS status = IoCreateDevice(DriverObject, sizeof(SYNC_RESOURCES), NULL, FILE_DEVICE_UNKNOWN, FILE_DEVICE_SECURE_OPEN, FALSE, &DeviceObject);
-
-    if (!NT_SUCCESS(status)) {
-        return status;
-    }
-
-    PSYNC_RESOURCES SyncRes = (PSYNC_RESOURCES)DeviceObject->DeviceExtension;
-
-    // Initialize the notification event (manual-reset event)
-    KeInitializeEvent(&SyncRes->FileOperationEvent, NotificationEvent, FALSE);
-
-    HANDLE threadHandle1, threadHandle2;
-
-    status = PsCreateSystemThread(&threadHandle1, (ACCESS_MASK)0, NULL, (PHANDLE)0, NULL, FileCreationThread, SyncRes);
-    if (NT_SUCCESS(status)) {
-        ZwClose(threadHandle1);
-    }
-
-    status = PsCreateSystemThread(&threadHandle2, (ACCESS_MASK)0, NULL, (PHANDLE)0, NULL, FileMoveThread, SyncRes);
-    if (NT_SUCCESS(status)) {
-        ZwClose(threadHandle2);
-    }
-
-    return STATUS_SUCCESS;
-}
-```
-
-Start loading this kernel driver:
+This traffic light analogy in the graph visually demonstrates the synchronization mechanism in our code, where **`FileCreationThread`** controls when **`FileMoveThread`** can proceed, ensuring orderly progression of operations.
 
 ```
-sc.exe create TestDrv type= kernel binPath=C:\Users\User\source\repos\TestDriver\x64\Release\TestDriver.sys
++---------------------------------------+
+| DriverEntry                           |
+| - Initializes FileCreationEvent       |
+| - (Traffic Light: Red)                |
+| - Starts FileCreationThread           |
+| - Starts FileMoveThread               |
++---------------------------------------+
+       |                                        |
+       |                                        |
+       V                                        V
++----------------------+             +-----------------------+
+| FileCreationThread   |             | FileMoveThread        |
++----------------------+             +-----------------------+
+         |                                       |
+         | - Creates and writes to files         |
+         | - (Traffic Light: Red)                |
+         |                                       |
+         | - Completes writing files             |
+         | - Signals FileCreationEvent           |
+         | - (Traffic Light: Green)              |
+         |                                       |
+         |                                       |
+         |                                       
+         |                                       | - (Traffic Light: Red)
+         |                                       | - Waits at Red Light
+         |                                       |   for FileCreationEvent
+         |                                       |
+         |                                       | - (Traffic Light turns Green)
+         |                                       | - FileCreationEvent signaled
+         |                                       |
+         |                                       | - Starts moving files
+         |                                       | - (Traffic Light: Green)
+         V                                       V
 ```
-
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b504d240-f1d2-4e7b-9e29-9de11a437285)
-
-
-Start the kernel driver:
-
-```
-sc.exe start TestDrv
-```
-
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/eb34a484-9555-4e72-891e-28fba29fc81d)
-
-
-We can see that 1000 files were created in the **C:\Temp** folder.
-
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/79e1ac83-be40-4b38-a6a9-5768e878530f)
-
-
-However, we can also see that those 1000 files have now been renamed and moved to **C:\Temp2** folder.
-
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/2030dd0e-ae4a-44e3-ba75-f6daa0a49446)
 
