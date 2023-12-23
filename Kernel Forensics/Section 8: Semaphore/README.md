@@ -11,6 +11,15 @@ There are two types of Semaphores:
 - **Binary Semaphore:** The counter can only be 0 or 1. If the counter is 1, it means the resource is available. If it's 0, the resource is being used. Only one thread can use the resource at a time. Ideal for ensuring mutual exclusion, like when accessing a critical section of code that must not be executed by more than one thread at a time.
 - **Counting Semaphore:** This means a specified number of threads (as per the counter value) can access the resource simultaneously. It's like allowing a limited number of people to enter a room at the same time. Useful in scenarios where a certain number of identical resources are available, and multiple threads need to access these resources concurrently (e.g., database connections, thread pool management).
 
+Here are the common Semaphore functions:
+
+| Function                | Description                                                                                                                                                 |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `KeInitializeSemaphore` | Initializes a semaphore object. Sets the initial and maximum count, representing the number of threads that can access the shared resource simultaneously.   |
+| `KeReleaseSemaphore`    | Increments the count of the semaphore. Releases waiting threads if the count was zero, depending on the semaphore's increment value.                        |
+| `KeWaitForSingleObject` | Waits for a semaphore object to become available. Decrements the semaphore's count, reserving the shared resource for the calling thread.                    |
+| `KeReadStateSemaphore`  | Reads the current count of the semaphore. Provides the current state of the semaphore, useful for debugging or monitoring purposes.                           |
+
 # Code Sample - Race Condition
 
 In order to demonstrate this demo. Please follow the following steps:
