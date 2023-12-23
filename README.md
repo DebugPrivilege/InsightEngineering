@@ -74,4 +74,5 @@ C++ Code Language:
 - Section 5: Interrupt Request Levels (IRQL)
 - Section 6: Guarded Mutex
 - Section 7: Event Signaling
+- Section 8: Semaphore
 ```
