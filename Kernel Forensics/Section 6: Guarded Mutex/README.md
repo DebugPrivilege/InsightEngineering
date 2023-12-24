@@ -11,7 +11,11 @@ Here are the common Guarded Mutex APIs:
 | `KeReleaseGuardedMutex()`         | Releases an acquired `KGUARDED_MUTEX`. Should be called at the same IRQL at which `KeAcquireGuardedMutex()` was called, allowing other threads to acquire the mutex. |
 | `KeTryToAcquireGuardedMutex()`    | Tries to acquire a `KGUARDED_MUTEX` without blocking. Returns immediately with a success or failure status, suitable for scenarios where waiting is not desirable. Used at IRQL <= APC_LEVEL. |
 
+Here are the characteristics of Guarded Mutexes:
 
+- Ensures exclusive access is granted sequentially, with only one access at a time.
+- Recursive acquisition attempts by the same thread are not supported and will lead to a deadlock scenario.
+- Suitable for use in code operating at an Interrupt Request Level (IRQL) that is less than or equal to APC_LEVEL, applicable to both fast and guarded mutexes.
 
 # Code Sample - Race Condition
 
