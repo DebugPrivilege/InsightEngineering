@@ -15,4 +15,5 @@ Our primary focus will be on investigating kernel crash dumps to pinpoint the ca
 - Section 6: Guarded Mutex
 - Section 7: Event Signaling
 - Section 8: Semaphore
+- Section 9: Pushlock
 ```
