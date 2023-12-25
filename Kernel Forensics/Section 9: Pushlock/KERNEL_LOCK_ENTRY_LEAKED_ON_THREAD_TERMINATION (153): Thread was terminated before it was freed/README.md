@@ -1278,7 +1278,7 @@ The **`WaitingByte`** indicates whether a thread is waiting to acquire the assoc
 
 dt ffffc78838a32040+0x6a0 nt!_KLOCK_ENTRY -y WaitingByte () Recursive: [ -r1 -r2 -r ] Verbose Normal dt
 ==================================================================================
-   +0x011 WaitingByte              : 0x1 ''
+   +0x011 WaitingByte              : 0x1 '' --> Indicates whether a thread is waiting to acquire the associated lock
 ```
 
 In the first lock entry, **`LockUnsafe`** is set to a non-null value **`0xffffc7883a0f6f70`**. This indicates that this particular lock entry is in use with some unsafe conditions.
