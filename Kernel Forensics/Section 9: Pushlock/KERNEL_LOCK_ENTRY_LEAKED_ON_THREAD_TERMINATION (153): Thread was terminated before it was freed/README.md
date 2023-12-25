@@ -1108,7 +1108,7 @@ dt -a6 ffffc78838a32040+0x6a0 nt!_KLOCK_ENTRY () Recursive: [ -r1 -r2 -r ] Verbo
    +0x00c SessionPad           : 0
    +0x010 EntryFlags           : 0x7000100 (0n117440768)
    +0x010 EntryIndex           : 0 ''
-   +0x011 WaitingByte          : 0x1 ''
+   +0x011 WaitingByte          : 0x1 '' --> Indicates whether a thread is waiting to acquire the associated lock
    +0x012 AcquiredByte         : 0 ''
    +0x013 CrossThreadFlags     : 0x7 ''
    +0x013 HeadNodeBit          : 0y1
@@ -1269,6 +1269,16 @@ dt -a6 ffffc78838a32040+0x6a0 nt!_KLOCK_ENTRY () Recursive: [ -r1 -r2 -r ] Verbo
    +0x030 CpuPriorityKey       : 0 ''
    +0x050 EntryLock            : 0
    +0x058 BoostBitmap          : _KLOCK_ENTRY_BOOST_BITMAP
+```
+
+The **`WaitingByte`** indicates whether a thread is waiting to acquire the associated lock. If the **`WaitingByte`** is set (e.g., a non-zero value), it means that at least one thread is waiting for the lock to be released.
+
+```
+3: kd> !mex.ddt ffffc78838a32040+0x6a0 nt!_KLOCK_ENTRY -y WaitingByte
+
+dt ffffc78838a32040+0x6a0 nt!_KLOCK_ENTRY -y WaitingByte () Recursive: [ -r1 -r2 -r ] Verbose Normal dt
+==================================================================================
+   +0x011 WaitingByte              : 0x1 ''
 ```
 
 In the first lock entry, **`LockUnsafe`** is set to a non-null value **`0xffffc7883a0f6f70`**. This indicates that this particular lock entry is in use with some unsafe conditions.
