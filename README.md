@@ -75,4 +75,5 @@ C++ Code Language:
 - Section 6: Guarded Mutex
 - Section 7: Event Signaling
 - Section 8: Semaphore
+- Section 9: Pushlock
 ```
