@@ -9,7 +9,6 @@ In order to demonstrate this demo. Please follow the following steps:
 - Create the following 2 folders:
   1. **C:\Temp**
   2. **C:\Temp2**
-  3. Compile the code
 
 ```c
 #include <ntifs.h>
