@@ -4,12 +4,6 @@ The **`DriverEntry`** function includes a call to **`ExReleasePushLockExclusive`
 
 Link to this Memory Dump: https://mega.nz/file/ihVVjKwY#eNYteblfHDwYJhsusYA6C2CLr-mmfi7yukzW-nOs3MQ
 
-In order to demonstrate this demo. Please follow the following steps:
-
-- Create the following 2 folders:
-  1. **C:\Temp**
-  2. **C:\Temp2**
-
 ```c
 #include <ntifs.h>
 #include <ntstrsafe.h>
