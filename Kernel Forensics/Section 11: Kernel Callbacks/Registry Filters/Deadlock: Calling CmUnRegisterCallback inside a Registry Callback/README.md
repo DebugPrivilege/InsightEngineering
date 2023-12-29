@@ -183,7 +183,7 @@ Bugcheck: This is a myfault.sys dump.
 Bugcheck: 162 (FFFF910142869040, FFFF910145796F70, FFFFFFFF, 0)
 ```
 
-Let's start with the **`!mex.tl -t`** command to discover threads of interest. It examines the state and wait reasons for every thread across all processes, presenting the results as statistics. This allows for a quick overview, such as determining how many processes have running, ready, and waiting threads for example.
+Let's start with the **`!mex.tl -t`** command to discover threads of interest. It examines the state and wait reasons for every thread across all processes, presenting the results as statistics. This allows for a quick overview, such as determining how many processes have running, ready, and blocked threads for example.
 
 ```
 0: kd> !mex.tl -t
