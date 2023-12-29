@@ -1,6 +1,6 @@
 # Description
 
-Process Notify Routines in Windows Kernel are mechanisms provided by the operating system to notify registered drivers or subsystems about process and thread lifecycle events. When a process  is created or exits, the registered process/thread notify routine is called by the system. It is commonly used in security software to maintain a log of process activity.
+Process Notify Routines in Windows Kernel are mechanisms provided by the operating system to notify registered drivers or subsystems about process lifecycle events. When a process is created or exits, the registered process notify routine is called by the system. It is commonly used in security software to maintain a log of process activity.
 
 The following APIs are used for Process Notify Routines:
 
