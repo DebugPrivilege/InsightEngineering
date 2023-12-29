@@ -77,4 +77,5 @@ C++ Code Language:
 - Section 8: Semaphore
 - Section 9: Pushlock
 - Section 10: Spinlock
+- Section 11: Kernel Callbacks
 ```
