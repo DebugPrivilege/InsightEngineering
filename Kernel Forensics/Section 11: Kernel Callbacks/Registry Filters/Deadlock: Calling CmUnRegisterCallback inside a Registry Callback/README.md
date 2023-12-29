@@ -4,6 +4,8 @@ The call to **`CmUnRegisterCallback`** within the same callback tries to remove 
 
 Since the callback is actively executing and simultaneously attempting to unregister itself, it ends up waiting for its own execution to complete, leading to a deadlock. The registry subsystem gets locked up, waiting for resources that can't be released until the callback completes, which in turn can't complete because it's waiting to unregister itself.
 
+Link to this Memory Dump: https://mega.nz/file/DkVnWZiC#jZ9TL7JbPJIyQ8boOo0MEXj5OvXDSbFcdOt0WY6t7Lg
+
 ```c
 #include <ntifs.h>
 #include <windef.h>
