@@ -2,6 +2,8 @@
 
 The deadlock in the code occurs because the **`DriverEntry`** function acquires a global mutex **`(GlobalProcessMutex)`** and never releases it. When the **`ProcessNotifyCallback`** function, registered for process notifications, tries to acquire the same mutex, it gets blocked. This results in a deadlock situation since the **`ProcessNotifyCallback`** will always wait for a mutex that is held by **`DriverEntry`**
 
+Link to this CrashDump: https://mega.nz/file/fpFFUZLI#_VuLuJ3TACdaX-HS2vaZWkbfzgpDoOB7uY2VZLnfadw
+
 ```c
 #include <Ntifs.h>
 #include <ntddk.h>
