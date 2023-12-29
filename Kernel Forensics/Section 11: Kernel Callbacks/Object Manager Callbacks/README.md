@@ -298,6 +298,8 @@ When we are trying to terminate **lsass.exe** process, it won't work anymore:
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/4077dd3e-5ffa-4666-827a-1aa7174a478d)
 
+# Reference
 
+- https://www.cnblogs.com/LyShark/p/16818453.html
 
 
