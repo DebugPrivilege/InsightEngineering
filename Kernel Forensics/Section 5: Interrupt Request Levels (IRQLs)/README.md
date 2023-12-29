@@ -245,7 +245,7 @@ In order to demonstrate this demo. Please follow the following steps:
 
 Let's use an example that is related to fast mutex. A code path that is protected by a fast mutex runs at IRQL = **`APC_LEVEL`**. **`ExAcquireFastMutex`** and **`ExTryToAcquireFastMutex`** raise the current IRQL to **`APC_LEVEL`**, and **`ExReleaseFastMutex`** restores the original IRQL. Thus, all APCs are disabled while the thread holds a fast mutex.
 
-This is something interesting that is documented by Microsoft, but I wanted to verify by myself from a code perspective. Compile the following code in **Debug** mode:
+This is something interesting that is documented by Microsoft, but I wanted to verify by myself from a code perspective. 
 
 ```c
 #include <ntifs.h>
