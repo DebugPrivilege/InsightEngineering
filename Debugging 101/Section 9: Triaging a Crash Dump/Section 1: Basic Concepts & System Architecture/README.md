@@ -131,3 +131,33 @@ fffff802`5c000050  70207369 72676f72 63206d61 6f6e6e61  is program canno
 fffff802`5c000060  65622074 6e757220 206e6920 20534f44  t be run in DOS 
 fffff802`5c000070  65646f6d 0a0d0d2e 00000024 00000000  mode....$.......
 ```
+
+# User Mode and Kernel Mode
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/e41efc55-e934-450f-9050-4ebf4b34fb73)
+
+**User Mode** is where applications and subsystems run. It's a restricted mode of operation in which the code being executed has limited access to system memory and cannot directly interact with hardware. This is done for security and stability reasons; if an application crashes, it won't crash the entire system. 
+
+**User Mode** is represented by the top half and includes:
+- **System Processes:** These are processes that the system runs on behalf of the user, like services.
+- **Services:** Background processes that provide features like networking, printing, etc.
+- **Applications:** These are the programs that users interact with directly, such as web browsers, word processors, and games.
+- **Subsystem dlls:** Dynamic link libraries used by various subsystems.
+
+An example of **User Mode** operation is when you open a text editor and write a document. The text editor is an application running in **User Mode**, and it asks the system for resources (like memory to store your text).
+
+**Kernel Mode** is the mode where the core of the operating system runs and has unrestricted access to the system memory and hardware. It's designed for trusted functions only and provides various services that are not available in User Mode for security reasons. 
+
+**Kernel Mode** is represented by the bottom half and includes:
+
+- **Executive:** Manages system resources and security, acts as an intermediary between the hardware and the user-level code.
+- **Device and File System Drivers:** Software that interacts directly with hardware devices and the system's file storage mechanisms.
+- **Kernel:** The core of the operating system, which has complete control over everything in the system.
+- **Hardware Abstraction Layer (HAL):** A layer that hides hardware differences from the rest of the kernel.
+- **Windowing and Graphics:** The system components that handle the graphical user interface and window management.
+
+An example of **Kernel Mode** operation is when you save the document you're working on. The text editor (in User Mode) sends a request to the operating system to write to the disk. This request is handed down to the Kernel Mode, where the file system driver actually writes the data to the storage device.
+
+Between these two modes is **NTDLL.dll**, which is a User Mode library that applications and subsystems use to request services from the Windows kernel. It contains the "system call" interface, which is the means by which **User Mode** code transitions into **Kernel Mode** to ask the kernel to perform tasks that only it has the privilege to execute.
+
+The separation between **User Mode** and **Kernel Mode** is fundamental for system security and stability. **User Mode** provides a sandboxed environment for applications, protecting the system from potential crashes or malicious behavior in user applications. **Kernel Mode** has all the privileges and access.
