@@ -573,6 +573,22 @@ A context switch is the process of the CPU switching from one thread or process 
 
 Frequent context switches can cause significant CPU overhead, reducing overall system performance. More CPU resources are spent on the process of switching contexts, rather than on executing actual process or thread workloads.
 
+# How does a thread get CPU time?
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/d1459a38-8483-4162-a11b-4fc6869be953)
+
+A thread gets CPU time through the coordination of the CPU scheduler and the dispatcher.
+
+- **CPU Scheduler:** This component is responsible for determining which threads should be executed by the CPU. It prioritizes threads based on a variety of factors including their priority level, whether they are I/O bound or CPU bound, and other scheduling policies.
+
+Threads are typically assigned priorities. The CPU Scheduler will look at these threads and decide the order in which they should be served based on their priority and other rules. Higher priority threads are typically given CPU time before lower priority ones.
+
+- **Dispatcher:** Once the CPU Scheduler has decided which thread should be executed next, the dispatcher takes over. It switches the context of the CPU to that of the chosen thread. Context switching involves saving the state of the current thread and loading the state of the thread that is about to be executed. This includes updating various registers with the thread's information, such as the instruction pointer and stack pointer, which tell the CPU where to resume execution in the thread's code.
+
+If a thread with a higher priority becomes ready to run or if the running thread has exhausted its time quantum, the CPU Scheduler may decide to preempt the current thread. The dispatcher will perform a context switch, saving the state of the current thread and loading the state of the new thread to be run.
+
+Preempting the current thread means that the operating system's scheduler forcibly takes away the CPU from a running thread before it has finished its assigned time. This is done to allow another thread, usually one with a higher priority or one that has become runnable after waiting for a resource, to execute.
+
 # Parameter of Process Startup
 
 How to get the command-line of a user-mode dump of a running process?
