@@ -161,3 +161,7 @@ An example of **Kernel Mode** operation is when you save the document you're wor
 Between these two modes is **NTDLL.dll**, which is a User Mode library that applications and subsystems use to request services from the Windows kernel. It contains the "system call" interface, which is the means by which **User Mode** code transitions into **Kernel Mode** to ask the kernel to perform tasks that only it has the privilege to execute.
 
 The separation between **User Mode** and **Kernel Mode** is fundamental for system security and stability. **User Mode** provides a sandboxed environment for applications, protecting the system from potential crashes or malicious behavior in user applications. **Kernel Mode** has all the privileges and access.
+
+# Reference
+
+- https://youtu.be/6IXx7xx8t2Y?si=gW_BHVtIj14AvlD9
