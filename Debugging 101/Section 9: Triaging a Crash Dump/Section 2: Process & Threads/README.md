@@ -754,5 +754,7 @@ Observe that the ideal CPU for all threads has now been updated to 3 too.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/7332eb59-6f70-46be-a979-b5c74a67fe74)
 
+# Reference
 
+- https://youtu.be/6IXx7xx8t2Y?si=snp7fSDIh4jW7xdS
 
