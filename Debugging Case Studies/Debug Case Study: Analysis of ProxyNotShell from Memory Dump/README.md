@@ -395,6 +395,12 @@ The above output aligns well with the following that CrowdStrike has described:
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/02592ea9-d555-4367-8cda-ffe4b0a0446c)
 
+If the above command doesn't return any results, try the following command:
+
+```
+.foreach (address { s -[l 8]a 0 L?0x7fffffffffffffff "powershell,Kerberos,true" }) { .if ($spat("${address}", "0000*`*")) { .echo Found "Powershell,Kerberos,true" at ${address}; dc ${address} L100 } };
+```
+
 
 This log entry is an URL-encoded string in a PowerShell-related HTTP request, which we saw previously as well. It looks to be part of ProxyNotShell.
 
