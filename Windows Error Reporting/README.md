@@ -12,3 +12,4 @@ The **attached files** contains a list of files that are prepared to be sent to 
 - An internal metadata XML file **`(WER093.tmp.WERInternalMetadata.xml)`** that contains data about the crash report.
 - A CSV file **`(WER0A2.tmp.csv)`** that contains additional data about processes running at the time of a system error or crash.
 - Two text files **`WER0C2.tmp.txt`** and **`WER0E4.tmp.appcompat.txt`** which could contain text information about the crash and compatibility data.
+- A heap dump file **`(memory.hdmp)`** that contains a dump of the application's heap, providing even more detailed information about the application's state at the time of the crash.
