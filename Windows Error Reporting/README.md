@@ -6,4 +6,4 @@ Here is an example of a log entry that records **beacon.exe** experiencing a pro
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/655978ce-70a9-4085-bb69-2a084fe639db)
 
-The **attached files** contains a list of files that were prepared to be sent to Microsoft for analysis if consent was given.
+The **attached files** contains a list of files that are prepared to be sent to Microsoft for analysis if consent was given. This includes the following:
