@@ -244,4 +244,39 @@ ImageName,UniqueProcessId,NumberOfThreads,WorkingSetPrivateSize,HardFaultCount,N
 "svchost.exe",540,10,7114752,66,27,78920762929,133496275065037389,116250000,68437500,8,2203461308416,2203425345536,57834,30052352,33976320,174536,174048,32464,22672,8822784,9924608,8822784,20,0,5210,81920,0,288006,1246,804,0,RpcEptMapper|RpcSs
 ```
 
+| Field                           | Description                                                         |
+|---------------------------------|---------------------------------------------------------------------|
+| ImageName                       | The name of the executable image (process)                          |
+| UniqueProcessId                 | A unique identifier for the process                                 |
+| NumberOfThreads                 | The number of threads that the process is running                   |
+| WorkingSetPrivateSize           | The size of the working set that is private to the process          |
+| HardFaultCount                  | The number of hard faults (page faults that require disk access)    |
+| NumberOfThreadsHighWatermark    | The maximum number of threads that were active at any one time      |
+| CycleTime                       | The processor cycle time used by the process                        |
+| CreateTime                      | The creation time of the process                                    |
+| UserTime                        | The amount of time that the process has executed in user mode       |
+| KernelTime                      | The amount of time that the process has executed in kernel mode     |
+| BasePriority                    | The base priority of the process                                    |
+| PeakVirtualSize                 | The peak virtual memory size                                        |
+| VirtualSize                     | The current size of the virtual memory that the process is using    |
+| PageFaultCount                  | The number of page faults                                           |
+| WorkingSetSize                  | The current size of the working set of the process                  |
+| PeakWorkingSetSize              | The peak working set size                                           |
+| QuotaPeakPagedPoolUsage         | The peak paged pool usage quota for the process                     |
+| QuotaPagedPoolUsage             | The current paged pool usage quota                                  |
+| QuotaPeakNonPagedPoolUsage      | The peak non-paged pool usage quota                                 |
+| QuotaNonPagedPoolUsage          | The current non-paged pool usage quota |
+| PagefileUsage                   | The current pagefile usage |
+| PeakPagefileUsage               | The peak pagefile usage |
+| PrivatePageCount                | The number of private pages used by the process |
+| ReadOperationCount              | Count of read I/O operations |
+| WriteOperationCount             | Count of write I/O operations |
+| OtherOperationCount             | Count of other I/O operations |
+| ReadTransferCount               | Amount of data read in operations |
+| WriteTransferCount              | Amount of data written in operations |
+| OtherTransferCount              | Amount of data transferred in other operations |
+| HandleCount                     | The number of handles that the process has open |
+| InheritedFromUniqueProcessId    | The process ID of the parent process |
+| SessionId                       | The session ID of the process |
+| Services                        | The services that are running within the process |
 
