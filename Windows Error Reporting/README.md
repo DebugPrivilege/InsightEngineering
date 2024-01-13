@@ -9,4 +9,4 @@ Here is an example of a log entry that records **beacon.exe** experiencing a pro
 The **attached files** contains a list of files that are prepared to be sent to Microsoft for analysis if consent was given. This includes the following:
 
 - A minidump file **`(WER035.tmp.mdmp)`** which is a snapshot of the application's memory at the time of the crash.
-- 
+- An internal metadata XML file **`(WER093.tmp.WERInternalMetadata.xml)`** that contains data about the crash report.
