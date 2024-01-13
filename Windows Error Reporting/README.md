@@ -16,3 +16,6 @@ The **attached files** contains a list of files that are prepared to be sent to 
 - Windows Error Reporting (WER) file **`(Report.wer)`** that contains information about the error, such as the date time of the crash, the exception code, SHA1 hash of the application, the modules that were loaded, etc.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/82739c54-d4c1-49aa-a3f1-b602b3546503)
+
+# WER Report
+
