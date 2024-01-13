@@ -244,6 +244,8 @@ ImageName,UniqueProcessId,NumberOfThreads,WorkingSetPrivateSize,HardFaultCount,N
 "svchost.exe",540,10,7114752,66,27,78920762929,133496275065037389,116250000,68437500,8,2203461308416,2203425345536,57834,30052352,33976320,174536,174048,32464,22672,8822784,9924608,8822784,20,0,5210,81920,0,288006,1246,804,0,RpcEptMapper|RpcSs
 ```
 
+Here is an explanation of the fields:
+
 | Field                           | Description                                                         |
 |---------------------------------|---------------------------------------------------------------------|
 | ImageName                       | The name of the executable image (process)                          |
