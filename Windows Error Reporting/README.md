@@ -14,3 +14,5 @@ The **attached files** contains a list of files that are prepared to be sent to 
 - Two text files **`WER0C2.tmp.txt`** and **`WER0E4.tmp.appcompat.txt`** which could contain text information about the crash and compatibility data.
 - A heap dump file **`(memory.hdmp)`** that contains a dump of the application's heap, providing additional information about the application's state at the time of the crash.
 - Windows Error Reporting (WER) file **`(Report.wer)`** that contains information about the error, such as the date time of the crash, the exception code, SHA1 hash of the application, the modules that were loaded, etc.
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/82739c54-d4c1-49aa-a3f1-b602b3546503)
