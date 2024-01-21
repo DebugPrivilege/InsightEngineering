@@ -27,7 +27,7 @@ Not going into much details, since there is a lot of documentation around ETW. H
 - **Sessions:** These are the mechanisms for collecting events. You can configure sessions to specify which providers to enable, what kind of events to collect, and where to store the collected data.
 - **Consumers:** These are applications or services that read and analyze the collected ETW events. The most commonly used consumer is probably the "Windows Performance Analyzer".
 
-Last, but not least. There are also **"manifests"** which are XML files that defines the events that an ETW provider can log. Each event is described with a unique identifier and includes information about what kind of data the event contains.
+Event Tracing for Windows (ETW) supports four type of providers, which can be read here: https://learn.microsoft.com/en-us/windows/win32/etw/about-event-tracing. However, our focus will be mainly on **Manifest-based** providers which are XML files that defines the events that an ETW provider can log. Each event is described with a unique identifier and includes information about what kind of data the event contains.
 
 The manifest describes the metadata for events, which includes:
 
