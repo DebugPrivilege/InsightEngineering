@@ -79,6 +79,11 @@ As we can see in this screenshot, it indicates that the IIS worker process has m
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0992b2e7-0fd2-4731-bf21-1bb94dd2255b)
 
+The above example overlaps with what has been described here within the white paper:
+
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/461a0531-b0cd-4dbd-8dd0-28de925767da)
+
+
 To summarize this in shortly on how EDR vendors could build detections based upon this available telemetry:
 
 - .NET assemblies that starts with the prefix **App_Web_*** being reflectively loaded from byte array within the IIS Worker Process (w3wp.exe), where the **`AssemblyFlags`** is set to **`0`** and and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**
