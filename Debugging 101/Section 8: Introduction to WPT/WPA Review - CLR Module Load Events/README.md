@@ -79,7 +79,7 @@ As we can see in this screenshot, it indicates that the IIS worker process has m
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/0992b2e7-0fd2-4731-bf21-1bb94dd2255b)
 
-The above example overlaps with what has been described here within the white paper:
+The example mentioned above aligns with the description in the white paper. It details that the IIS Worker Process does not load its generated temporary .NET assemblies reflectively from byte arrays.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/461a0531-b0cd-4dbd-8dd0-28de925767da)
 
