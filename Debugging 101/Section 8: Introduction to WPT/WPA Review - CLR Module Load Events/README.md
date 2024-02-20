@@ -88,7 +88,8 @@ To summarize this in shortly on how EDR vendors could build detections based upo
 
 - .NET assemblies that starts with the prefix **App_Web_*** being reflectively loaded from byte array within the IIS Worker Process (w3wp.exe), where the **`AssemblyFlags`** is set to **`0`** and and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**
 - .NET assemblies that are reflectively loaded from byte array in general where the **`AssemblyFlags`** is set to **`0`** and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**
-- 
+
+It's also important to note that if we would just collect Event ID **154** and filter on **`AssemblyFlags`** set to **`0`** and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**. It will generate a lot of noise, which is why the correlation needs to be made with **152** to reduce the noise.
 
 # Fields
 
