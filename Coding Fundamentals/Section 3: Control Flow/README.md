@@ -374,7 +374,7 @@ To understand how **`goto`** works, let's first understand two key parts associa
 
 1. **`goto`** keyword: This is the part of the statement that signals the compiler that there will be a jump in control from this point in the code.
 
-2. **`label:`** This is an identifier that you, the programmer, create. It serves as the "landing point" for the **`goto`** statement. The label is placed elsewhere in the code where you want the program control to jump to when goto is encountered.
+2. **`label`** This is an identifier that you, the programmer, create. It serves as the "landing point" for the **`goto`** statement. The label is placed elsewhere in the code where you want the program control to jump to when goto is encountered.
 
 Let's demonstrate a simple example:
 
