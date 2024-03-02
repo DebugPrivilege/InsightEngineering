@@ -6,6 +6,10 @@ I initially created this as a personal reference when I was (and still) learning
 
 The content is organized into various sections, each designed to be as hands-on as possible. I believe that practice is the key to mastery. Therefore, each section goes beyond just the theory aspects, emphasizing practical examples using tools like Visual Studio, Process Explorer, and WinDbg. Click on **'Debugging 101'** to get started.
 
+If you like my content and want to support me with a coffee:
+
+<a href="https://www.buymeacoffee.com/debugprivilege" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
 The following topics will be covered:
 
 **Debugging 101**
@@ -80,7 +84,3 @@ C++ Code Language:
 - Section 10: Spinlock
 - Section 11: Kernel Callbacks
 ```
-
-If you like my content and want to support me. Please checkout:
-
-<a href="https://www.buymeacoffee.com/debugprivilege" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
