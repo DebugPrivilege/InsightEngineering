@@ -2777,6 +2777,22 @@ $
 <<<<< SNIP >>>>>>>>>.>>
 ```
 
+If we want to look for all the loaded modules within a process, we can run **`!mex.mods`** command:
+
+```
+0:000> !mex.mods
+Number of modules: loaded: 20 unloaded: 0 
+Base             End                Flags   Time stamp            CLR   Module name        Version                                  Path   Filters:[ Interest|3rd|K|U|A ] More...
+=============================================================================================================================================================================
+        00400000         00454000 |       |  Invalid Timestamp  |  No | dnsbeacon        | 0.0.0.0                                | C:\Users\RTCAdmin\Downloads\dnsbeacon.exe
+00007fffe67d0000 00007fffe6860000 |       | 2084-07-20 05:49:26 |  No | apphelp          | 10.0.19041.3636 (WinBuild.160101.0800) | C:\Windows\System32\apphelp.dll
+00007fffe8070000 00007fffe80a4000 |       | 2010-10-07 23:34:55 |  No | rsaenh           | 10.0.19041.3636 (WinBuild.160101.0800) | C:\Windows\System32\rsaenh.dll
+00007fffe8430000 00007fffe846b000 |       | 2059-12-30 05:20:04 |  No | IPHLPAPI         | 10.0.19041.3636 (WinBuild.160101.0800) | C:\Windows\System32\IPHLPAPI.DLL
+00007fffe84d0000 00007fffe859a000 |       | 2025-01-05 09:36:39 |  No | dnsapi           | 10.0.19041.3636 (WinBuild.160101.0800) | C:\Windows\System32\dnsapi.dll
+00007fffe8740000 00007fffe87aa000 |       | 2091-09-11 10:05:13 |  No | mswsock          | 10.0.19041.3636 (WinBuild.160101.0800) | C:\Windows\System32\mswsock.dll
+00007fffe8930000 00007fffe893c000 |       | 2023-03-12 12:15:38 |  No | CRYPTBASE        | 10.0.19041.3636 (WinBuild.160101.0800) | C:\Windows\System32\CRYPTBASE.dll
+```
+
 # Registry
 
 This command **`!mreg`** will display all the registry values of a certain reg key of interest:
