@@ -504,7 +504,7 @@ We can now use the Python script **1768.py** from Didier Stevens to extract the 
 
 Even though we managed to extract the Beacon configuration, the next step in this research should be to examine all the DNS queries and responses that are lingering in this memory dump. I haven't been able to figure that out yet, but perhaps an interesting topic to revisit later in the future.
 
-# Reference
+# References
 
 - https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/malleable-c2_dns-beacons.htm
 - https://blog.sekoia.io/hunting-and-detecting-cobalt-strike/
