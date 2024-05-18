@@ -196,87 +196,26 @@ We can run strings against the binary itself to see if we can find some quick pa
 0000000000450980 \\.\pipe\MSSE-1378-server
 ```
 
-Finding a memory region with **`PAGE_EXECUTE_READWRITE`** protection, especially in the context of potential malware can be indicative of malicious activity. **`PAGE_EXECUTE_READWRITE`** is memory protection flag allows a region of memory to be executed, read, and written to. Malware often uses **`PAGE_EXECUTE_READWRITE`** permissions for its memory regions to dynamically write and execute malicious code.
-
-```
-0:000> !address -f:PAGE_EXECUTE_READWRITE
-
-                                     
-Mapping file section regions...
-Mapping module regions...
-Mapping PEB regions...
-Mapping TEB and stack regions...
-Mapping heap regions...
-Mapping page heap regions...
-Mapping other regions...
-Mapping stack trace database regions...
-Mapping activation context regions...
-
-        BaseAddress      EndAddress+1        RegionSize     Type       State                 Protect             Usage
---------------------------------------------------------------------------------------------------------------------------
-       0`00c90000        0`00ce6000        0`00056000 MEM_PRIVATE MEM_COMMIT  PAGE_EXECUTE_READWRITE             <unknown>  [..ARUH..H......H]
-```
-
 Cobalt Strike utilizes various prefixes for DNS queries, which we can read here: https://hstechdocs.helpsystems.com/manuals/cobaltstrike/current/userguide/content/topics/malleable-c2_dns-beacons.htm - We can use the ETW Provider **`Microsoft-Windows-DNS-Client`** for dynamic analysis and gather the different DNS queries of the DNS Beacon.
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/010bc326-840c-4cc2-88ce-b04f2771ca54)
-
-
 
 The results from the ETW trace aligns well with what is described here: https://blog.sekoia.io/hunting-and-detecting-cobalt-strike/
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/867b616c-d464-4f82-a29a-e0b79b9cdaac)
 
 
-
-I was exploring call stacks to determine if I could pinpoint different DNS queries. After poking around here and there, I was able to identify at a particular thread that does contains DNS queries. The call stack begins with a call to **`NtDelayExecution`**, which shows that the thread is involved in a sleep or delay operation through **`SleepEx`**.
+Finding a memory region with **`PAGE_EXECUTE_READWRITE`** protection, especially in the context of potential malware can be indicative of malicious activity. **`PAGE_EXECUTE_READWRITE`** is memory protection flag allows a region of memory to be executed, read, and written to. Malware often uses **`PAGE_EXECUTE_READWRITE`** permissions for its memory regions to dynamically write and execute malicious code.
 
 ```
-0:001> !mex.t 0
-DbgID ThreadID      User Kernel Create Time (UTC)
-0     1278 (0n4728)    0      0 01/24/2024 04:18:10.972 PM
-
-# Child-SP         Return           Call Site
-0 000000000065fd58 00007fffe941b62e ntdll!NtDelayExecution+0x14
-1 000000000065fd60 000000000040305f KERNELBASE!SleepEx+0x9e
-2 000000000065fe00 00000000004013b4 dnsbeacon+0x305f
-3 000000000065fe30 00000000004014db dnsbeacon+0x13b4
-4 000000000065ff00 00007fffea2f7344 dnsbeacon+0x14db
-5 000000000065ff30 00007fffeba026b1 kernel32!BaseThreadInitThunk+0x14
-6 000000000065ff60 0000000000000000 ntdll!RtlUserThreadStart+0x21
+0:001> !pde.grep PAGE_EXECUTE_READWRITE !pde.vmem
+	0000000000c90000	0000000000056000	MEM_COMMIT	MEM_PRIVATE	PAGE_EXECUTE_READWRITE
 ```
 
 The regex is designed to match specific prefixes followed by typical domain formats that are known being leveraged by DNS Beacons. The output reveals different DNS queries that we also could see in the ETL trace. 
 
 ```
-0:000> !mex.grep -r "\b(api\.|cdn\.|www6\.|www\.|post\.)[\w.-]+\.[a-zA-Z]{2,}(\S*)" !pde.dpx 00000000`0065fd58 00007fff`e941b62e -u
-0x00000000007a9370 : 0x356234322e697061 :  !da "api.24b5e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9410 : 0x353634322e697061 :  !da "api.2465e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a94b0 : 0x353132322e697061 :  !da "api.2215e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9500 : 0x356535322e697061 :  !da "api.25e5e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a95a0 : 0x353737312e697061 :  !da "api.1775e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9910 : 0x3065312e74736f70 :  !da "post.1e0.080c1b9a.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9960 : 0x353734322e697061 :  !da "api.2475e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9a50 : 0x353135322e697061 :  !da "api.2515e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9af0 : 0x353835322e697061 :  !da "api.2585e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9e60 : 0x353034322e697061 :  !da "api.2405e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9eb0 : 0x353664312e697061 :  !da "api.1d65e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007a9f50 : 0x356634322e697061 :  !da "api.24f5e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007aa220 : 0x353333322e697061 :  !da "api.2335e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1300 : 0x002e006900700061 :  !du "api.95e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1780 : 0x002e006900700061 :  !du "api.e5e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1810 : 0x002e006900700061 :  !du "api.85e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1b70 : 0x002e006900700061 :  !du "api.f5e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1db0 : 0x002e006900700061 :  !du "api.25e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1e40 : 0x002e006900700061 :  !du "api.118773d75.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1ed0 : 0x002e006900700061 :  !du "api.b5e57054d.609af4ba.beacon.azurelabsimulations.store"
-0x00000000007b1ff0 : 0x002e006900700061 :  !du "api.75e57054d.609af4ba.beacon.azurelabsimulations.store"
-```
-
-Since we know the domain name, we could also do a regex based on the domain name. This will lead to more results:
-
-```
-0:000> !mex.grep -r "[a-zA-Z0-9-]+\.beacon\.azurelabsimulations\.store\b" !pde.dpx 00000000`0065fd58 00007fff`e941b62e -u
+0:001> !mex.grep -r "[a-zA-Z0-9-]+\.beacon\.azurelabsimulations\.store\b" !pde.dpx 0000000000c90000 0000000000056000 -u
 0x000000000079d2d0 : 0x00000000007abc00 :  !da "609af4ba.beacon.azurelabsimulations.store"
 0x00000000007a8920 : 0x6162346661393036 :  !da "609af4ba.beacon.azurelabsimulations.store"
 0x00000000007a89a0 : 0x6162346661393036 :  !da "609af4ba.beacon.azurelabsimulations.store"
@@ -496,6 +435,30 @@ Since we know the domain name, we could also do a regex based on the domain name
 0x00000000007c1a10 : 0x0062002e00610062 :  !du "ba.beacon.azurelabsimulations.store"
 0x00000000007c2268 : 0x0061003900300036 :  !du "609af4ba.beacon.azurelabsimulations.store"
 0x00000000007c2270 : 0x0061006200340066 :  !du "f4ba.beacon.azurelabsimulations.store"
+0x0000000000c8d278 : 0x0000000000c8f7b0 : 0x0000000000ce0540 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8d358 : 0x0000000000c8f7b0 : 0x0000000000ce0540 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8e8f8 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8ece8 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f0c0 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f170 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f230 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f238 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f268 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f328 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f348 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f450 : 0x00000000007b5276 :  !du "af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f6a0 : 0x0000000000ce0540 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f750 : 0x0000000000ce0540 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f788 : 0x0000000000ce0540 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8f7b0 : 0x0000000000ce0540 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fa30 : 0x6162346661393036 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fb38 : 0x00000000007abc00 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fb60 : 0x00000000007abc00 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fb78 : 0x00000000007b5270 :  !du "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fc98 : 0x00000000007abc00 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fcb0 : 0x00000000007abc00 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fd70 : 0x00000000007abc00 :  !da "609af4ba.beacon.azurelabsimulations.store"
+0x0000000000c8fdc0 : 0x0000000000ce0540 :  !da "609af4ba.beacon.azurelabsimulations.store"
 ```
 
 We can now use the Python script **1768.py** from Didier Stevens to extract the full configuration of this DNS Beacon:
