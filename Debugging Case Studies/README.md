@@ -6,4 +6,5 @@ This section focuses on a variety of Debugging Case Studies, where we'll explore
 Debug Case Study: Analysis of ProxyShell via IIS Worker Memory Dumps
 Debug Case Study: Analysis of ProxyNotShell from Memory Dump
 Debug Case Study: SharePoint Pre-Auth Code Injection RCE chain CVE-2023-29357 & CVE-2023-24955
+Debug Case Study: Analyzing AppCrash of Cobalt Strike Beacon
 ```
