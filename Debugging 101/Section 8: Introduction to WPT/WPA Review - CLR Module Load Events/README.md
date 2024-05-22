@@ -47,7 +47,8 @@ This output displays a log of .NET assemblies being loaded by the CLR, including
 
 This event generates a lot of data, which is why some EDR vendors focus on collecting telemetry of .NET modules that are loaded reflectively, as these do not typically reference a file path, being instead loaded directly from a byte array in memory. This .NET assembly might for example be reflectively loaded because the **`ModuleILPath`** field lacks a traditional drive letter or network share path, which are typically present for assemblies loaded from a filesystem. The reason I use 'might' is that collecting Event ID **152** alone is not sufficient to conclusively determine this.
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fb1391fe-39f6-48ea-941e-d34deab1958c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9e4c59ce-8962-4469-b7ac-8d748bbe61ef)
+
 
 We would also need to collect Event ID **154** from **`Microsoft-Windows-DotNETRuntime`**. It shows a list of .NET assembly load events, with details such as the module's ID, assembly ID, application domain ID, assembly flags, and fully qualified assembly name. 
 
@@ -61,7 +62,8 @@ The **`AssemblyFlags`** indicate domain neutrality and whether the code is nativ
 
 As discussed previously, .NET assemblies that are loaded reflectively do not typically reference a file path, since they are loaded directly from a byte array in memory. The event we're examining is coming from Event ID **152**. However, it's important to note that relying solely on this Event ID to determine if a .NET assembly is reflectively loaded could lead to false positives.
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/b79b5f2c-bcb1-4da2-8b9d-b9917cac5590)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fa1513e4-c4f7-4f85-9de1-417bf4a61b61)
+
 
 We could correlate the .NET assembly that is **loaded without a path** with Event ID **154** to provide additional context. The **`AssemblyFlags`** describes the characteristics of the .NET Assembly. When this flag is set to **`0`** for example, the assembly does not have special instructions for the runtime regarding loading and execution, such as being **DomainNeutral Native**, **Dynamic** or **Native**.
 
@@ -86,8 +88,8 @@ The example mentioned above aligns with the description in the white paper. It d
 
 To summarize this in shortly on how EDR vendors could build detections based upon this available telemetry:
 
-- .NET assemblies that starts with the prefix **App_Web_*** being reflectively loaded from byte array within the IIS Worker Process (w3wp.exe), where the **`AssemblyFlags`** is set to **`0`** and and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**
-- .NET assemblies that are reflectively loaded from byte array in general where the **`AssemblyFlags`** is set to **`0`** and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**
+- .NET assemblies that starts with the prefix **App_Web_*** being reflectively loaded from byte array within the IIS Worker Process (w3wp.exe), where the **`AssemblyFlags`** is set to **`0`** and and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**, as well as the **`ModuleFlags`** is set to **`8`** 
+- .NET assemblies that are reflectively loaded from byte array in general where the **`AssemblyFlags`** is set to **`0`** and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**, as well as the **`ModuleFlags`** is set to **`8`** 
 
 It's also important to note that if we would just collect Event ID **154** and filter on **`AssemblyFlags`** set to **`0`** and the **`PublicKeyToken`** in the **`FullyQualifiedAssemblyName`** is set to **`null`**. It will generate a lot of noise, which is why the correlation needs to be made with **152** to reduce the noise. This allows us then to create better detections for .NET Assemblies being reflectively loaded.
 
