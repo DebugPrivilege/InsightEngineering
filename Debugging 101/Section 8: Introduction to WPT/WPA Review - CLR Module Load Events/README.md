@@ -71,9 +71,10 @@ When the **`PublicKeyToken`** of a .NET assembly is set to **`null`**, it indica
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/362f5d79-e8bd-46b0-89ca-60b6820caafd)
 
-In this screenshot, which is from the CrowdStrike white paper, we observe indicators of a .NET assembly loaded reflectively. The **`ModuleILPath`** lacks a drive letter, the **`AssemblyFlags`** are set to **`0`**, and the **`FullyQualifiedAssemblyName`** field shows a **`PublicKeyToken`** of **`null`**, which are all consistent with reflective loading via byte arrays as discussed in the white paper.
+In this screenshot, which is from the CrowdStrike white paper, we observe indicators of a .NET assembly loaded reflectively. The **`ModuleILPath`** lacks a drive letter, the **`AssemblyFlags`** are set to **`0`**, and the **`FullyQualifiedAssemblyName`** field shows a **`PublicKeyToken`** of **`null`**, as well as the **`ModuleFlags`** is set to **`8`** (manifest), which are all consistent with reflective loading via byte arrays as discussed in the white paper.
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/cb86d481-d226-4d98-9ddf-911263f58bbc)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/585d52d8-812f-4d56-9261-861a9ebcaf15)
+
 
 CrowdStrike OverWatch team also explained in the whitepaper their strategies when they are building detections for reflective loaded .NET activities. This include the use of regular expressions to identify assembly names and monitoring for reflective .NET loads occurring under applications or IIS application pools where such loading behavior is unusual. Let's demonstrate an example to make it a bit more clear.
 
