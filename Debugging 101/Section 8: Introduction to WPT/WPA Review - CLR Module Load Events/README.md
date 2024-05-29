@@ -64,6 +64,9 @@ As discussed previously, .NET assemblies that are loaded reflectively do not typ
 
 ![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/fa1513e4-c4f7-4f85-9de1-417bf4a61b61)
 
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/9fb45bf0-0fed-434b-81d3-3b5293ef2d57)
+
+
 
 We could correlate the .NET assembly that is **loaded without a path** with Event ID **154** to provide additional context. The **`AssemblyFlags`** describes the characteristics of the .NET Assembly. When this flag is set to **`0`** for example, the assembly does not have special instructions for the runtime regarding loading and execution, such as being **DomainNeutral Native**, **Dynamic** or **Native**.
 
