@@ -39,7 +39,7 @@ When we want to increase our visibility of .NET assembly loads, we could use ETW
 
 The **`CLRLoader`** task with Event ID **152** within the **`Microsoft-Windows-DotNETRuntime`** ETW provider is responsible for tracking the loading of Common Language Runtime (CLR) modules. This would typically include events related to the loading of .NET assemblies into an process.
 
-![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/522aba06-7ae2-4611-a0ae-1ccc6f364d3c)
+![image](https://github.com/DebugPrivilege/InsightEngineering/assets/63166600/080e5cb7-7746-4cb6-bbe2-6fcb47679f79)
 
 This output displays a log of .NET assemblies being loaded by the CLR, including their unique identifiers and paths, with some loaded from the Global Assembly Cache (GAC) and others from an Exchange Server directory.
 
