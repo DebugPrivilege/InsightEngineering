@@ -564,60 +564,6 @@ Idle                0 ffffc983ebcc7080    0  63        0        5     90506     
 Count: 6 | Show Unique Stacks
 ```
 
-This thread, operating within the **`notmyfault64.exe`** process and actively running on **CPU 2**, is identified as the one experiencing the crash. We can also see that there is an IRP (I/O Request Packet) linked to the **`MYFAULT`** driver, indicating a direct involvement of this driver in the thread's current activities.
-
-```
-0: kd> !mex.t ffffc983f08a0080
-Process                             Thread                       CID       TEB              UserTime KernelTime ContextSwitches Wait Reason Time State
-notmyfault64.exe (ffffc983edfae080) ffffc983f08a0080 (E|K|W|R|V) 10a4.504  00000008f81dc000        0          0              37 WrLpcReply     0 Running on processor 2
-
-Irp List:
-    IRP              File Driver
-    ffffc983f0533770      MYFAULT
-
-Priority:
-    Current Base Decrement ForegroundBoost IO Page
-    9       8    0         0               0  5
-
-# Child-SP         Return           Call Site
-0 ffffc60b87e8ebf8 fffff8054d62bfa9 nt!KeBugCheckEx
-1 ffffc60b87e8ec00 fffff8054d627634 nt!KiBugCheckDispatch+0x69
-2 ffffc60b87e8ed40 fffff805736312d0 nt!KiPageFault+0x474
-3 ffffc60b87e8eed0 fffff8057363168e myfault+0x12d0
-4 ffffc60b87e8ef00 fffff805736317f1 myfault+0x168e
-5 ffffc60b87e8f040 fffff8054d453075 myfault+0x17f1
-6 ffffc60b87e8f0a0 fffff8054d8e26d0 nt!IofCallDriver+0x55
-7 ffffc60b87e8f0e0 fffff8054d8e4100 nt!IopSynchronousServiceTail+0x1d0
-8 ffffc60b87e8f190 fffff8054d8e39e6 nt!IopXxxControlFile+0x700
-9 ffffc60b87e8f380 fffff8054d62b6e5 nt!NtDeviceIoControlFile+0x56
-a ffffc60b87e8f3f0 00007ffcaa52f454 nt!KiSystemServiceCopyEnd+0x25
-b 00000008f82ff3f8 0000000000000000 0x7ffcaa52f454
-```
-
-This output details an I/O Request Packet (IRP) that is currently being processed by the **`MYFAULT`** for a device control operation within the **`notmyfault64.exe`** process. This IRP, in an unfinished state and is linked to a system buffer and is actively handled by a specific thread from **`notmyfault64.exe`**
-
-```
-0: kd> !mex.mirp ffffc983f0533770
-
-Irp Details: ffffc983f0533770 [ verbose | !ddt | !irp ]
-
-    System buffer    Thread                             Frame Count
-    ================ ================================== ===========
-    ffffc983f459a200 ffffc983f08a0080(notmyfault64.exe)           1
-
-Irp Stack Frame(s)
-
-      # Driver          Major          Minor Control Code Flg Ctrl Status Device           File             Args                                               
-    === =============== ============== ===== ============ === ==== ====== ================ ================ ===================================================================
-    ->1 \Driver\MYFAULT DEVICE_CONTROL     0     83360018   5    0 None   ffffc983f3784340 ffffc983f4d13e40 0000000000000000 0000000000000004 0000000083360018 0000000000000000
-
-File Details: ffffc983f4d13e40
-
-    Name Device           Driver             Vpb Flags Byte Offset        FsContext       FsContext2 Owning Process
-    ==== ================ =============== ====== ===== =========== ================ ================ ==============
-         ffffc983f3784340 \Driver\MYFAULT (null) 40002           0 0000000000000000 0000000000000000
-```
-
 Besides of examing threads in a running state, we should also take a look at the **readyish** threads. These are threads that are prepared to run and are queued for CPU time but are not currently executing. They are essentially in a state where they are waiting for their turn to use the CPU, having all necessary resources to execute but are pending scheduling by the system's thread scheduler. 
 
 Examine the **`Ry`** (Readyish) column in the **`!mex.tl -t`** output. Are there any threads in a **`Readyish`** state, excluding those from the **Idle** process?
