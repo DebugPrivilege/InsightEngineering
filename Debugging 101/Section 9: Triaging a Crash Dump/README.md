@@ -629,8 +629,29 @@ PID            Address          Name                                     !! Rn R
 0x0    0n0     fffff8054df49f40 Idle                                      .  5  7  .  .  .  .
 ```
 
+We can observe **several** threads in this example that are in a **`readyish`** state, which is not common. This would require further investigation.
 
+```
+0: kd> !mex.ready
+Process       PID Thread             Id Pri Base Pri Affinity Next CPU Ideal CPU CSwitches    User  Kernel State Time Reason
+============ ==== ================ ==== === ======== ======== ======== ========= ========= ======= ======= ===== ==== =======
+svchost.exe  1020 ffffd80c06672040 554c   8        8      255        0         0       130    16ms       0 Ready    0 WrQueue
+svchost.exe  1050 ffffd80c21504080 54b4   8        8      255        0         0       652    16ms       0 Ready    0 WrQueue
+svchost.exe   aa8 ffffd80c2005c2c0 22e0   8        8      255        1         1        63       0    16ms Ready    0 WrQueue
+svchost.exe   ba4 ffffd80c1e63d080  f20   8        8      255        1         1       152       0       0 Ready    0 WrQueue
+svchost.exe   aa8 ffffd80c1c4c05c0 2efc   8        8      255        2         2      1874    78ms    47ms Ready    0 WrQueue
+svchost.exe  1c40 ffffd80c25803080 51f0   8        8      255        3         3      5814    31ms    78ms Ready    0 WrQueue
+svchost.exe  2a8c ffffd80c0a3d9040 2f18   8        8      255        2         2     13921   141ms   141ms Ready    0 WrQueue
+svchost.exe   ba4 ffffd80bfd39c2c0 57d8   8        8      255        7         7       278       0    16ms Ready    0 WrQueue
+svchost.exe  14c8 ffffd80c1c5ce040  90c   8        8      255        7         7       287    16ms       0 Ready    0 WrQueue
+svchost.exe  3768 ffffd80c24dea080 6254   8        8      255        4         4       110    16ms    16ms Ready    0 WrQueue
+svchost.exe  1944 ffffd80c1f4d94c0 2018   8        8      255        4         4         3       0       0 Ready    0 WrQueue
+svchost.exe  2a8c ffffd80bfd467380 2e38   8        8      255        6         6      2170       0       0 Ready    0 WrQueue
+explorer.exe 2dec ffffd80bfd4e9080 3584   8        8      255        4         4    195584 12s.047 11s.656 Ready    0 WrQueue
+svchost.exe  2b78 ffffd80c02fae080 4f44   8        8      255        5         5        62       0       0 Ready    0 WrQueue
 
+Count: 14
+```
 
 After completing the previous step, examine the states of other threads. Are there any threads currently blocked or waiting for an LPC from processes that are of interest, such as **System.exe**, **svchost.exe**, **lsass.exe**, **services.exe**, or **smss.exe** for example?
 
