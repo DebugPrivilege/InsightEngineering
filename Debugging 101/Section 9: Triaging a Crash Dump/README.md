@@ -575,7 +575,7 @@ PID            Address          Name                                     !! Rn R
 0x0    0n0     fffff8054df49f40 Idle                                      .  5  7  .  .  .  .
 ```
 
-We can observe **several** threads in this example that are in a **`readyish`** state, which is not common. This would require further investigation.
+We can observe **several** threads in this example that are in a **`readyish`** state, which is not common. When we say that a thread is in a **ready** state, it means that it has completed its previous task or is waiting for a new task to be assigned. The thread is placed in the ready queue, waiting for the CPU scheduler to select it for execution.
 
 ```
 0: kd> !mex.ready
