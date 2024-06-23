@@ -327,6 +327,26 @@ Followup:     MachineOwner
 ---------
 ```
 
+The **`!smt`** command provides information about the processors in a system.  It shows that the system has 4 logical processors, grouped into pairs (0 and 1, 2 and 3) utilizing SMT, with each physical processor containing 2 cores, each capable of handling 2 logical processors.
+
+```
+0: kd> !smt
+SMT Summary:
+------------
+
+KeActiveProcessors:
+****------------------------------------------------------------ (000000000000000f)
+IdleSummary:
+---------------------------------------------------------------- (0000000000000000)
+ No PRCB             SMT Set                                                                             APIC Id
+  0 fffff8052661b180 **-------------------------------------------------------------- (0000000000000003) 0x00000000
+  1 ffff9581fbaa9180 **-------------------------------------------------------------- (0000000000000003) 0x00000001
+  2 ffff9581fbb94180 --**------------------------------------------------------------ (000000000000000c) 0x00000002
+  3 ffff9581fbbdb180 --**------------------------------------------------------------ (000000000000000c) 0x00000003
+
+Maximum cores per physical processor:   2
+Maximum logical processors per core:    2
+```
 
 If the **`!analyze -v`** command doesn't reveal the root cause of the crash, what alternative methods can we use to dive deeper into the crash dump? 
 
@@ -511,7 +531,20 @@ PID            Address          Name                                     !! Rn R
 Warning! Zombie process(es) detected (not displayed). Count: 5 [zombie report]
 ```
 
-From the **`!mex.tl -t`** command, we can see that there are a couple of running threads. Let's examine the running threads on the system. The output of the **`!mex.running`** command in provides a snapshot of the currently running threads on the system. 
+The second command that is very useful is the **`!mex.trep`** command, which provides a quick overview of the number of threads in various states within the system.
+
+```
+0: kd> !mex.trep
+Count State
+===== =======
+    1 Ready
+    4 Running
+1,831 Waiting
+===== =======
+1,836
+```
+
+From the output, we can see that there are a couple of running threads. Let's examine the running threads on the system. The output of the **`!mex.running`** command in provides a snapshot of the currently running threads on the system. 
 
 Examining threads in a running state is the most important thing to do first, because they (may) contain the immediate context and operations that led to the crash, allowing for a direct insight into the cause of the issue.
 
