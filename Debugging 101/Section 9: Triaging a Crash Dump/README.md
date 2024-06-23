@@ -1031,40 +1031,6 @@ Committed pages:          1686167 (    6744668 Kb)
 Commit limit:             5969650 (   23878600 Kb)
 ```
 
-After pinpointing the problematic driver, we can proceed to examine its imports, which helps us to understand more about the driver. Examining the imports of the driver can provide insights into the driver's functionality
-
-```
-0: kd> !mex.imports -a MYFAULT
-Dumping Import table at fffff80573630000 + 6090 
-ModuleImageName: myfault
-fffff805`73633000  fffff805`4d450da0 nt!RtlInitUnicodeString
-fffff805`73633008  fffff805`4d99f640 nt!RtlQueryRegistryValues
-fffff805`73633010  fffff805`4d9cc920 nt!MmGetSystemRoutineAddress
-fffff805`73633018  fffff805`4d4d7830 nt!KzRaiseIrql
-fffff805`73633020  fffff805`4d4228d0 nt!KeInitializeDpc
-fffff805`73633028  fffff805`4d478d00 nt!KeInsertQueueDpc
-fffff805`73633030  fffff805`4d76fcb0 nt!KeSetTargetProcessorDpc
-fffff805`73633038  fffff805`4d45e760 nt!KeInitializeEvent
-fffff805`73633040  fffff805`4d41cbd0 nt!KeInitializeTimer
-fffff805`73633048  fffff805`4d40ea20 nt!KeSetTimer
-fffff805`73633050  fffff805`4d4cf2a0 nt!KeWaitForSingleObject
-fffff805`73633058  fffff805`4d54acc0 nt!KeDeregisterBugCheckReasonCallback
-fffff805`73633060  fffff805`4d5363a0 nt!KeRegisterBugCheckReasonCallback
-fffff805`73633068  fffff805`4d616970 nt!KeBugCheckEx
-fffff805`73633070  fffff805`4d4f8730 nt!ExAllocatePool
-fffff805`73633078  fffff805`4dcacb80 nt!ExAllocatePoolWithTag
-fffff805`73633080  fffff805`4dcac010 nt!ExFreePoolWithTag
-fffff805`73633088  fffff805`4d454780 nt!ExAcquireFastMutex
-fffff805`73633090  fffff805`4d4548c0 nt!ExReleaseFastMutex
-fffff805`73633098  fffff805`4d45ffd0 nt!IofCompleteRequest
-fffff805`736330a0  fffff805`4d9ba3c0 nt!IoCreateDevice
-fffff805`736330a8  fffff805`4da62480 nt!IoCreateSymbolicLink
-fffff805`736330b0  fffff805`4d55b420 nt!IoDeleteDevice
-fffff805`736330b8  fffff805`4da65b00 nt!IoDeleteSymbolicLink
-fffff805`736330c0  fffff805`4d4f4e90 nt!PsGetCurrentProcess
-fffff805`736330d0  fffff805`73631fd0 myfault+0x1fd0
-```
-
 # Reference
 
 - Windows Internals 7th edition (Part 1): https://www.microsoftpressstore.com/store/windows-internals-part-1-system-architecture-processes-9780735684188
