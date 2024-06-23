@@ -565,7 +565,9 @@ Count State
 1,836
 ```
 
-From the output, we can see that there are a couple of running threads. Let's examine the running threads on the system. The output of the **`!mex.running`** command in provides a snapshot of the currently running threads on the system. 
+The first thing we need to understand is the thread **state**. The **state** of a thread will determine how you analyze everything else. If the thread is in a **waiting** state, you need to know how long it has been waiting and why it is waiting. If it is **running**, you want to know how long it has been running. However, we don't really need to know why it is running; it's on a CPU and executing.
+
+From the output, we can see that there are a couple of **running** threads. Let's examine the running threads on the system. The output of the **`!mex.running`** command in provides a snapshot of the currently running threads on the system. 
 
 Examining threads in a running state is the most important thing to do first, because they (may) contain the immediate context and operations that led to the crash, allowing for a direct insight into the cause of the issue.
 
