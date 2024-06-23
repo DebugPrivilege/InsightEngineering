@@ -348,27 +348,6 @@ Followup:     MachineOwner
 ---------
 ```
 
-The **`!smt`** command provides information about the processors in a system.  It shows that the system has 4 logical processors, grouped into pairs (0 and 1, 2 and 3) utilizing SMT, with each physical processor containing 2 cores, each capable of handling 2 logical processors.
-
-```
-0: kd> !smt
-SMT Summary:
-------------
-
-KeActiveProcessors:
-****------------------------------------------------------------ (000000000000000f)
-IdleSummary:
----------------------------------------------------------------- (0000000000000000)
- No PRCB             SMT Set                                                                             APIC Id
-  0 fffff8052661b180 **-------------------------------------------------------------- (0000000000000003) 0x00000000
-  1 ffff9581fbaa9180 **-------------------------------------------------------------- (0000000000000003) 0x00000001
-  2 ffff9581fbb94180 --**------------------------------------------------------------ (000000000000000c) 0x00000002
-  3 ffff9581fbbdb180 --**------------------------------------------------------------ (000000000000000c) 0x00000003
-
-Maximum cores per physical processor:   2
-Maximum logical processors per core:    2
-```
-
 If the **`!analyze -v`** command doesn't reveal the root cause of the crash, what alternative methods can we use to dive deeper into the crash dump? 
 
 The first command will be **`!mex.tl -t`** command examines the state and wait reasons for every thread across all processes, presenting the results as statistics. This allows for a quick overview, such as determining how many processes have running, ready, blocking threads, and so on. It's like having a satellite view of all the thread state that are associated with the processes.
