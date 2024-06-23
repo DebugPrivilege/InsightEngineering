@@ -618,7 +618,7 @@ File Details: ffffc983f4d13e40
          ffffc983f3784340 \Driver\MYFAULT (null) 40002           0 0000000000000000 0000000000000000
 ```
 
-Besides of examing threads in a running state, we should also take a look at the readyish threads. These are threads that are prepared to run and are queued for CPU time but are not currently executing. They are essentially in a state where they are waiting for their turn to use the CPU, having all necessary resources to execute but are pending scheduling by the system's thread scheduler. 
+Besides of examing threads in a running state, we should also take a look at the **readyish** threads. These are threads that are prepared to run and are queued for CPU time but are not currently executing. They are essentially in a state where they are waiting for their turn to use the CPU, having all necessary resources to execute but are pending scheduling by the system's thread scheduler. 
 
 Examine the **`Ry`** (Readyish) column in the **`!mex.tl -t`** output. Are there any threads in a **`Readyish`** state, excluding those from the **Idle** process?
 
@@ -628,6 +628,8 @@ PID            Address          Name                                     !! Rn R
 ============== ================ ======================================== == == == == == == ==
 0x0    0n0     fffff8054df49f40 Idle                                      .  5  7  .  .  .  .
 ```
+
+
 
 
 After completing the previous step, examine the states of other threads. Are there any threads currently blocked or waiting for an LPC from processes that are of interest, such as **System.exe**, **svchost.exe**, **lsass.exe**, **services.exe**, or **smss.exe** for example?
