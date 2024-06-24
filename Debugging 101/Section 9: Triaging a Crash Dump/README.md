@@ -564,7 +564,7 @@ Idle                0 ffffc983ebcc7080    0  63        0        5     90506     
 Count: 6 | Show Unique Stacks
 ```
 
-Besides of examing threads in a running state, we should also take a look at the **readyish** threads. These are threads that are prepared to run and are queued for CPU time but are not currently executing. They are essentially in a state where they are waiting for their turn to use the CPU, having all necessary resources to execute but are pending scheduling by the system's thread scheduler. 
+Besides of examing threads in a running state, we should also take a look at the **readyish** threads. These are threads that are prepared to run and are queued for CPU time but are not currently executing. They are in a state where they are waiting for their turn to use the CPU, having all necessary resources to execute but are pending scheduling by the system's thread scheduler. 
 
 Examine the **`Ry`** (Readyish) column in the **`!mex.tl -t`** output. Are there any threads in a **`Readyish`** state, excluding those from the **Idle** process?
 
@@ -575,7 +575,7 @@ PID            Address          Name                                     !! Rn R
 0x0    0n0     fffff8054df49f40 Idle                                      .  5  7  .  .  .  .
 ```
 
-We can observe **several** threads in this example that are in a **`readyish`** state, which is not common. When we say that a thread is in a **ready** state, it means that it has completed its previous task or is waiting for a new task to be assigned. The thread is placed in the ready queue, waiting for the CPU scheduler to select it for execution. It is not currently running because another thread is occupying the CPU.
+We can observe **several** threads in this example that are in a **`readyish`** state, which is not common. When we say that a thread is in a **ready** state, it means that it has completed its previous task or is waiting for a new task to be assigned. The thread is placed in the ready queue, waiting for the CPU scheduler to select it for execution. It is not currently running because another thread is using the CPU.
 
 ```
 0: kd> !mex.ready
