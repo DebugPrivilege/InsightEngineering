@@ -16,6 +16,7 @@ Before diving into this, it is recommended for newcomers to Debugging or Windows
 - **Section 2:** Process & Threads
 - **Section 3:** Memory
 - **Section 4:** System Mechanism
+- **Section 5:** Triaging a thread in a Kernel Memory Dump
 
 
 Load the Memory Dump in WinDbg:
