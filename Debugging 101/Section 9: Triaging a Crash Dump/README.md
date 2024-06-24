@@ -573,7 +573,7 @@ Examine the **`Ry`** (Readyish) column in the **`!mex.tl -t`** output. Are there
 0: kd> !mex.tl -t
 PID            Address          Name                                     !! Rn Ry Bk Lc IO Er
 ============== ================ ======================================== == == == == == == ==
-0x0    0n0     fffff8054df49f40 Idle                                      .  5  7  .  .  .  .
+0x0    0n0     fffff8054df49f40 Idle                                      .  5  14  .  .  .  .
 ```
 
 We can observe **several** threads in this example that are in a **`readyish`** state, which is not common. When we say that a thread is in a **ready** state, it means that it has completed its previous task or is waiting for a new task to be assigned. The thread is placed in the ready queue, waiting for the CPU scheduler to select it for execution. It is not currently running because another thread is using the CPU.
