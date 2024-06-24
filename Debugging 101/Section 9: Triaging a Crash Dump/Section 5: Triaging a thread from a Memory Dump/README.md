@@ -1,6 +1,6 @@
 # Description
 
-The **`!mex.t`** command is an improved implementation of the **`!thread`** command for both user and kernel mode. It provides information about threads, such as thread context, stack frames, and thread state. The purpose of this section is to be able to learn interpreting the results of the **`!mex.t`** command. 
+The **`!mex.t`** command is an improved implementation of the **`!thread`** command for both user and kernel mode. It provides information about threads, such as thread context, stack frames, and thread state. The purpose of this section is to be able to learn interpreting the results and how to navigate and examing threads of interest. This is just an example of a write-up that can be used as a reference where I'm demonstrating my thought process. 
 
 # Triaging a thread
 
