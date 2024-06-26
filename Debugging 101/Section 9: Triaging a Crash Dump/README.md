@@ -614,7 +614,7 @@ PID            Address          Name                                     !! Rn R
 - **IO:** Threads that are waiting to page in and out
 - **Er:** Threads waiting on an ERESOURCE
 
-Another aspect worth exploring is the number of threads within each process. For instance, are there processes containing over 500 threads? While it is not by definition a problem, such a high thread count is worth further investigation.
+Another aspect worth exploring is the number of threads within each process. For instance, **are there processes containing over or close to 500 threads?** While it is not by definition a problem, such a high thread count is worth further investigation.
 
 ```
 0: kd> !mex.tl -sort thread
