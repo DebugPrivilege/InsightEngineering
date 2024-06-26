@@ -573,31 +573,31 @@ Examine the **`Ry`** (Readyish) column in the **`!mex.tl -t`** output. Are there
 0: kd> !mex.tl -t
 PID            Address          Name                                     !! Rn Ry Bk Lc IO Er
 ============== ================ ======================================== == == == == == == ==
-0x0    0n0     fffff8054df49f40 Idle                                      .  5  14  .  .  .  .
+0x0    0n0     fffff8054df49f40 Idle                                      .  5  12  .  .  .  .
 ```
 
-We can observe **several** threads in this example that are in a **`readyish`** state, which is not common. When we say that a thread is in a **ready** state, it means that it has completed its previous task or is waiting for a new task to be assigned. The thread is placed in the ready queue, waiting for the CPU scheduler to select it for execution. It is not currently running because another thread is using the CPU.
+We can observe **several** threads in this example that are in a **`readyish`**. When we say that a thread is in a **ready** state, it means that it has completed its previous task or is waiting for a new task to be assigned. The thread is placed in the ready queue, waiting for the CPU scheduler to select it for execution. It is not currently running because another thread is using the CPU.
+
+When a thread is **stalled for more than 30 seconds**, it means that the thread has been in the ready state (or a similar state like standby) but has not been scheduled to run for over 30 seconds. It's worth to investigate these threads and prioritize them, because if a thread is ready to run but is not getting CPU time, the tasks it is supposed to perform are delayed. This can lead to overall system sluggishness.
 
 ```
 0: kd> !mex.ready
-Process       PID Thread             Id Pri Base Pri Affinity Next CPU Ideal CPU CSwitches    User  Kernel State Time Reason
-============ ==== ================ ==== === ======== ======== ======== ========= ========= ======= ======= ===== ==== =======
-svchost.exe  1020 ffffd80c06672040 554c   8        8      255        0         0       130    16ms       0 Ready    0 WrQueue
-svchost.exe  1050 ffffd80c21504080 54b4   8        8      255        0         0       652    16ms       0 Ready    0 WrQueue
-svchost.exe   aa8 ffffd80c2005c2c0 22e0   8        8      255        1         1        63       0    16ms Ready    0 WrQueue
-svchost.exe   ba4 ffffd80c1e63d080  f20   8        8      255        1         1       152       0       0 Ready    0 WrQueue
-svchost.exe   aa8 ffffd80c1c4c05c0 2efc   8        8      255        2         2      1874    78ms    47ms Ready    0 WrQueue
-svchost.exe  1c40 ffffd80c25803080 51f0   8        8      255        3         3      5814    31ms    78ms Ready    0 WrQueue
-svchost.exe  2a8c ffffd80c0a3d9040 2f18   8        8      255        2         2     13921   141ms   141ms Ready    0 WrQueue
-svchost.exe   ba4 ffffd80bfd39c2c0 57d8   8        8      255        7         7       278       0    16ms Ready    0 WrQueue
-svchost.exe  14c8 ffffd80c1c5ce040  90c   8        8      255        7         7       287    16ms       0 Ready    0 WrQueue
-svchost.exe  3768 ffffd80c24dea080 6254   8        8      255        4         4       110    16ms    16ms Ready    0 WrQueue
-svchost.exe  1944 ffffd80c1f4d94c0 2018   8        8      255        4         4         3       0       0 Ready    0 WrQueue
-svchost.exe  2a8c ffffd80bfd467380 2e38   8        8      255        6         6      2170       0       0 Ready    0 WrQueue
-explorer.exe 2dec ffffd80bfd4e9080 3584   8        8      255        4         4    195584 12s.047 11s.656 Ready    0 WrQueue
-svchost.exe  2b78 ffffd80c02fae080 4f44   8        8      255        5         5        62       0       0 Ready    0 WrQueue
+Process                            PID Thread             Id Pri Base Pri Affinity Next CPU Ideal CPU CSwitches   User  Kernel State      Time Reason
+================================= ==== ================ ==== === ======== ======== ======== ========= ========= ====== ======= ===== ========= ==============
+System                               4 ffff988da1ed8040 4cf4  30       12        1        0         0         1      0       0 Ready 1m:03.843 WrPreempted
+svchost.exe                        61c ffff988d8bd0b0c0  af8  15       15        1        0         0      4474   16ms       0 Ready 1m:59.953 UserRequest
+Corsair.Service.CpuIdRemote64.exe 28c0 ffff988d93206080 2988  15       15        1        0         0     12398      0    31ms Ready 1m:59.515 DelayExecution
+svchost.exe                        61c ffff988d91492080 1f10  15       15        1        0         0       478      0       0 Ready 1m:59.390 UserRequest
+System                               4 ffff988d99c52040 3290  13       12        1        0         0      9445      0    47ms Ready 1m:13.703 WrPreempted
+WmiPrvSE.exe                      112c ffff988d9e83f080 13c0  12        8        1        0         0     89264 1s.641  4s.906 Ready   13s.203 WrPreempted
+System                               4 ffff988d7d5ce040  18c   8        8        1        0         0  12365520      0 43s.484 Ready 2m:00.000 Executive
+Corsair.Service.CpuIdRemote64.exe 28c0 ffff988d9321a080 2970   8        8        1        0         0     16754   16ms   172ms Ready 1m:59.375 DelayExecution
+System                               4 ffff988d9acb3040 2698   2        2        1        0         0     22510      0   156ms Ready   19s.781 WrPreempted
+System                               4 ffff988d96ae0040 4b48   2        2        1        0         0     14306      0    16ms Ready   19s.781 WrPreempted
+System                               4 ffff988d92fb1040 21fc   2        2        1        0         0     14181      0   109ms Ready   19s.781 WrPreempted
+System                               4 ffff988d77be4040   5c   0        0        1        0         0     29946      0   891ms Ready 1m:59.000 Executive
 
-Count: 14
+Count: 12
 ```
 
 After completing the previous step, examine the states of other threads. Are there any threads currently blocked or waiting for an LPC from processes that are of interest, such as **System.exe**, **svchost.exe**, **lsass.exe**, **services.exe**, or **smss.exe** for example?
