@@ -547,9 +547,9 @@ Count State
 
 The first thing we need to understand is the thread **state**. The **state** of a thread will determine how you analyze everything else. If the thread is in a **waiting** state, you need to know how long it has been waiting and why it is waiting. If it is **running**, you want to know how long it has been running. However, we don't really need to know why it is running; it's on a CPU and executing.
 
-From the output, we can see that there are a couple of **running** threads. Let's examine the running threads on the system. The output of the **`!mex.running`** command in provides a snapshot of the currently running threads on the system. 
+From the output, we can see that there are a couple of **running** threads. Let's examine the **running** threads on the system. The output of the **`!mex.running`** command in provides a snapshot of the currently running threads on the system. 
 
-Examining threads in a running state is the most important thing to do first, because they (may) contain the immediate context and operations that led to the crash, allowing for a direct insight into the cause of the issue.
+Examining threads in a **running** state is the most important thing to do first, because they (may) contain the immediate context and operations that led to the crash, allowing for a direct insight into the cause of the issue.
 
 ```
 0: kd> !mex.running
@@ -578,7 +578,7 @@ PID            Address          Name                                     !! Rn R
 
 We can observe **several** threads in this example that are in a **`readyish`**. When we say that a thread is in a **ready** state, it means that it has completed its previous task or is waiting for a new task to be assigned. The thread is placed in the ready queue, waiting for the CPU scheduler to select it for execution. It is not currently running because another thread is using the CPU.
 
-When a thread is **stalled for more than 30 seconds**, it means that the thread has been in the ready state (or a similar state like standby) but has not been scheduled to run for over 30 seconds. It's worth to investigate these threads and prioritize them, because if a thread is ready to run but is not getting CPU time, the tasks it is supposed to perform are delayed. This can lead to overall system sluggishness.
+When a thread is **stalled for more than 30 seconds**, it means that the thread has been in the ready state (or a similar state like standby) but has not been scheduled to run for over 30 seconds. **It's worth to investigate these threads first and prioritize them over others**, because if a thread is ready to run but is not getting CPU time, the tasks it is supposed to perform are delayed. This can lead to overall system sluggishness.
 
 ```
 0: kd> !mex.ready
