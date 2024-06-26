@@ -1350,6 +1350,184 @@ Committed pages:          1686167 (    6744668 Kb)
 Commit limit:             5969650 (   23878600 Kb)
 ```
 
+A high handle count in a process indicates significant resource usage, which can be normal for certain types of applications but can also suggest issues like **handle leaks** or **inefficient resource management**. This command is not the best and I'm sure there are better ways, but at least it's working. **Processes with more than 9999 Handles** could be worth to investigate.
+
+```
+14: kd> !mex.grep -r "PROCESS|HandleCount:|Image" !process 0 0
+**** NT ACTIVE PROCESS DUMP ****
+PROCESS ffff8104a6893440
+    DirBase: 001ad002  ObjectTable: ffff98810fe14000  HandleCount: 5120.
+    Image: System
+PROCESS ffff8104a6be2040
+    DirBase: 44a00002  ObjectTable: ffff98810fe37000  HandleCount:   0.
+    Image: Registry
+PROCESS ffff8104abd5e580
+    DirBase: 03b00002  ObjectTable: ffff9881102a7b80  HandleCount:  52.
+    Image: smss.exe
+PROCESS ffff8104af4f6080
+    DirBase: 850d20002  ObjectTable: ffff98810ff15040  HandleCount: 583.
+    Image: csrss.exe
+PROCESS ffff8104b083c080
+    DirBase: 844100002  ObjectTable: ffff988112307b80  HandleCount: 164.
+    Image: wininit.exe
+PROCESS ffff8104b0880580
+    DirBase: 84f900002  ObjectTable: ffff988112dff040  HandleCount: 630.
+    Image: services.exe
+PROCESS ffff8104b08ae580
+    DirBase: 84ee00002  ObjectTable: ffff988112e2fb80  HandleCount: 1378.
+    Image: lsass.exe
+PROCESS ffff8104b08ac580
+    DirBase: 848800002  ObjectTable: ffff988112e2bb80  HandleCount:  84.
+    Image: svchost.exe
+PROCESS ffff8104b08a8580
+    DirBase: 84dc00002  ObjectTable: ffff988112f1d900  HandleCount: 1177.
+    Image: svchost.exe
+PROCESS ffff8104b0925580
+    DirBase: 848c00002  ObjectTable: ffff988112f6eb80  HandleCount:  45.
+    Image: fontdrvhost.exe
+PROCESS ffff8104b0985080
+    DirBase: 844400002  ObjectTable: ffff98811307db80  HandleCount: 1219.
+    Image: svchost.exe
+PROCESS ffff8104b08a0580
+    DirBase: 84db10002  ObjectTable: ffff988113098b80  HandleCount: 305.
+    Image: svchost.exe
+PROCESS ffff8104b0a6c580
+    DirBase: 856d10002  ObjectTable: ffff9881131b1b80  HandleCount: 197.
+    Image: svchost.exe
+PROCESS ffff8104b0a68580
+    DirBase: 854f00002  ObjectTable: ffff98811323db80  HandleCount: 406.
+    Image: svchost.exe
+PROCESS ffff8104b0b1e080
+    DirBase: 854f20002  ObjectTable: ffff988113204040  HandleCount: 417.
+    Image: svchost.exe
+PROCESS ffff8104b0a66580
+    DirBase: 854e90002  ObjectTable: ffff988113247040  HandleCount: 152.
+    Image: svchost.exe
+PROCESS ffff8104b0ba8080
+    DirBase: 855710002  ObjectTable: ffff988113277b80  HandleCount: 141.
+    Image: svchost.exe
+PROCESS ffff8104b0bbb080
+    DirBase: 85a230002  ObjectTable: ffff9881132ae040  HandleCount: 247.
+    Image: svchost.exe
+PROCESS ffff8104b0a5c580
+    DirBase: 85c7b0002  ObjectTable: ffff9881132deac0  HandleCount: 483.
+    Image: svchost.exe
+PROCESS ffff8104b0be5080
+    DirBase: 858420002  ObjectTable: ffff9881132ee040  HandleCount: 145.
+    Image: svchost.exe
+PROCESS ffff8104b0c07580
+    DirBase: 85db10002  ObjectTable: ffff98811334c040  HandleCount: 216.
+    Image: svchost.exe
+PROCESS ffff8104b0c44580
+    DirBase: 859d10002  ObjectTable: ffff98811338a040  HandleCount: 243.
+    Image: svchost.exe
+PROCESS ffff8104b0c64580
+    DirBase: 85e800002  ObjectTable: ffff9881133b2040  HandleCount: 301.
+    Image: NVDisplay.Container.exe
+PROCESS ffff8104b0c62580
+    DirBase: 85a700002  ObjectTable: ffff9881133a9040  HandleCount: 508.
+    Image: svchost.exe
+PROCESS ffff8104b0c9b580
+    DirBase: 85ca40002  ObjectTable: ffff9881133d21c0  HandleCount: 392.
+    Image: svchost.exe
+PROCESS ffff8104b0c5e580
+    DirBase: 85b210002  ObjectTable: ffff98811345a5c0  HandleCount: 217.
+    Image: svchost.exe
+PROCESS ffff8104b0cfc580
+    DirBase: 85b510002  ObjectTable: ffff9881134605c0  HandleCount: 216.
+    Image: svchost.exe
+PROCESS ffff8104b0c5a580
+    DirBase: 85b4f0002  ObjectTable: ffff9881134675c0  HandleCount: 442.
+    Image: svchost.exe
+PROCESS ffff8104b0cf9080
+    DirBase: 85fa10002  ObjectTable: ffff9881134703c0  HandleCount: 164.
+    Image: svchost.exe
+PROCESS ffff8104b0d64040
+    DirBase: 85d580002  ObjectTable: ffff9881134c1b80  HandleCount:   0.
+    Image: MemCompression
+PROCESS ffff8104b0df9580
+    DirBase: 8620f0002  ObjectTable: ffff9881134a5540  HandleCount: 164.
+    Image: svchost.exe
+PROCESS ffff8104b0f19580
+    DirBase: 862b00002  ObjectTable: ffff98811351f440  HandleCount: 291.
+    Image: svchost.exe
+PROCESS ffff8104b0c4a580
+    DirBase: 862b30002  ObjectTable: ffff9881134d8b80  HandleCount: 147.
+    Image: svchost.exe
+PROCESS ffff8104b0c46580
+    DirBase: 85e3d0002  ObjectTable: ffff9881137bb9c0  HandleCount: 185.
+    Image: svchost.exe
+PROCESS ffff8104b0fda580
+    DirBase: 864500002  ObjectTable: ffff988113a0db80  HandleCount: 243.
+    Image: svchost.exe
+PROCESS ffff8104b0fd2580
+    DirBase: 869600002  ObjectTable: ffff988113aacb80  HandleCount: 220.
+    Image: svchost.exe
+PROCESS ffff8104b0f5e580
+    DirBase: 03200002  ObjectTable: ffff98811311c040  HandleCount: 479.
+    Image: svchost.exe
+PROCESS ffff8104b0fca580
+    DirBase: 854000002  ObjectTable: ffff98811311ab80  HandleCount: 194.
+    Image: svchost.exe
+PROCESS ffff8104af067580
+    DirBase: 867930002  ObjectTable: ffff988113bac5c0  HandleCount: 432.
+    Image: svchost.exe
+PROCESS ffff8104af065580
+    DirBase: 854940002  ObjectTable: ffff988113bb2040  HandleCount: 137.
+    Image: svchost.exe
+PROCESS ffff8104b02fd580
+    DirBase: 857510002  ObjectTable: ffff988113bfcb80  HandleCount: 403.
+    Image: svchost.exe
+PROCESS ffff8104b02f9580
+    DirBase: 851680002  ObjectTable: ffff988113f09040  HandleCount: 241.
+    Image: svchost.exe
+PROCESS ffff8104b0230580
+    DirBase: 869b20002  ObjectTable: ffff988113ed9040  HandleCount: 421.
+    Image: spoolsv.exe
+PROCESS ffff8104b022a580
+    DirBase: 86c610002  ObjectTable: ffff988113fd7b80  HandleCount: 185.
+    Image: svchost.exe
+PROCESS ffff8104b12b3580
+    DirBase: 868a10002  ObjectTable: ffff988114010040  HandleCount: 166.
+    Image: wlanext.exe
+PROCESS ffff8104b0b66580
+    DirBase: 864910002  ObjectTable: ffff988113ff7b80  HandleCount: 116.
+    Image: conhost.exe
+PROCESS ffff8104b1329580
+    DirBase: 866a10002  ObjectTable: ffff9881140ddb80  HandleCount: 117.
+    Image: ITBMSvc.exe
+PROCESS ffff8104b12a6080
+    DirBase: 866bc0002  ObjectTable: ffff98811412d040  HandleCount: 433.
+    Image: svchost.exe
+PROCESS ffff8104b129f580
+    DirBase: 866af0002  ObjectTable: ffff9881140f1b80  HandleCount: 312.
+    Image: svchost.exe
+PROCESS ffff8104b129d580
+    DirBase: 86f510002  ObjectTable: ffff988114115b80  HandleCount: 748.
+    Image: svchost.exe
+PROCESS ffff8104b129b580
+    DirBase: 86f540002  ObjectTable: ffff988114131040  HandleCount: 341.
+    Image: svchost.exe
+PROCESS ffff8104b1297580
+    DirBase: 86f5c0002  ObjectTable: ffff988114131b80  HandleCount: 545.
+    Image: nvcontainer.exe
+PROCESS ffff8104b1299580
+    DirBase: 86f5e0002  ObjectTable: ffff98811411b040  HandleCount: 130.
+    Image: svchost.exe
+PROCESS ffff8104b1296340
+    DirBase: 851b10002  ObjectTable: ffff98811413bb80  HandleCount: 438.
+    Image: svchost.exe
+PROCESS ffff8104b1295580
+    DirBase: 851b00002  ObjectTable: ffff98811412f040  HandleCount: 329.
+    Image: NvTelemetryContainer.exe
+PROCESS ffff8104b1395580
+    DirBase: 851bb0002  ObjectTable: ffff988114129b80  HandleCount: 112142.
+    Image: ICEsoundService64.exe
+PROCESS ffff8104b13a72c0
+    DirBase: 871e10002  ObjectTable: ffff988114124b80  HandleCount: 1326.
+    Image: MsMpEng.exe
+```
+
 # Reference
 
 - Windows Internals 7th edition (Part 1): https://www.microsoftpressstore.com/store/windows-internals-part-1-system-architecture-processes-9780735684188
