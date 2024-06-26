@@ -974,7 +974,7 @@ PID            Address          Name                                            
 Warning! Zombie process(es) detected (not displayed). Count: 5 [zombie report]
 ```
 
-High CPU time means a process is using a lot of CPU resources, which can affect system performance. If a process has more CPU time than others, it usually means it has been using the CPU heavily for a long period. High CPU usage can sometimes be caused by resource leaks such as memory leaks or handle leaks.
+High CPU time means a process is using a lot of CPU resources, which can affect system performance. If a process has more CPU time than others, it usually means it has been using the CPU heavily for a long period. High CPU usage can sometimes be caused by resource leaks such as memory leaks or handle leaks. We can use the  we can use the **`!mex.tl -cpu`** command to get the CPU time of every process.
 
 ```
 0: kd> !mex.tl -cpu
