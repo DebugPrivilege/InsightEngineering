@@ -1350,7 +1350,7 @@ Committed pages:          1686167 (    6744668 Kb)
 Commit limit:             5969650 (   23878600 Kb)
 ```
 
-A high handle count in a process indicates significant resource usage, which can be normal for certain types of applications but can also suggest issues like **handle leaks** or **inefficient resource management**. This command is leveraging the Debugger's Data Model. **Processes with more than 9999 Handles** could be worth to investigate. Thanks to @EmileKenning and @wmessmer for providing this tip.
+A high handle count in a process indicates significant resource usage, which can be normal for certain types of applications but can also suggest issues like **handle leaks** or **inefficient resource management**. This command is leveraging the Debugger's Data Model. **Processes with more than 9999 Handles** could be worth to investigate. Thanks to **@EmileKenning** and **@wmessmer** for providing this tip.
 
 ```
 14: kd> dx -g -r2 @$cursession.Processes.Select(p => new {ID = (int)p.Id, Name = p.Name, ThreadCount = (int)p.Threads.Count(), HandleCount = (int)p.Io.Handles.Count()}).OrderBy(p=> p.Name) 
