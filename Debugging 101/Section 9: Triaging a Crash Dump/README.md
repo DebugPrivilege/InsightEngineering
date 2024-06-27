@@ -1350,182 +1350,115 @@ Committed pages:          1686167 (    6744668 Kb)
 Commit limit:             5969650 (   23878600 Kb)
 ```
 
-A high handle count in a process indicates significant resource usage, which can be normal for certain types of applications but can also suggest issues like **handle leaks** or **inefficient resource management**. This command is not the best and I'm sure there are better ways, but at least it's working. **Processes with more than 9999 Handles** could be worth to investigate.
+A high handle count in a process indicates significant resource usage, which can be normal for certain types of applications but can also suggest issues like **handle leaks** or **inefficient resource management**. This command is leveraging the Debugger's Data Model. **Processes with more than 9999 Handles** could be worth to investigate. Thanks to @EmileKenning and @wmessmer for providing this tip.
 
 ```
-14: kd> !mex.grep -r "PROCESS|HandleCount:|Image" !process 0 0
-**** NT ACTIVE PROCESS DUMP ****
-PROCESS ffff8104a6893440
-    DirBase: 001ad002  ObjectTable: ffff98810fe14000  HandleCount: 5120.
-    Image: System
-PROCESS ffff8104a6be2040
-    DirBase: 44a00002  ObjectTable: ffff98810fe37000  HandleCount:   0.
-    Image: Registry
-PROCESS ffff8104abd5e580
-    DirBase: 03b00002  ObjectTable: ffff9881102a7b80  HandleCount:  52.
-    Image: smss.exe
-PROCESS ffff8104af4f6080
-    DirBase: 850d20002  ObjectTable: ffff98810ff15040  HandleCount: 583.
-    Image: csrss.exe
-PROCESS ffff8104b083c080
-    DirBase: 844100002  ObjectTable: ffff988112307b80  HandleCount: 164.
-    Image: wininit.exe
-PROCESS ffff8104b0880580
-    DirBase: 84f900002  ObjectTable: ffff988112dff040  HandleCount: 630.
-    Image: services.exe
-PROCESS ffff8104b08ae580
-    DirBase: 84ee00002  ObjectTable: ffff988112e2fb80  HandleCount: 1378.
-    Image: lsass.exe
-PROCESS ffff8104b08ac580
-    DirBase: 848800002  ObjectTable: ffff988112e2bb80  HandleCount:  84.
-    Image: svchost.exe
-PROCESS ffff8104b08a8580
-    DirBase: 84dc00002  ObjectTable: ffff988112f1d900  HandleCount: 1177.
-    Image: svchost.exe
-PROCESS ffff8104b0925580
-    DirBase: 848c00002  ObjectTable: ffff988112f6eb80  HandleCount:  45.
-    Image: fontdrvhost.exe
-PROCESS ffff8104b0985080
-    DirBase: 844400002  ObjectTable: ffff98811307db80  HandleCount: 1219.
-    Image: svchost.exe
-PROCESS ffff8104b08a0580
-    DirBase: 84db10002  ObjectTable: ffff988113098b80  HandleCount: 305.
-    Image: svchost.exe
-PROCESS ffff8104b0a6c580
-    DirBase: 856d10002  ObjectTable: ffff9881131b1b80  HandleCount: 197.
-    Image: svchost.exe
-PROCESS ffff8104b0a68580
-    DirBase: 854f00002  ObjectTable: ffff98811323db80  HandleCount: 406.
-    Image: svchost.exe
-PROCESS ffff8104b0b1e080
-    DirBase: 854f20002  ObjectTable: ffff988113204040  HandleCount: 417.
-    Image: svchost.exe
-PROCESS ffff8104b0a66580
-    DirBase: 854e90002  ObjectTable: ffff988113247040  HandleCount: 152.
-    Image: svchost.exe
-PROCESS ffff8104b0ba8080
-    DirBase: 855710002  ObjectTable: ffff988113277b80  HandleCount: 141.
-    Image: svchost.exe
-PROCESS ffff8104b0bbb080
-    DirBase: 85a230002  ObjectTable: ffff9881132ae040  HandleCount: 247.
-    Image: svchost.exe
-PROCESS ffff8104b0a5c580
-    DirBase: 85c7b0002  ObjectTable: ffff9881132deac0  HandleCount: 483.
-    Image: svchost.exe
-PROCESS ffff8104b0be5080
-    DirBase: 858420002  ObjectTable: ffff9881132ee040  HandleCount: 145.
-    Image: svchost.exe
-PROCESS ffff8104b0c07580
-    DirBase: 85db10002  ObjectTable: ffff98811334c040  HandleCount: 216.
-    Image: svchost.exe
-PROCESS ffff8104b0c44580
-    DirBase: 859d10002  ObjectTable: ffff98811338a040  HandleCount: 243.
-    Image: svchost.exe
-PROCESS ffff8104b0c64580
-    DirBase: 85e800002  ObjectTable: ffff9881133b2040  HandleCount: 301.
-    Image: NVDisplay.Container.exe
-PROCESS ffff8104b0c62580
-    DirBase: 85a700002  ObjectTable: ffff9881133a9040  HandleCount: 508.
-    Image: svchost.exe
-PROCESS ffff8104b0c9b580
-    DirBase: 85ca40002  ObjectTable: ffff9881133d21c0  HandleCount: 392.
-    Image: svchost.exe
-PROCESS ffff8104b0c5e580
-    DirBase: 85b210002  ObjectTable: ffff98811345a5c0  HandleCount: 217.
-    Image: svchost.exe
-PROCESS ffff8104b0cfc580
-    DirBase: 85b510002  ObjectTable: ffff9881134605c0  HandleCount: 216.
-    Image: svchost.exe
-PROCESS ffff8104b0c5a580
-    DirBase: 85b4f0002  ObjectTable: ffff9881134675c0  HandleCount: 442.
-    Image: svchost.exe
-PROCESS ffff8104b0cf9080
-    DirBase: 85fa10002  ObjectTable: ffff9881134703c0  HandleCount: 164.
-    Image: svchost.exe
-PROCESS ffff8104b0d64040
-    DirBase: 85d580002  ObjectTable: ffff9881134c1b80  HandleCount:   0.
-    Image: MemCompression
-PROCESS ffff8104b0df9580
-    DirBase: 8620f0002  ObjectTable: ffff9881134a5540  HandleCount: 164.
-    Image: svchost.exe
-PROCESS ffff8104b0f19580
-    DirBase: 862b00002  ObjectTable: ffff98811351f440  HandleCount: 291.
-    Image: svchost.exe
-PROCESS ffff8104b0c4a580
-    DirBase: 862b30002  ObjectTable: ffff9881134d8b80  HandleCount: 147.
-    Image: svchost.exe
-PROCESS ffff8104b0c46580
-    DirBase: 85e3d0002  ObjectTable: ffff9881137bb9c0  HandleCount: 185.
-    Image: svchost.exe
-PROCESS ffff8104b0fda580
-    DirBase: 864500002  ObjectTable: ffff988113a0db80  HandleCount: 243.
-    Image: svchost.exe
-PROCESS ffff8104b0fd2580
-    DirBase: 869600002  ObjectTable: ffff988113aacb80  HandleCount: 220.
-    Image: svchost.exe
-PROCESS ffff8104b0f5e580
-    DirBase: 03200002  ObjectTable: ffff98811311c040  HandleCount: 479.
-    Image: svchost.exe
-PROCESS ffff8104b0fca580
-    DirBase: 854000002  ObjectTable: ffff98811311ab80  HandleCount: 194.
-    Image: svchost.exe
-PROCESS ffff8104af067580
-    DirBase: 867930002  ObjectTable: ffff988113bac5c0  HandleCount: 432.
-    Image: svchost.exe
-PROCESS ffff8104af065580
-    DirBase: 854940002  ObjectTable: ffff988113bb2040  HandleCount: 137.
-    Image: svchost.exe
-PROCESS ffff8104b02fd580
-    DirBase: 857510002  ObjectTable: ffff988113bfcb80  HandleCount: 403.
-    Image: svchost.exe
-PROCESS ffff8104b02f9580
-    DirBase: 851680002  ObjectTable: ffff988113f09040  HandleCount: 241.
-    Image: svchost.exe
-PROCESS ffff8104b0230580
-    DirBase: 869b20002  ObjectTable: ffff988113ed9040  HandleCount: 421.
-    Image: spoolsv.exe
-PROCESS ffff8104b022a580
-    DirBase: 86c610002  ObjectTable: ffff988113fd7b80  HandleCount: 185.
-    Image: svchost.exe
-PROCESS ffff8104b12b3580
-    DirBase: 868a10002  ObjectTable: ffff988114010040  HandleCount: 166.
-    Image: wlanext.exe
-PROCESS ffff8104b0b66580
-    DirBase: 864910002  ObjectTable: ffff988113ff7b80  HandleCount: 116.
-    Image: conhost.exe
-PROCESS ffff8104b1329580
-    DirBase: 866a10002  ObjectTable: ffff9881140ddb80  HandleCount: 117.
-    Image: ITBMSvc.exe
-PROCESS ffff8104b12a6080
-    DirBase: 866bc0002  ObjectTable: ffff98811412d040  HandleCount: 433.
-    Image: svchost.exe
-PROCESS ffff8104b129f580
-    DirBase: 866af0002  ObjectTable: ffff9881140f1b80  HandleCount: 312.
-    Image: svchost.exe
-PROCESS ffff8104b129d580
-    DirBase: 86f510002  ObjectTable: ffff988114115b80  HandleCount: 748.
-    Image: svchost.exe
-PROCESS ffff8104b129b580
-    DirBase: 86f540002  ObjectTable: ffff988114131040  HandleCount: 341.
-    Image: svchost.exe
-PROCESS ffff8104b1297580
-    DirBase: 86f5c0002  ObjectTable: ffff988114131b80  HandleCount: 545.
-    Image: nvcontainer.exe
-PROCESS ffff8104b1299580
-    DirBase: 86f5e0002  ObjectTable: ffff98811411b040  HandleCount: 130.
-    Image: svchost.exe
-PROCESS ffff8104b1296340
-    DirBase: 851b10002  ObjectTable: ffff98811413bb80  HandleCount: 438.
-    Image: svchost.exe
-PROCESS ffff8104b1295580
-    DirBase: 851b00002  ObjectTable: ffff98811412f040  HandleCount: 329.
-    Image: NvTelemetryContainer.exe
-PROCESS ffff8104b1395580
-    DirBase: 851bb0002  ObjectTable: ffff988114129b80  HandleCount: 112142.
-    Image: ICEsoundService64.exe
-PROCESS ffff8104b13a72c0
-    DirBase: 871e10002  ObjectTable: ffff988114124b80  HandleCount: 1326.
-    Image: MsMpEng.exe
+14: kd> dx -g -r2 @$cursession.Processes.Select(p => new {ID = (int)p.Id, Name = p.Name, ThreadCount = (int)p.Threads.Count(), HandleCount = (int)p.Io.Handles.Count()}).OrderBy(p=> p.Name) 
+=====================================================================================
+=             = ID       = Name                         = ThreadCount = HandleCount =
+=====================================================================================
+= [0x316c]    - 12652    - ApplicationFrameHost.exe     - 28          - 495         =
+= [0x1fbc]    - 8124     - CUE.exe                      - 38          - 561         =
+= [0xf8c]     - 3980     - Discord.exe                  - 48          - 732         =
+= [0x1ec4]    - 7876     - Discord.exe                  - 27          - 446         =
+= [0x2cfc]    - 11516    - Discord.exe                  - 35          - 847         =
+= [0x397c]    - 14716    - Discord.exe                  - 24          - 450         =
+= [0x3b00]    - 15104    - FileCoAuth.exe               - 7           - 215         =
+= [0x2708]    - 9992     - GoogleCrashHandler.exe       - 5           - 160         =
+= [0x25e0]    - 9696     - GoogleCrashHandler64.exe     - 4           - 141         =
+= [0xf10]     - 3856     - ICEsoundService64.exe        - 6           - 112142      = <---- OUTLIER
+= [0xaf4]     - 2804     - ITBM.exe                     - 3           - 200         =
+= [0xebc]     - 3772     - ITBMSvc.exe                  - 4           - 117         =
+= [0x0]       - 0        - Idle                         - 16          - 5120        =
+= [0x1fec]    - 8172     - LockApp.exe                  - 15          - 514         =
+= [0x32b0]    - 12976    - MSASCuiL.exe                 - 3           - 163         =
+= [0x898]     - 2200     - MemCompression               - 38          - 0           =
+= [0xf24]     - 3876     - MsMpEng.exe                  - 69          - 1326        =
+= [0x1cd8]    - 7384     - NVDisplay.Container.exe      - 26          - 597         =
+= [0x7a0]     - 1952     - NVDisplay.Container.exe      - 15          - 301         =
+= [0x2ae4]    - 10980    - NVIDIA Share.exe             - 29          - 815         =
+= [0x2474]    - 9332     - NVIDIA Share.exe             - 13          - 413         =
+= [0x780]     - 1920     - NVIDIA Share.exe             - 18          - 315         =
+= [0x28c4]    - 10436    - NVIDIA Web Helper.exe        - 91          - 797         =
+= [0x1bf4]    - 7156     - NisSrv.exe                   - 8           - 196         =
+= [0xf04]     - 3844     - NvTelemetryContainer.exe     - 19          - 329         =
+= [0x10c8]    - 4296     - OneDrive.exe                 - 24          - 777         =
+= [0xa8]      - 168      - Registry                     - 3           - 0           =
+= [0x2a78]    - 10872    - RemindersServer.exe          - 7           - 322         =
+= [0x2d5c]    - 11612    - RtkNGUI64.exe                - 9           - 412         =
+= [0x2354]    - 9044     - RuntimeBroker.exe            - 18          - 368         =
+= [0x276c]    - 10092    - RuntimeBroker.exe            - 3           - 106         =
+= [0x2f48]    - 12104    - RuntimeBroker.exe            - 23          - 749         =
+= [0x2010]    - 8208     - RuntimeBroker.exe            - 5           - 188         =
+= [0x1f5c]    - 8028     - RuntimeBroker.exe            - 10          - 318         =
+= [0x10a8]    - 4264     - RuntimeBroker.exe            - 45          - 1387        =
+= [0x1db0]    - 7600     - SearchIndexer.exe            - 73          - 737         =
+= [0x3468]    - 13416    - SearchUI.exe                 - 57          - 1574        =
+= [0x27b8]    - 10168    - SecHealthUI.exe              - 46          - 680         =
+= [0xf74]     - 3956     - SecurityHealthService.exe    - 21          - 619         =
+= [0x28b8]    - 10424    - SettingSyncHost.exe          - 12          - 583         =
+= [0x30b8]    - 12472    - SgrmBroker.exe               - 2           - 65          =
+= [0x1fac]    - 8108     - ShellExperienceHost.exe      - 30          - 858         =
+= [0x2dc0]    - 11712    - SkypeHost.exe                - 29          - 1029        =
+= [0x130]     - 304      - Spotify.exe                  - 41          - 457         =
+= [0x23c0]    - 9152     - Spotify.exe                  - 64          - 1346        =
+= [0x1740]    - 5952     - Spotify.exe                  - 31          - 339         =
+= [0xb44]     - 2884     - Spotify.exe                  - 54          - 695         =
+= [0x4]       - 4        - System                       - 248         - 5120        =
+= [0x3144]    - 12612    - TiWorker.exe                 - 5           - 188         =
+= [0x17c4]    - 6084     - TrustedInstaller.exe         - 6           - 118         =
+= [0x35e4]    - 13796    - WmiPrvSE.exe                 - 5           - 177         =
+= [0x3548]    - 13640    - WmiPrvSE.exe                 - 13          - 312         =
+= [0x3a4c]    - 14924    - audiodg.exe                  - 8           - 164         =
+= [0x14d0]    - 5328     - chrome.exe                   - 17          - 272         =
+= [0x2460]    - 9312     - chrome.exe                   - 35          - 1164        =
+= [0x65c]     - 1628     - chrome.exe                   - 8           - 228         =
+= [0x19b0]    - 6576     - chrome.exe                   - 37          - 495         =
+= [0x15b0]    - 5552     - chrome.exe                   - 20          - 331         =
+= [0x2a28]    - 10792    - chrome.exe                   - 4           - 192         =
+= [0x1d08]    - 7432     - conhost.exe                  - 6           - 142         =
+= [0x18f4]    - 6388     - conhost.exe                  - 6           - 142         =
+= [0x2b50]    - 11088    - conhost.exe                  - 3           - 118         =
+= [0xd6c]     - 3436     - conhost.exe                  - 3           - 116         =
+= [0x2e0]     - 736      - csrss.exe                    - 14          - 583         =
+= [0x5e4]     - 1508     - csrss.exe                    - 15          - 638         =
+= [0x237c]    - 9084     - ctfmon.exe                   - 13          - 391         =
+= [0x4d0]     - 1232     - dllhost.exe                  - 14          - 229         =
+= [0x3a88]    - 14984    - dllhost.exe                  - 7           - 193         =
+= [0x2f9c]    - 12188    - dllhost.exe                  - 6           - 141         =
+= [0x1288]    - 4744     - dwm.exe                      - 24          - 798         =
+= [0x3740]    - 14144    - explorer.exe                 - 115         - 2837        =
+= [0x23ac]    - 9132     - fontdrvhost.exe              - 6           - 45          =
+= [0x24c]     - 588      - fontdrvhost.exe              - 6           - 45          =
+= [0x39c]     - 924      - lsass.exe                    - 11          - 1378        =
+= [0x2054]    - 8276     - msdt.exe                     - 12          - 575         =
+= [0x2030]    - 8240     - nhAsusStrixSvc32.exe         - 19          - 703         =
+= [0x23a0]    - 9120     - nhAsusStrixSvc64.exe         - 8           - 209         =
+= [0x724]     - 1828     - nhAsusStrixUILauncher.exe    - 5           - 224         =
+= [0xee8]     - 3816     - nvcontainer.exe              - 30          - 545         =
+= [0x160c]    - 5644     - nvcontainer.exe              - 31          - 613         =
+= [0x750]     - 1872     - nvcontainer.exe              - 12          - 416         =
+= [0x3760]    - 14176    - nvsphelper64.exe             - 6           - 188         =
+= [0x1f80]    - 8064     - sdiagnhost.exe               - 25          - 481         =
+= [0x25c8]    - 9672     - sdiagnhost.exe               - 28          - 500         =
+= [0x388]     - 904      - services.exe                 - 17          - 630         =
+= [0x538]     - 1336     - sihost.exe                   - 20          - 586         =
+= [0x2eb4]    - 11956    - smartscreen.exe              - 21          - 358         =
+= [0x20c]     - 524      - smss.exe                     - 4           - 52          =
+= [0xc64]     - 3172     - spoolsv.exe                  - 10          - 421         =
+= [0x678]     - 1656     - svchost.exe                  - 8           - 247         =
+= [0x610]     - 1552     - svchost.exe                  - 9           - 141         =
+= [0x1e18]    - 7704     - svchost.exe                  - 5           - 166         =
+= [0x2ac8]    - 10952    - svchost.exe                  - 6           - 188         =
+= [0x1464]    - 5220     - svchost.exe                  - 5           - 242         =
+= [0x138c]    - 5004     - svchost.exe                  - 7           - 135         =
+= [0x5c4]     - 1476     - svchost.exe                  - 5           - 152         =
+= [0x2d00]    - 11520    - svchost.exe                  - 12          - 388         =
+= [0x3648]    - 13896    - svchost.exe                  - 7           - 334         =
+= [0x1994]    - 6548     - svchost.exe                  - 18          - 594         =
+= [0x5bc]     - 1468     - svchost.exe                  - 10          - 417         =
+= [...]       -          -                              -             -             =
+=====================================================================================
 ```
 
 # Reference
