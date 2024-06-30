@@ -4,6 +4,8 @@ The WinDE extension provides a set of commands for debugging in kernel mode. It 
 
 The extension also offers information about processes, threads, and handles. It appears to be an older extension, dating back to around 2011-ish? It was developed by some Escalation Engineers in the past, as I've been informed. Not every command will be displayed, just the most relevant one's. Also, I've picked commands that also don't take forever to run.
 
+This extension can be downloaded here: https://github.com/DebugPrivilege/InsightEngineering/tree/main/Debugging%20Case%20Studies/Extensions
+
 # WalkThrough
 
 The **`!WinDE.help`** command provides a detailed list of all available commands within the **`WinDE.dll`** extension. It even includes brief descriptions and usage information for each command.
