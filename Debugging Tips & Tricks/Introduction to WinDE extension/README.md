@@ -6,6 +6,8 @@ The extension also offers information about processes, threads, and handles. It 
 
 This extension can be downloaded here: https://github.com/DebugPrivilege/InsightEngineering/tree/main/Debugging%20Case%20Studies/Extensions
 
+**DISCLAIMER:** This extension is available at https://www.zhaodll.com/dll/softdown.asp?softid=111931&iz2=dc975e09c06714c45ca02c7244678aa3, which is where I downloaded it from. Some functionality may require private symbols, so not every command might work fully.
+
 # WalkThrough
 
 The **`!WinDE.help`** command provides a detailed list of all available commands within the **`WinDE.dll`** extension. It even includes brief descriptions and usage information for each command.
