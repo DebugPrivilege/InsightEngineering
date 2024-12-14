@@ -4,6 +4,8 @@ Time Travel Debugging (TTD) in WinDbg is a feature that lets you record a progra
 
 Beyond standard debugging, security researchers can leverage TTD to analyze malware or other binaries. By stepping through the execution timeline, they can observe how malicious code behaves, monitor API calls, and inspect memory changes to understand the malware's functionality. TTD can be used to introspect components of Windows itself, allowing security researchers to dig into system internals.  This capability makes TTD a powerful tool not just for developers, but for security researchers as well.
 
+If you'd like to download all the TTD binaries immediately, I've included a ZIP file containing TTD version 1.11.429.0. Note that this version may change over time as newer releases are made available, so it’s a good idea to regularly check the Microsoft website for updates.
+
 ---
 
 ## Key Features
