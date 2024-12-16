@@ -94,7 +94,7 @@ BrokerInfrastructure                      616
 << SNIPPET >>
 ```
 
-To disable Shadow Stacks temporarily, you can run the following command:
+To **disable** Shadow Stacks temporarily, you can run the following command:
 
 ```
 New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" -Name "UserShadowStacksForceDisabled" -PropertyType DWORD -Value 1 -Force
