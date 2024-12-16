@@ -65,3 +65,65 @@ To **re-enable Shadow Stack**, you can reverse the changes made to disable it: (
 ```
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" -Name "UserShadowStacksForceDisabled" -Value 0
 ```
+
+## How to trace a service?
+
+With Shadow Stacks temporarily disabled, you can not only trace `lsass.exe` but also other services running on the machine. For a clean and formatted output of service names and their PIDs, you can use the following command:
+
+```
+C:\Users\Admin\Desktop\ttd>wmic service get Name,ProcessId /format:table
+Name                                      ProcessId
+AJRouter                                  0
+ALG                                       0
+AppIDSvc                                  0
+Appinfo                                   1228
+AppMgmt                                   0
+AppReadiness                              0
+AppVClient                                0
+AppXSvc                                   5128
+AssignedAccessManagerSvc                  0
+AudioEndpointBuilder                      1384
+Audiosrv                                  2132
+autotimesvc                               0
+AxInstSV                                  0
+BDESVC                                    0
+BFE                                       2680
+BITS                                      0
+BrokerInfrastructure                      616
+
+<< SNIPPET >>
+```
+
+Suppose you want to trace the Secondary Logon service; you can use the following command to find its PID.
+
+```
+C:\Users\Admin\Desktop\ttd>wmic service get Name,ProcessId /format:table | findstr "seclogon"
+seclogon                                  1244
+```
+
+Finally, you can begin tracing this service, and you’ll see that it works as expected.
+
+```
+C:\Users\Admin\Desktop\ttd>TTD.exe -out c:\traces -attach 1244
+Microsoft (R) TTD 1.01.11 x64
+Release: 1.11.429.0
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+
+Attaching to 1244
+    Initializing the recording of process (PID:1244) on trace file: c:\traces\svchost01.run
+    Recording has started of process (PID:1244) on trace file: c:\traces\svchost01.run
+(x64) (PID:1244): Recording stopped after 41359ms
+  Full trace dumped to c:\traces\svchost01.run
+
+
+Note: c:\traces\svchost01.out may contain personally identifiable or security related information,
+including but not necessarily limited to file paths, registry, memory or file contents. Exact
+information depends on target process activity while it was recorded. Please be aware of this
+when sharing with other people.
+
+c:\traces\svchost01.out contains additional information about the recording session.
+```
+
+![image](https://github.com/user-attachments/assets/98ac4b6c-a74c-4259-997f-b346829b4616)
+
