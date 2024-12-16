@@ -94,6 +94,12 @@ BrokerInfrastructure                      616
 << SNIPPET >>
 ```
 
+To disable Shadow Stacks temporarily, you can run the following command:
+
+```
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" -Name "UserShadowStacksForceDisabled" -PropertyType DWORD -Value 1 -Force
+```
+
 Suppose you want to trace the Secondary Logon service; you can use the following command to find its PID.
 
 ```
@@ -127,3 +133,9 @@ c:\traces\svchost01.out contains additional information about the recording sess
 
 ![image](https://github.com/user-attachments/assets/98ac4b6c-a74c-4259-997f-b346829b4616)
 
+
+To **re-enable Shadow Stack**, you can reverse the changes made to disable it: (This requires a reboot as well)
+
+```
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" -Name "UserShadowStacksForceDisabled" -Value 0
+```
