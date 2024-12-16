@@ -32,7 +32,7 @@ To resolve this, Shadow Stacks need to be temporarily disabled by setting the fo
 New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" -Name "UserShadowStacksForceDisabled" -PropertyType DWORD -Value 1 -Force
 ```
 
-You can now see from the console that tracing of lsass.exe is working, and both the .run and .out files are being written to disk.
+You can now see from the console that tracing of `lsass.exe` is working, and both the `.run` and `.out` files are being written to disk.
 
 ```
 C:\Users\Admin\Desktop\ttd>TTD.exe -out c:\traces -attach 904
