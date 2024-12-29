@@ -35,11 +35,13 @@ No arguments will dump all file references.
 
 We can filter on the process name that we want to retrieve the handles from:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/3caf3c27-f600-4f58-bd02-f77087c550b3)
+![image](https://github.com/user-attachments/assets/bb3f7d93-c94e-4752-859f-f05b62723ce4)
+
 
 The second tool we can use is **Process Explorer** from SysInternals. This will also count the Handles of a process:
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/b7452166-790d-478a-badb-c071c229d3de)
+![image](https://github.com/user-attachments/assets/392bb5cf-a8c2-415e-8992-631380f4efcc)
+
 
 # Using the Windows Performance Toolkit to analyze Handle Leaks
 
