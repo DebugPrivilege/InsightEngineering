@@ -91,7 +91,8 @@ int main() {
 
 **Example:** The value 00000000000000A8 that we see is the real handle to the file we've created with **CreateFile**. This is an actual, unique identifier for the file resource, and it's stored in the process's handle table. We can use this handle to perform various operations on the file, like reading or writing for example.
 
-![image](https://github.com/DebugPrivilege/Debugging/assets/63166600/2a615630-593a-4698-8795-e61d63f46f6d)
+![image](https://github.com/user-attachments/assets/c0ad6866-4609-49f7-8d75-23cb1bf8bd10)
+
 
 # Pseudo Handles
 
