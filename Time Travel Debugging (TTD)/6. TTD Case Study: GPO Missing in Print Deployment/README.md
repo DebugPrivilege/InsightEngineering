@@ -398,4 +398,4 @@ This issue may occur due to the limitations set by Active Directory for LDAP que
 
 ## Conclusion
 
-The ADSI query error code `ERROR_DS_SIZELIMIT_EXCEEDED` is not displayed in the MMC console window, making it challenging to identify the root cause without additional debugging.
+The ADSI query error code `ERROR_DS_SIZELIMIT_EXCEEDED` is not displayed in the MMC console window, which can make it challenging to identify the root cause without additional debugging.
