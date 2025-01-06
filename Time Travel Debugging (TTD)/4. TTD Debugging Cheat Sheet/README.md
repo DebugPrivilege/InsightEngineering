@@ -42,5 +42,5 @@
 | Command         | Description                                  |
 |-----------------|----------------------------------------------|
 | `!position`     | Current position for each thread             |
-| `gle` | Displays the last error code and its description for the current thread |
+| `!gle` | Displays the last error code and its description for the current thread |
 
