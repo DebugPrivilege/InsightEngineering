@@ -1,6 +1,6 @@
 # Summary
 
-This write-up provides hands-on examples to help you get started with analyzing a TTD trace. We'll work with two trace files: one that captures the actual issue and another that functions correctly for comparison.
+This write-up provides hands-on examples to help you get started with analyzing a TTD trace. We'll work with two trace files: one that captures the actual issue and another that functions correctly for comparison. Both trace files are included in the ZIP file `net01.zip`. You can download, extract them, load them into WinDbg, and follow along.
 
 ## Root cause
 
