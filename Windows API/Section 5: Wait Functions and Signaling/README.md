@@ -17,7 +17,7 @@ DWORD WaitForSingleObject(
   DWORD  dwMilliseconds --> The time-out interval in milliseconds.
 );
 ```
-The **dwMilliseconds** parameter of the **WaitForSingleObject** and **WaitForMultipleObjects** function specifies the time-out interval, in milliseconds. The function will return when either the specified object is in the signaled state or the time-out interval elapses. The **dwMilliseconds** parameter can take several types of values:
+The `dwMilliseconds` parameter of the `WaitForSingleObject` and `WaitForMultipleObjects` function specifies the time-out interval, in milliseconds. The function will return when either the specified object is in the signaled state or the time-out interval elapses. The `dwMilliseconds` parameter can take several types of values:
 
 | Value         | Description  | Example |
 |---------------|--------------|---------|
@@ -38,7 +38,7 @@ DWORD WaitForMultipleObjects(
 );
 ```
 
-The return values from the **WaitForSingleObject** and **WaitForMultipleObjects** function indicate why the function returned and can help to understand the status of the object we're waiting on. These return values provide useful information to a program, allowing it to decide how to proceed based on the state of the object it was waiting for.
+The return values from the `WaitForSingleObject` and `WaitForMultipleObjects` function indicate why the function returned and can help to understand the status of the object we're waiting on. These return values provide useful information to a program, allowing it to decide how to proceed based on the state of the object it was waiting for.
 
 | Return Value  | Hexadecimal Value | Description  |
 |---------------|-------------------|--------------|
