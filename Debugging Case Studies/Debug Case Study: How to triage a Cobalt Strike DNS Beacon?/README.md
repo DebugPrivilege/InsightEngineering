@@ -35,7 +35,7 @@ Process Uptime: 0 days 0:03:01.000
   User time: 0 days 0:00:00.000
 ```
 
-We can use the **`!mex.us`** command to display unique stacks (call stacks) across threads in a process, helping to identify patterns or anomalies in thread execution. The presence of a call stack involving **`dnsapi`** functions like **`DnsQuery_A`** will suggest already that it could be a DNS Beacon.
+We can use the **`!mex.us`** command to display unique stacks (call stacks) across threads in a process to identify patterns or anomalies in thread execution. The presence of a call stack involving **`dnsapi`** functions like **`DnsQuery_A`** will suggest already that it could be a DNS Beacon.
 
 ```
 0:000> !mex.us
