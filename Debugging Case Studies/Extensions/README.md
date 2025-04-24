@@ -9,3 +9,5 @@ When you install WinDbg, it comes with a set of default extensions. Well, these 
 - **WinDE:** Older extension that I discovered on a Chinese website. It seems to be an older extension that was developed by internal Escalation Engineers of Microsoft.
 
 - **NETEXT:** WinDbg extension for data mining managed heap. It also includes commands to list http request, wcf services, WIF tokens among others. This extension can be downloaded here: [https://github.com/rodneyviana/netext](https://github.com/rodneyviana/netext/releases/tag/2.1.65.5000)
+
+- **PDE:** https://onedrive.live.com/?authkey=%21AJeSzeiu8SQ7T4w&cid=DAE128BD454CF957&id=DAE128BD454CF957%2112585&parId=DAE128BD454CF957%217152&o=OneUp
