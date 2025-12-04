@@ -10,6 +10,12 @@ If you like my content and want to support me with a coffee:
 
 <a href="https://www.buymeacoffee.com/debugprivilege" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
+# DISCLAIMER
+
+I’ve always believed in reproducible analysis, so I used to include memory dumps and other files with each write-up so people could follow along. At the time I uploaded everything to MEGA, but I didn’t realize they would delete the data if I became inactive. Because of that, the links to those memory dumps no longer work.
+
+<img width="421" height="635" alt="image" src="https://github.com/user-attachments/assets/7f714a88-2495-4ec9-b765-fdf0cf6ff936" />
+
 # Topics
 
 The following topics will be covered:
