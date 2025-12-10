@@ -4,6 +4,8 @@ The Windows Performance Toolkit (WPT) is a set of tools provided by Microsoft to
 
 Windows Performance Toolkit can be downloaded here: https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install
 
+If you want to download the binaries directly, please use this link: https://drive.google.com/file/d/1RBLSeRy-NSmpr9s9M1Af1AJK9SnchEq3/view?usp=drive_link
+
 # Windows Performance Recorder (WPR)
 
 WPR is a tool used for recording system events and various performance data. It can capture data such as CPU usage, disk I/O, memory usage, and more. Once the recording is done, it saves the data in a file with a **.etl** (Event Trace Log) extension.
