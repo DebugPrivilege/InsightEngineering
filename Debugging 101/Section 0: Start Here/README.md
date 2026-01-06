@@ -180,3 +180,5 @@ Extension search path is: C:\Program Files\WindowsApps\Microsoft.WinDbg_1.2306.1
 1:004> .load mex
 Mex External 3.0.0.7172 Loaded!
 ```
+
+Last but not least. Download all the useful extensions from the link below and save them all in the same folder: https://github.com/DebugPrivilege/InsightEngineering/tree/main/Debugging%20Case%20Studies/Extensions
